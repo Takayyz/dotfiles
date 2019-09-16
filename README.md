@@ -1,13 +1,13 @@
 # dotfiles
-- 条件
-  - macOS
-  - zsh使用可能
+## Requirements
+- macOS
+- zsh使用可能
   
-- 手順
-  - 以下を実行
+## Installation
+```
+$ git clone htttp://github.com/Takayyz/dotfile.git
   
-  `git clone htttp://github.com/Takayyz/dotfile.git`
+$ cd dotfiles
   
-  `cd dotfiles`
-  
-  `./install.sh`
+$ ./install.sh
+```
