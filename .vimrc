@@ -1,6 +1,5 @@
 let g:hybrid_use_iTerm_colors = 1
 colorscheme hybrid
-syntax on
 
 "行番号表示
 set number
@@ -15,6 +14,11 @@ highlight clear CursorLine
 syntax enable
 
 set backspace=indent,eol,start
+
+highlight Normal ctermbg=NONE guibg=NONE
+highlight NonText ctermbg=NONE guibg=NONE
+highlight SpecialKey ctermbg=NONE guibg=NONE
+highlight EndOfBuffer ctermbg=NONE guibg=NONE
 
 "ビープ音無効
 set visualbell t_vb=
