@@ -11,3 +11,6 @@ $ cd dotfiles
   
 $ ./install.sh
 ```
+
+## Goal
+- コマンド一発で環境構築できるようにする
