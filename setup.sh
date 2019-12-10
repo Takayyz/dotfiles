@@ -36,3 +36,4 @@ echo 'Congrats!! Yout are all set!'
 # http://neos21.hatenablog.com/entry/2019/01/10/080000 (defaultsコマンド)
 # https://qiita.com/kai_kou/items/af5d0c81facc1317d836 (setup.shまとめ)
 # https://qiita.com/kai_kou/items/3107e0a056c7a1b569cd (環境構築系記事)
+# https://qiita.com/hkusu/items/18cbe582abb9d3172019 (Gistについて)
