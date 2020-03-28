@@ -5,11 +5,11 @@
   
 ## Installation
 ```
-$ git clone htttp://github.com/Takayyz/dotfile.git
+$ git clone htttp://github.com/Takayyz/dotfiles.git
   
 $ cd dotfiles
   
-$ ./install.sh
+$ ./setup.sh
 ```
 
 ## Goal
