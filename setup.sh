@@ -233,6 +233,8 @@ for f in .??*; do
     # -v display progress
     if [[ "$f" = ".z"* ]]; then
       ln -snfv "$PWD/$f" "${ZDOTDIR:-$HOME}/$f"
+    elif [[ "$f" = ".vim" ]]; then
+      ln -snfv "$PWD/$f/colors/hybrid.vim" "$HOME/$f/colors/hybrid.vim"
     else
       ln -snfv "$PWD/$f" "$HOME/$f"
     fi
