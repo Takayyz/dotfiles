@@ -23,6 +23,8 @@ alias l='ls -la'
 # 設定即反映
 alias sz='source ~/.zshrc'
 
+alias lg='lazygit'
+
 # Preztoアップデート
 alias preup='cd ~/.zprezto && git pull && git submodule update --init --recursive ; cd -'
 
@@ -55,5 +57,21 @@ export EXPO_DEBUG=true
 # others
 #-----------------------------------------
 
+# cd省略
+setopt auto_cd
+
+# 曖昧な補完で、自動的に選択肢をリストアップ
+setopt AUTO_LIST
+
 # cdしたあとで、自動的に ls する
 function chpwd() { ls -a1 }
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/takatoshihino/.nodebrew/node/v10.15.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/takatoshihino/.nodebrew/node/v10.15.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/takatoshihino/.nodebrew/node/v10.15.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/takatoshihino/.nodebrew/node/v10.15.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /Users/takatoshihino/.nodebrew/node/v10.15.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/takatoshihino/.nodebrew/node/v10.15.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
