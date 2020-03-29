@@ -147,7 +147,8 @@ brew install tree
 brew install vim
 brew install wget
 brew install zsh
-
+echo '/usr/local/bin/zsh' >> /etc/shells
+chsh -s /usr/local/bin/zsh   # change shell to zsh
 
 echo 'Install Homebrew-cask'
 brew install cask
@@ -185,7 +186,19 @@ fi
 # ================================================================================
 # Install zprezto
 # ================================================================================
-
+echo 'Install and setup zprezto'
+if [ ! -d ~/.zsh.d ] ; then
+  mkdir ~/.zsh.d
+fi
+touch .zshenv
+echo -e "export ZDOTDIR=$HOME/.zsh.d\nsource $ZDOTDIR/.zshenv" >> .zshenv
+zsh
+git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+setopt EXTENDED_GLOB
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+done
+zsh
 
 # ================================================================================
 # Install other apps
@@ -209,16 +222,22 @@ fi
 #  skip .git
 # ================================================================================
 echo 'Create symlink of dotfiles at home directory'
-for f in .??*
-do
+PWD = pwd
+for f in .??*; do
     [ "$f" = ".git" ] && continue
+    [ "$f" = ".gitignore" ] && continue
 
     # -s create a symlink
     # -f force overwrite
     # -n replace existing symlink
     # -v display progress
-    ln -snfv "$f" "$HOME"/"$f"
+    if [[ "$f" = ".z"* ]]; then
+      ln -snfv "$PWD/$f" "${ZDOTDIR:-$HOME}/$f"
+    else
+      ln -snfv "$PWD/$f" "$HOME/$f"
+    fi
 done
+zsh
 
 # ================================================================================
 # Setup iTerm
