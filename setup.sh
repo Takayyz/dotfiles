@@ -128,14 +128,21 @@ fi
 
 echo 'Install packages with brew'
 # TODO brew install系を別ファイル化(brewfile, brew bundle, gistにアップ?)
+brew tap beeftornado/rmtree
+brew tap homebrew/services
+brew tap sanemat/font
+brew tap skanehira/docui
+
 brew install docker-compose
 brew install docui
 brew install git
+brew install jesseduffield/lazygit/lazygit
 brew install jq
-brew install lazygit
 brew install nkf
 brew install php@7.4
 brew install ricty
+cp -f /usr/local/opt/ricty/share/fonts/Ricty*.ttf ~/Library/Fonts/
+fc-cache -vf
 brew install tree
 brew install vim
 brew install wget
@@ -220,14 +227,17 @@ done
 cat << EOS
 Congrats!! You are all set!
 Before close this window, run command below...
---------------------
+------------------------------------------------------------
 which git
 which php
 which zsh
+------------------------------------------------------------
 
+Also don't forget to setup git config...
+------------------------------------------------------------
 git config --global user.name "username"
 git config --global user.mail "your.email@address"
---------------------
+------------------------------------------------------------
 
 Enjoy!
 EOS
