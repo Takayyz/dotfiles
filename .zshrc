@@ -21,7 +21,7 @@ alias -g vrc='~/.vimrc'
 alias l='ls -la'
 
 # 設定即反映
-alias sz='source ~/.zshrc'
+alias sz='source ~/.zsh.d/.zshrc'
 
 alias lg='lazygit'
 
