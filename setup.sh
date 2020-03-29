@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # ================================================================================
-#   Setup MacOs
+#   Identify MacOs
 # ================================================================================
 
 if [ "$(uname)" != "Darwin" ] ; then
@@ -17,6 +17,8 @@ xcode-select --install
 # ================================================================================
 #   Configure Macbook settings
 # ================================================================================
+# TODO turn spotlight shortcut off
+
 sudo nvram SystemAudioVolume=" "    # ブート時のサウンド無効化
 
 echo 'Setup defaults'
@@ -116,19 +118,116 @@ echo 'Done setup defaults'
 if [ ! -x "`which brew`" ] ; then
   echo "Start install and update brew"
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  echo 'Update brew'
   brew update
+  echo 'Upgrade brew'
   brew upgrade
   brew -v
+  echo 'Done'
 fi
 
-# Install Homebrew-cask
+echo 'Install packages with brew'
+# TODO brew install系を別ファイル化(brewfile, brew bundle, gistにアップ?)
+brew install docker-compose
+brew install docui
+brew install git
+brew install jq
+brew install lazygit
+brew install nkf
+brew install php@7.4
+brew install ricty
+brew install tree
+brew install vim
+brew install wget
+brew install zsh
+
+
+echo 'Install Homebrew-cask'
 brew install cask
 brew cask
 
+echo 'Install applications with Homebrew-cask'
+brew cask install alfred
+brew cask install appcleaner
+brew cask install clipy
+brew cask install docker
+brew cask install filezilla
+brew cask install google-chrome
+brew cask install google-japanese-ime
+brew cask install hyper
+brew cask install iterm2
+brew cask install postman
+brew cask install slack
+brew cask install spectacle
+brew cask install vagrant
+brew cask install vagrant-manager
+brew cask install virtualbox
+brew cask install visual-studio-code
+
 echo 'Done brew settings'
 
-echo 'Congrats!! You are all set!'
+# ================================================================================
+# Setup VSCode
+# ================================================================================
+# if [ -x "`which code`" ]; then
+#   echo 'Setup VSCode'
+#   code --install-extension Shan.code-settings-sync -force
+#   echo "done"
+# fi
 
+# ================================================================================
+# Setup iTerm
+# ================================================================================
+
+
+
+# ================================================================================
+# Install other apps
+# ================================================================================
+# if [  -x "`which wget`" ]; then
+#   echo 'Install other Apps'
+#   if [ ! -e "/Applications/forghetti.app" ]; then
+#     # Forghetti
+#     wget https://downloads.forghetti.com/Forghetti.dmg -O ~/Downloads/Forghetti.dmg
+#     hdiutil mount ~/Downloads/Forghetti.dmg
+#     cd /Volumes/forghetti\ 1.0.6/
+#     cp -r forghetti.app /Applications/
+#     cd ~/
+#     hdiutil detach /Volumes/forghetti\ 1.0.6/
+#   fi
+#   echo 'done'
+# fi
+
+# ================================================================================
+#  Create symlink at home directory
+#  skip .git
+# ================================================================================
+echo 'Create symlink of dotfiles at home directory'
+for f in .??*
+do
+    [ "$f" = ".git" ] && continue
+
+    # -s create a symlink
+    # -f force overwrite
+    # -n replace existing symlink
+    # -v display progress
+    ln -snfv "$f" "$HOME"/"$f"
+done
+
+cat << EOS
+Congrats!! You are all set!
+Before close this window, run command below...
+--------------------
+which git
+which php
+which zsh
+
+git config --global user.name "username"
+git config --global user.mail "your.email@address"
+--------------------
+
+Enjoy!
+EOS
 
 # 参考記事
 # http://neos21.hatenablog.com/entry/2019/01/10/080000 (defaultsコマンド)
