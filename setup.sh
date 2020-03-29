@@ -169,16 +169,15 @@ echo 'Done brew settings'
 # ================================================================================
 # Setup VSCode
 # ================================================================================
-# if [ -x "`which code`" ]; then
-#   echo 'Setup VSCode'
-#   code --install-extension Shan.code-settings-sync -force
-#   echo "done"
-# fi
+if [ -x "`which code`" ]; then
+  echo 'Setup VSCode'
+  code --install-extension Shan.code-settings-sync -force
+  echo "done"
+fi
 
 # ================================================================================
-# Setup iTerm
+# Install zprezto
 # ================================================================================
-
 
 
 # ================================================================================
@@ -213,6 +212,10 @@ do
     # -v display progress
     ln -snfv "$f" "$HOME"/"$f"
 done
+
+# ================================================================================
+# Setup iTerm
+# ================================================================================
 
 cat << EOS
 Congrats!! You are all set!
