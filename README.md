@@ -1,8 +1,7 @@
 # dotfiles
 ## Requirements
 - macOS
-- zsh使用可能
-  
+
 ## Installation
 ```sh
 # https
