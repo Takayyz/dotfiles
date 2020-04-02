@@ -12,7 +12,13 @@ fi
 echo 'Start setup MacOS!'
 
 # Command Line Tools for Xcode
-xcode-select --install
+if [ ! -x "xcode-select" ]; then
+  echo 'Start install command line toos for xcode'
+  xcode-select --install
+  echo 'done'
+else
+  echo 'command line tools already exists'
+fi
 
 # ================================================================================
 #   Configure Macbook settings
@@ -191,13 +197,14 @@ if [ ! -d ~/.zsh.d ] ; then
   mkdir ~/.zsh.d
 fi
 touch .zshenv
-echo -e "export ZDOTDIR=$HOME/.zsh.d\nsource $ZDOTDIR/.zshenv" >> .zshenv
+echo -e "export ZDOTDIR=$HOME/.zsh.d" >> .zshenv
 zsh
 git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 setopt EXTENDED_GLOB
 for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
   ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
 done
+echo -e "source $ZDOTDIR/.zshenv" >> .zshenv
 zsh
 
 # ================================================================================
