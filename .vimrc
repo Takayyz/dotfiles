@@ -1,4 +1,25 @@
 "---------------------------------
+" Vundle
+"---------------------------------
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'skanehira/preview-markdown.vim'
+Plugin 'thinca/vim-quickrun'
+Plugin 'preservim/nerdtree'
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'itchyny/lightline.vim'
+Plugin 'itchyny/vim-gitbranch'
+
+call vundle#end()
+filetype plugin indent on
+
+"---------------------------------
 " basic setting
 "---------------------------------
 
@@ -69,4 +90,42 @@ set wrap
 
 " ステータスライン表示
 set laststatus=2
+
+"---------------------------------
+" NerdTree
+"---------------------------------
+" Start NERDTree. If a file is specified, move the cursor to its window.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+
+" Exit Vim if NERDTree is the only window left.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+    \ quit | endif
+
+"---------------------------------
+" NerdCommenter
+"---------------------------------
+" コメント記号の後にスペース入れる
+let g:NERDSpaceDelims=1
+
+" コメント記号を左揃え
+let g:NERDDefaultAlign='left'
+
+"---------------------------------
+" lightline.vim
+"---------------------------------
+" getting rit of showmode
+set noshowmode
+
+" Set color scheme and show git branch
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead'
+      \ },
+      \ }
 
