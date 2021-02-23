@@ -1,35 +1,55 @@
 #!/bin/sh
 
 # ================================================================================
+#   Variables
+# ================================================================================
+ESC=$(printf '\033') ESC_END="${ESC}[m" RESET="${ESC}[0m"
+
+BOLD="${ESC}[1m"        FAINT="${ESC}[2m"       ITALIC="${ESC}[3m"
+UNDERLINE="${ESC}[4m"   BLINK="${ESC}[5m"       FAST_BLINK="${ESC}[6m"
+REVERSE="${ESC}[7m"     CONCEAL="${ESC}[8m"     STRIKE="${ESC}[9m"
+
+GOTHIC="${ESC}[20m"     DOUBLE_UNDERLINE="${ESC}[21m" NORMAL="${ESC}[22m"
+NO_ITALIC="${ESC}[23m"  NO_UNDERLINE="${ESC}[24m"     NO_BLINK="${ESC}[25m"
+NO_REVERSE="${ESC}[27m" NO_CONCEAL="${ESC}[28m"       NO_STRIKE="${ESC}[29m"
+
+BLACK="${ESC}[30m"      RED="${ESC}[31m"        GREEN="${ESC}[32m"
+YELLOW="${ESC}[33m"     BLUE="${ESC}[34m"       MAGENTA="${ESC}[35m"
+CYAN="${ESC}[36m"       WHITE="${ESC}[37m"      DEFAULT="${ESC}[39m"
+
+BG_BLACK="${ESC}[40m"   BG_RED="${ESC}[41m"     BG_GREEN="${ESC}[42m"
+BG_YELLOW="${ESC}[43m"  BG_BLUE="${ESC}[44m"    BG_MAGENTA="${ESC}[45m"
+BG_CYAN="${ESC}[46m"    BG_WHITE="${ESC}[47m"   BG_DEFAULT="${ESC}[49m"
+
+
+# ================================================================================
 #   Identify MacOS
 # ================================================================================
-
 if [ "$(uname)" != "Darwin" ] ; then
-  echo 'Hmmm, its Not MacOS!'
+  echo "${RED}ERROR: Hmmm, its Not MacOS!${ESC_END}"
   exit 1
 fi
 
-echo 'Start setup MacOS!'
+echo "${CYAN}Starting setup MacOS!${ESC_END}"
 
 # Command Line Tools for Xcode
 if [ ! -x "xcode-select" ]; then
-  echo 'Start install command line toos for xcode'
-  xcode-select --install
-  echo 'done'
+  echo "${CYAN}Installing command line toos for xcode...${ESC_END}"
 else
-  echo 'command line tools already exists'
+  echo "${YELLOW}NOTICE: command line tools already exists${ESC_END}"
+  echo "Updating command line tools..."
+  sudo rm -rf /Library/Developer/CommandLineTools
 fi
+xcode-select --install
 
 # ================================================================================
 #   Configure Macbook settings
 # ================================================================================
-# TODO turn spotlight shortcut off
+sudo nvram SystemAudioVolume=%80    # ブート時のサウンド無効化
 
-sudo nvram SystemAudioVolume=" "    # ブート時のサウンド無効化
-
-echo 'Setup defaults'
+echo "${CYAN}Setup defaults${ESC_END}"
 # ---- Language ----
-defaults write -g AppleLanguages -array en ja   # set language to en
+defaults write -g AppleLanguages -array en-US ja   # set OS language to en
 
 # ---- Finder ----
 defaults write com.apple.finder QuitMenuItem -bool true   # Finder: allow quitting via ⌘ + Q; doing so will also hide desktop icons
@@ -95,6 +115,9 @@ defaults write com.apple.screencapture location -string "$HOME/Downloads/screens
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+#Trackpad: adjust tracking speed
+defaults write -g com.apple.mouse.scaling 10
+defaults write -g com.apple.trackpad.scaling 10
 # Trackpad: map click or tap with two-fingers to right-click
 defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick bool true
 defaults write com.apple.AppleMultitouchTrackpad TrackpadCornerSecondaryClick -int 0
@@ -115,24 +138,26 @@ defaults write com.apple.LaunchServices LSQuarantine -bool false   # Disable the
 defaults write NSGlobalDomain NSTextShowsControlCharacters -bool true   # Display ASCII control characters using caret notation in standard text views
 defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40    # Bluetooth ヘッドフォン・ヘッドセットの音質を向上させる
 
-echo 'Done setup defaults'
+killall Finder
+killall Dock
+echo "${GREEN}Done setup defaults${ESC_END}"
 
 # ================================================================================
 #   Homebrew
 # ================================================================================
 # Install Homebrew
 if [ ! -x "`which brew`" ] ; then
-  echo "Start install and update brew"
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  echo 'Update brew'
-  brew update
-  echo 'Upgrade brew'
-  brew upgrade
-  brew -v
-  echo 'Done'
+  echo "${CYAN}Installing homebrew...${ESC_END}"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-echo 'Install packages with brew'
+echo "${CYAN}Updating homebrew${ESC_END}"
+brew update
+echo "${CYAN}Upgrading homebrew${ESC_END}"
+brew upgrade
+brew -v
+
+echo "${CYAN}Installing packages with homebrew...${ESC_END}"
 # TODO brew install系を別ファイル化(brewfile, brew bundle, gistにアップ?)
 brew tap beeftornado/rmtree
 brew tap homebrew/cask
@@ -164,11 +189,10 @@ brew install zsh-syntax-hilighting
 echo '/usr/local/bin/zsh' >> /etc/shells
 chsh -s /usr/local/bin/zsh   # change shell to zsh
 
-echo 'Install Homebrew-cask'
-brew install cask
-brew cask
+# echo "${CYAN}Installing Homebrew-cask${ESC_END}"
+# brew install cask
 
-echo 'Install applications with Homebrew-cask'
+echo "${CYAN}Installing applications with Homebrew cask...${ESC_END}"
 brew install --cask alfred
 brew install --cask appcleaner
 brew install --cask clipy
@@ -188,21 +212,21 @@ brew install --cask vagrant-manager
 brew install --cask virtualbox
 brew install --cask visual-studio-code
 
-echo 'Done brew settings'
+echo "${GREEN}Done brew settings${ESC_END}"
 
 # ================================================================================
 # Setup VSCode
 # ================================================================================
 if [ -x "`which code`" ]; then
-  echo 'Setup VSCode'
+  echo "${CYAN}Setup VSCode...${ESC_END}"
   code --install-extension Shan.code-settings-sync -force
-  echo "done"
+  echo "${GREEN}Done${ESC_END}"
 fi
 
 # ================================================================================
 # Install zprezto
 # ================================================================================
-echo 'Install and setup zprezto'
+echo "${CYAN}Installing and setup zprezto${ESC_END}"
 if [ ! -d ~/.zsh.d ] ; then
   mkdir ~/.zsh.d
 fi
@@ -238,7 +262,7 @@ zsh
 #  Create symlink at home directory
 #  skip .git
 # ================================================================================
-echo 'Create symlink of dotfiles at home directory'
+echo "${CYAN}Create symlink of dotfiles at home directory${ESC_END}"
 PWD = pwd
 for f in .??*; do
     [ "$f" = ".git" ] && continue
@@ -275,6 +299,11 @@ Also don't forget to setup git config...
 ------------------------------------------------------------
 git config --global user.name "username"
 git config --global user.mail "your.email@address"
+------------------------------------------------------------
+
+Other things that you should do below manually...
+------------------------------------------------------------
+Turn Spotlight off
 ------------------------------------------------------------
 
 Enjoy!
