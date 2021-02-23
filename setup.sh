@@ -185,8 +185,8 @@ brew install wget
 brew install zsh
 brew install zsh-autosuggestions
 brew install zsh-completions
-brew install zsh-syntax-hilighting
-echo '/usr/local/bin/zsh' >> /etc/shells
+brew install zsh-syntax-highlighting
+sudo echo '/usr/local/bin/zsh' >> /etc/shells
 chsh -s /usr/local/bin/zsh   # change shell to zsh
 
 # echo "${CYAN}Installing Homebrew-cask${ESC_END}"
