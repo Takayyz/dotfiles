@@ -3,7 +3,7 @@
 - macOS
 
 ## Installation
-You need install command line tools before 
+You need install command line tools first.
 ```sh
 $ xcode-select --install
 ```
