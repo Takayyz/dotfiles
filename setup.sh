@@ -224,13 +224,37 @@ if [ -x "`which code`" ]; then
 fi
 
 # ================================================================================
+#  Create symlink at home directory
+#  skip .git
+# ================================================================================
+echo "${CYAN}Create symlink of dotfiles at home directory${ESC_END}"
+PWD = pwd
+for f in .??*; do
+    [ "$f" = ".git" ] && continue
+    [ "$f" = ".gitignore" ] && continue
+
+    # -s create a symlink
+    # -f force overwrite
+    # -n replace existing symlink
+    # -v display progress
+    if [[ "$f" = ".z"* ]]; then
+      ln -snfv "$PWD/$f" "${ZDOTDIR:-$HOME}/$f"
+    elif [[ "$f" = ".vim" ]]; then
+      ln -snfv "$PWD/$f/colors/hybrid.vim" "$HOME/$f/colors/hybrid.vim"
+    else
+      ln -snfv "$PWD/$f" "$HOME/$f"
+    fi
+done
+zsh
+
+# ================================================================================
 # Install zprezto
 # ================================================================================
 echo "${CYAN}Installing and setup zprezto${ESC_END}"
 if [ ! -d ~/.zsh.d ] ; then
   mkdir ~/.zsh.d
 fi
-touch .zshenv
+# touch .zshenv
 echo -e "export ZDOTDIR=$HOME/.zsh.d" >> .zshenv
 zsh
 git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
@@ -257,30 +281,6 @@ zsh
 #   fi
 #   echo 'done'
 # fi
-
-# ================================================================================
-#  Create symlink at home directory
-#  skip .git
-# ================================================================================
-echo "${CYAN}Create symlink of dotfiles at home directory${ESC_END}"
-PWD = pwd
-for f in .??*; do
-    [ "$f" = ".git" ] && continue
-    [ "$f" = ".gitignore" ] && continue
-
-    # -s create a symlink
-    # -f force overwrite
-    # -n replace existing symlink
-    # -v display progress
-    if [[ "$f" = ".z"* ]]; then
-      ln -snfv "$PWD/$f" "${ZDOTDIR:-$HOME}/$f"
-    elif [[ "$f" = ".vim" ]]; then
-      ln -snfv "$PWD/$f/colors/hybrid.vim" "$HOME/$f/colors/hybrid.vim"
-    else
-      ln -snfv "$PWD/$f" "$HOME/$f"
-    fi
-done
-zsh
 
 # ================================================================================
 # Setup iTerm
