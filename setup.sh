@@ -135,6 +135,9 @@ fi
 echo 'Install packages with brew'
 # TODO brew install系を別ファイル化(brewfile, brew bundle, gistにアップ?)
 brew tap beeftornado/rmtree
+brew tap homebrew/cask
+brew tap homebrew/cask-fonts
+brew tap homebrew/core
 brew tap homebrew/services
 brew tap sanemat/font
 brew tap skanehira/docui
