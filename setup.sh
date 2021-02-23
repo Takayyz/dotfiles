@@ -169,24 +169,24 @@ brew install cask
 brew cask
 
 echo 'Install applications with Homebrew-cask'
-brew cask install alfred
-brew cask install appcleaner
-brew cask install clipy
-brew cask install chrome-remote-desktop-host
-brew cask install docker
-brew cask install filezilla
-brew cask install google-chrome
-brew cask install google-japanese-ime
-brew cask install hyper
-brew cask install hyperswitch
-brew cask install iterm2
-brew cask install postman
-brew cask install slack
-brew cask install spectacle
-brew cask install vagrant
-brew cask install vagrant-manager
-brew cask install virtualbox
-brew cask install visual-studio-code
+brew install --cask alfred
+brew install --cask appcleaner
+brew install --cask clipy
+brew install --cask chrome-remote-desktop-host
+brew install --cask docker
+brew install --cask filezilla
+brew install --cask google-chrome
+brew install --cask google-japanese-ime
+brew install --cask hyper
+brew install --cask hyperswitch
+brew install --cask iterm2
+brew install --cask postman
+brew install --cask slack
+brew install --cask spectacle
+brew install --cask vagrant
+brew install --cask vagrant-manager
+brew install --cask virtualbox
+brew install --cask visual-studio-code
 
 echo 'Done brew settings'
 
