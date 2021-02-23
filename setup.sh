@@ -139,12 +139,14 @@ brew tap homebrew/services
 brew tap sanemat/font
 brew tap skanehira/docui
 
+brew install composer
 brew install docker-compose
 brew install docui
 brew install git
 brew install jesseduffield/lazygit/lazygit
 brew install jq
 brew install nkf
+brew install nvm
 brew install php@7.4
 brew install ricty
 cp -f /usr/local/opt/ricty/share/fonts/Ricty*.ttf ~/Library/Fonts/
@@ -153,6 +155,9 @@ brew install tree
 brew install vim
 brew install wget
 brew install zsh
+brew install zsh-autosuggestions
+brew install zsh-completions
+brew install zsh-syntax-hilighting
 echo '/usr/local/bin/zsh' >> /etc/shells
 chsh -s /usr/local/bin/zsh   # change shell to zsh
 
