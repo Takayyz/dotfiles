@@ -164,11 +164,13 @@ echo 'Install applications with Homebrew-cask'
 brew cask install alfred
 brew cask install appcleaner
 brew cask install clipy
+brew cask install chrome-remote-desktop-host
 brew cask install docker
 brew cask install filezilla
 brew cask install google-chrome
 brew cask install google-japanese-ime
 brew cask install hyper
+brew cask install hyperswitch
 brew cask install iterm2
 brew cask install postman
 brew cask install slack
