@@ -3,12 +3,17 @@
 - macOS
 
 ## Installation
+You need install command line tools before 
+```sh
+$ xcode-select --install
+```
+
 ```sh
 # https
-$ xcode-select --install && git clone https://github.com/Takayyz/dotfiles.git && cd dotfiles && ./setup.sh
+$ git clone https://github.com/Takayyz/dotfiles.git && cd dotfiles && chmod 744 ./setup.sh && ./setup.sh
 
 # ssh
-$ xcode-select --install && git clone git clone git@github.com:Takayyz/dotfiles.git && cd dotfiles && ./setup.sh
+$ git clone git@github.com:Takayyz/dotfiles.git && cd dotfiles && chmod 744 ./setup.sh && ./setup.sh
 ```
 
 ## Note
