@@ -5,10 +5,10 @@
 ## Installation
 ```sh
 # https
-$ git clone https://github.com/Takayyz/dotfiles.git && cd dotfiles && ./setup.sh
+$ xcode-select --install && git clone https://github.com/Takayyz/dotfiles.git && cd dotfiles && ./setup.sh
 
 # ssh
-$ git clone git clone git@github.com:Takayyz/dotfiles.git && cd dotfiles && ./setup.sh
+$ xcode-select --install && git clone git clone git@github.com:Takayyz/dotfiles.git && cd dotfiles && ./setup.sh
 ```
 
 ## Note
