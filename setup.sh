@@ -45,6 +45,7 @@ xcode-select --install
 # ================================================================================
 #   Configure Macbook settings
 # ================================================================================
+osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to true' # set dark mode
 sudo nvram SystemAudioVolume=%80    # ブート時のサウンド無効化
 
 echo "${CYAN}Setup defaults${ESC_END}"
