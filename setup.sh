@@ -203,7 +203,7 @@ brew install --cask filezilla
 brew install --cask google-chrome
 brew install --cask google-japanese-ime
 brew install --cask hyper
-brew install --cask hyperswitch
+# brew install --cask hyperswitch
 brew install --cask iterm2
 brew install --cask postman
 brew install --cask slack
