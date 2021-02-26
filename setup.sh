@@ -200,6 +200,7 @@ brew install --cask clipy
 brew install --cask chrome-remote-desktop-host
 brew install --cask docker
 brew install --cask filezilla
+brew install --cask font-hack-nerd-font    # used for nerdtree(vim-devicons)
 brew install --cask google-chrome
 brew install --cask google-japanese-ime
 brew install --cask hyper
