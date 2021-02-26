@@ -61,7 +61,7 @@ setopt auto_cd
 setopt AUTO_LIST
 
 # cdしたあとで、自動的に ls する
-function chpwd() { ls -a1 }
+function chpwd() { ls -la }
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
