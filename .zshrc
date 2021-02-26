@@ -42,6 +42,11 @@ export PAGER='less'
 #nodebrew
 # export PATH=$HOME/.nodebrew/current/bin:$PATH
 
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
 #android-studio
 # export ANDROID_HOMNE=$HOME/Library/Android/sdk
 # export PATH=$PATH:$ANDROID_HOME/tools
