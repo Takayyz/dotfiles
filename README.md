@@ -10,10 +10,10 @@ $ xcode-select --install
 
 ```sh
 # https
-$ git clone https://github.com/Takayyz/dotfiles.git && cd dotfiles && chmod 744 ./setup.sh && ./setup.sh
+$ git clone https://github.com/Takayyz/dotfiles.git && cd dotfiles && ./setup.sh
 
 # ssh
-$ git clone git@github.com:Takayyz/dotfiles.git && cd dotfiles && chmod 744 ./setup.sh && ./setup.sh
+$ git clone git@github.com:Takayyz/dotfiles.git && cd dotfiles && ./setup.sh
 ```
 
 ## Note
