@@ -177,6 +177,7 @@ brew install jq
 brew install nkf
 brew install nvm
 brew install php@7.4
+brew services start php@7.4
 brew install ricty
 cp -f /usr/local/opt/ricty/share/fonts/Ricty*.ttf ~/Library/Fonts/
 fc-cache -vf
@@ -189,6 +190,7 @@ brew install zsh-completions
 brew install zsh-syntax-highlighting
 sudo echo '/usr/local/bin/zsh' >> /etc/shells
 chsh -s /usr/local/bin/zsh   # change shell to zsh
+chmod -R go-w '/usr/local/share/zsh'    # Avoid showing warnings
 
 # echo "${CYAN}Installing Homebrew-cask${ESC_END}"
 # brew install cask
@@ -221,7 +223,7 @@ echo "${GREEN}Done brew settings${ESC_END}"
 # ================================================================================
 if [ -x "`which code`" ]; then
   echo "${CYAN}Setup VSCode...${ESC_END}"
-  code --install-extension Shan.code-settings-sync -force
+  code --install-extension Shan.code-settings-sync -r
   echo "${GREEN}Done${ESC_END}"
 fi
 
@@ -229,7 +231,11 @@ fi
 #  Create symlink at home directory
 #  skip .git
 # ================================================================================
-echo "${CYAN}Create symlink of dotfiles at home directory${ESC_END}"
+echo "${CYAN}Creating symlink of dotfiles to home directory${ESC_END}"
+if [ ! -d ~/.zsh.d ] ; then
+  mkdir ~/.zsh.d
+fi
+
 PWD = pwd
 for f in .??*; do
     [ "$f" = ".git" ] && continue
@@ -239,37 +245,45 @@ for f in .??*; do
     # -f force overwrite
     # -n replace existing symlink
     # -v display progress
-    if [[ "$f" = ".z"* ]]; then
+    if [[ "$f" = ".zshenv" ]]; then
+      ln -snfv "$PWD/$f" "$HOME/$f"
+    elif [[ "$f" = ".z"* ]]; then
       ln -snfv "$PWD/$f" "${ZDOTDIR:-$HOME}/$f"
-    elif [[ "$f" = ".vim" ]]; then
-      ln -snfv "$PWD/$f/colors/hybrid.vim" "$HOME/$f/colors/hybrid.vim"
     else
       ln -snfv "$PWD/$f" "$HOME/$f"
     fi
 done
 
 # ================================================================================
-# Install Vundle for vim
+# Setup vim
 # ================================================================================
+echo "${CYAN}Installing Vundle and plugins${ESC_END}"
+# if [ ! -d ~/.vim/bundle ] ; then
+#   mkdir -p ~/.vim/bundle/Vundle.vim
+# fi
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vim +PluginInstall +qall
+echo "${GREEN}Done${ESC_END}"
+
+# ================================================================================
+# Setup nvm
+# ================================================================================
+if [ ! -d ~/.nvm ] ; then
+  mkdir ~/.nvm
+fi
 
 # ================================================================================
 # Install zprezto
 # ================================================================================
 echo "${CYAN}Installing and setup zprezto${ESC_END}"
-if [ ! -d ~/.zsh.d ] ; then
-  mkdir ~/.zsh.d
-fi
-# touch .zshenv
-echo -e "export ZDOTDIR=$HOME/.zsh.d" >> .zshenv
-zsh
+source ~/.zshenv
 git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 setopt EXTENDED_GLOB
 for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
   ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
 done
-echo -e "source $ZDOTDIR/.zshenv" >> .zshenv
-zsh
+# echo -e "source $ZDOTDIR/.zshenv" >> .zshenv # TODO: delete this line if it isn't necessary
+source $ZDOTDIR/.zshrc
 
 # ================================================================================
 # Install other apps
@@ -293,13 +307,6 @@ zsh
 # ================================================================================
 # coming soon...
 
-# ================================================================================
-# Setup nvm
-# ================================================================================
-if [ ! -d ~/.nvm ] ; then
-  mkdir ~/.nvm
-fi
-
 cat << EOS
 Congrats!! You are all set!
 Before close this window, run command below...
@@ -315,9 +322,11 @@ git config --global user.name "username"
 git config --global user.mail "your.email@address"
 ------------------------------------------------------------
 
-Other things that you should do below manually...
+Other things that you should do manually are below...
 ------------------------------------------------------------
 Turn Spotlight off
+Launch iTerm2 and apply preferences source directory from 'Prefernces > General > Prefernces'
+  *source directory should be '/path/to/homedirectory/dotofiles/iterm2'
 ------------------------------------------------------------
 
 Enjoy!
