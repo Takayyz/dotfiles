@@ -26,6 +26,10 @@ alias lg='lazygit'
 # Preztoアップデート
 alias preup='cd ~/.zprezto && git pull && git submodule update --init --recursive ; cd -'
 
+# Git
+alias gs='git status'
+alias glg='git log --graph'
+alias glo='git log --oneline'
 
 #-----------------------------------------
 # paths
