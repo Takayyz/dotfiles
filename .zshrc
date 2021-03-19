@@ -68,6 +68,12 @@ setopt AUTO_LIST
 # cdしたあとで、自動的に ls する
 function chpwd() { ls -la }
 
+autoload -U compinit
+compinit -u
+# 補完機能に色付け
+autoload -U colors
+colors
+
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
 # [[ -f /Users/takatoshihino/.nodebrew/node/v10.15.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/takatoshihino/.nodebrew/node/v10.15.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
