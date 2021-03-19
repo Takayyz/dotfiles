@@ -44,6 +44,12 @@ set noswapfile
 " deleteキー有効
 set backspace=indent,eol,start
 
+" tabインデントレベル設定
+set tabstop=2
+
+" インデント増減を同じレベルで
+set shiftwidth=2
+
 "---------------------------------
 " 表示関係
 "---------------------------------
