@@ -198,6 +198,7 @@ chmod -R go-w '/usr/local/share/zsh'    # Avoid showing warnings
 echo "${CYAN}Installing applications with Homebrew cask...${ESC_END}"
 brew install --cask alfred
 brew install --cask appcleaner
+brew install --cask authy
 brew install --cask clipy
 brew install --cask chrome-remote-desktop-host
 brew install --cask docker
