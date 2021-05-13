@@ -8,11 +8,13 @@ You need install command line tools first.
 $ xcode-select --install
 ```
 
+### Via https
 ```sh
-# https
 $ git clone https://github.com/Takayyz/dotfiles.git && cd dotfiles && ./setup.sh
+```
 
-# ssh
+### Via ssh
+```sh
 $ git clone git@github.com:Takayyz/dotfiles.git && cd dotfiles && ./setup.sh
 ```
 
