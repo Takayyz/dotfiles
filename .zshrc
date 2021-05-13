@@ -13,23 +13,22 @@ fi
 # 設定ファイルをどこからでもすぐ開く
 alias -g zrc='~/.zshrc'
 alias -g vrc='~/.vimrc'
-#alias -g gvrc='~/.gvimrc'
-
 #ls
 alias l='ls -la'
-
 # 設定即反映
 alias sz='source ~/.zsh.d/.zshrc'
-
+# lazygit
 alias lg='lazygit'
-
 # Preztoアップデート
 alias preup='cd ~/.zprezto && git pull && git submodule update --init --recursive ; cd -'
-
-# Git
+# Git関連
 alias gs='git status'
 alias glg='git log --graph'
 alias glo='git log --oneline'
+# viでvim起動
+alias vi=vim
+# history実行時にコマンド実行日時表示
+alias hist='history -i'
 
 #-----------------------------------------
 # paths
@@ -38,10 +37,8 @@ alias glo='git log --oneline'
 export EDITOR='vim'
 export VISUAL='vim'
 export PAGER='less'
-
-# homebrewのphpを優先使用
-export PATH="/usr/local/opt/php@7.4/bin:$PATH"
-export PATH="/usr/local/opt/php@7.4/sbin:$PATH"
+# historyコマンドのファイル指定
+export HISTFILE=${HOME}/.zsh.d/.zhistory
 
 #nodebrew
 # export PATH=$HOME/.nodebrew/current/bin:$PATH
@@ -65,18 +62,24 @@ export NVM_DIR="$HOME/.nvm"
 #-----------------------------------------
 # cd省略
 setopt auto_cd
-
 # 曖昧な補完で、自動的に選択肢をリストアップ
 setopt AUTO_LIST
-
+# historyに日付表示追加
+setopt EXTENDED_HISTORY
+# Change format of History command
+HISTTIMEFORMAT="[%Y/%M/%D %H:%M:%S] "
+#historyコマンドをhistoryに入れない
+unsetopt HIST_NO_STORE
 # cdしたあとで、自動的に ls する
 function chpwd() { ls -la }
-
 autoload -U compinit
 compinit -u
 # 補完機能に色付け
 autoload -U colors
 colors
+# 入力ワード無しの状態でTABの挿入阻止
+zstyle ':completion:*' insert-tab false
+
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
