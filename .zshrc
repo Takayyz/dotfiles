@@ -25,6 +25,9 @@ alias preup='cd ~/.zprezto && git pull && git submodule update --init --recursiv
 alias gs='git status'
 alias glg='git log --graph'
 alias glo='git log --oneline'
+alias gb='git branch'
+alias gc='git checkout'
+alias gcb='git checkout -b'
 # viでvim起動
 alias vi=vim
 # history実行時にコマンド実行日時表示
