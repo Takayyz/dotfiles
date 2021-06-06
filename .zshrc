@@ -29,7 +29,7 @@ alias gb='git branch'
 alias gc='git checkout'
 alias gcb='git checkout -b'
 # viでvim起動
-alias vi=vim
+alias vi='vim'
 # history実行時にコマンド実行日時表示
 alias hist='history -i'
 
