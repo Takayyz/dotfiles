@@ -8,15 +8,16 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'skanehira/preview-markdown.vim'
-Plugin 'thinca/vim-quickrun'
+Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'itchyny/lightline.vim'
+Plugin 'itchyny/vim-gitbranch'
 Plugin 'preservim/nerdtree'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'itchyny/lightline.vim'
-Plugin 'itchyny/vim-gitbranch'
+Plugin 'skanehira/preview-markdown.vim'
+Plugin 'thinca/vim-quickrun'
 Plugin 'w0ng/vim-hybrid'
-Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'cocopon/iceberg.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -108,7 +109,7 @@ augroup END
 set noshowmode
 " Set color scheme and show git branch
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'iceberg',
       \ 'active': {
       \   'left': [
       \     [ 'mode', 'paste' ],
