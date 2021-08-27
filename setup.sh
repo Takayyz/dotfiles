@@ -33,7 +33,8 @@ fi
 echo "${CYAN}Starting setup MacOS!${ESC_END}"
 
 # Command Line Tools for Xcode
-if [ ! -x "xcode-select -v" ]; then
+xcode-select -v &> /dev/null
+if [ $? -ne 0 ]; then
   echo "${CYAN}Installing command line toos for xcode...${ESC_END}"
 else
   echo "${YELLOW}NOTICE: command line tools already exists${ESC_END}"
