@@ -33,7 +33,7 @@ fi
 echo "${CYAN}Starting setup MacOS!${ESC_END}"
 
 # Command Line Tools for Xcode
-if [ ! -x "xcode-select" ]; then
+if [ ! -x "xcode-select -v" ]; then
   echo "${CYAN}Installing command line toos for xcode...${ESC_END}"
 else
   echo "${YELLOW}NOTICE: command line tools already exists${ESC_END}"
@@ -62,7 +62,6 @@ defaults write NSGlobalDomain AppleShowAllExtensions -bool true   # Finder: show
 defaults write com.apple.finder ShowStatusBar -bool true   # Finder: show status bar
 defaults write com.apple.finder ShowPathbar -bool true   # Finder: show path bar
 defaults write com.apple.finder ShowTabView -bool true   # Finder: show tab bar
-# defaults write com.apple.finder QLEnableTextSelection -bool true   # Finder: allow text selection in Quick Look
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true   # Display full POSIX path as Finder window title
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false   # hide icons for external dard drives
 defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false   # hide icons for hard drives
@@ -114,7 +113,6 @@ defaults write com.apple.screencapture location -string "$HOME/Downloads/screens
 # ---- Trackpad ----
 # Trackpad: enable tap to click for this user and for the login screen
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 #Trackpad: adjust tracking speed
 defaults write -g com.apple.mouse.scaling 10
