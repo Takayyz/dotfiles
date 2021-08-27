@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# ================================================================================
+# --------------------------------------------------------------------------------
 #   Variables
-# ================================================================================
+# --------------------------------------------------------------------------------
 ESC=$(printf '\033') ESC_END="${ESC}[m" RESET="${ESC}[0m"
 
 BOLD="${ESC}[1m"        FAINT="${ESC}[2m"       ITALIC="${ESC}[3m"
@@ -22,9 +22,9 @@ BG_YELLOW="${ESC}[43m"  BG_BLUE="${ESC}[44m"    BG_MAGENTA="${ESC}[45m"
 BG_CYAN="${ESC}[46m"    BG_WHITE="${ESC}[47m"   BG_DEFAULT="${ESC}[49m"
 
 
-# ================================================================================
+# --------------------------------------------------------------------------------
 #   Identify MacOS
-# ================================================================================
+# --------------------------------------------------------------------------------
 if [ "$(uname)" != "Darwin" ] ; then
   echo "${RED}ERROR: Hmmm, its Not MacOS!${ESC_END}"
   exit 1
@@ -43,17 +43,21 @@ else
 fi
 xcode-select --install
 
-# ================================================================================
+# --------------------------------------------------------------------------------
 #   Configure Macbook settings
-# ================================================================================
-osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to true' # set dark mode
+# --------------------------------------------------------------------------------
+# ========== Appreance ==========
+# - Dark
+defaults delete .GlobalPreferences AppleInterfaceStyleSwitchesAutomatically > /dev/null 2>&1
+defaults write .GlobalPreferences AppleInterfaceStyle -string "Dark"
+
 sudo nvram SystemAudioVolume=%80    # ブート時のサウンド無効化
 
 echo "${CYAN}Setup defaults${ESC_END}"
-# ---- Language ----
+# ========= Language ==========
 defaults write -g AppleLanguages -array en-US ja   # set OS language to en
 
-# ---- Finder ----
+# ========== Finder ==========
 defaults write com.apple.finder QuitMenuItem -bool true   # Finder: allow quitting via ⌘ + Q; doing so will also hide desktop icons
 defaults write com.apple.finder FXPreferredViewStyle -string "clmv"   # Finder: set view as column by default
 chflags nohidden ~/Library    # show ~/Library by default
@@ -75,7 +79,7 @@ defaults write NSGlobalDomain com.apple.springing.delay -float 0   # Remove the 
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true   # Avoid creating .DS_Store files on network volumes
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true   # Avoid creating .DS_Store files on USB volumes
 
-# ---- Dock and Mission Control----
+# ========== Dock and Mission Control ==========
 defaults write com.apple.dock tilesize -int 36   # Set the icon size of Dock items to 36 pixels
 defaults write com.apple.dock show-process-indicators -bool true   # Show indicator lights for open applications in the Dock
 defaults write com.apple.dock launchanim -bool false   # Don’t animate opening applications from the Dock
@@ -86,7 +90,7 @@ defaults write com.apple.dock showhidden -bool true   # Make Dock icons of hidde
 defaults write com.apple.dock expose-group-by-app -bool false   # Don’t group windows by application in Mission Control
 defaults write com.apple.dock mru-spaces -bool false   # Don’t automatically rearrange Spaces based on most recent use
 
-# ---- Hot corners ----
+# ========== Hot corners ==========
 # Possible values:
 #  0: no-op
 #  2: Mission Control
@@ -102,16 +106,16 @@ defaults write com.apple.dock mru-spaces -bool false   # Don’t automatically r
 defaults write com.apple.dock wvous-bl-corner -int 5
 defaults write com.apple.dock wvous-bl-modifier -int 0
 
-# ---- Screen ----
+# ========== Screen ==========
 # Require password immediately after sleep or screen saver begins
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
 
-# ---- Screen capture ----
+# ========== Screen capture ==========
 defaults write com.apple.screencapture disable-shadow -bool true   # Disable shadow in screenshots
 defaults write com.apple.screencapture location -string "$HOME/Downloads/screenshots"   # Save screenshots to the downloads/screenshots
 
-# ---- Trackpad ----
+# ========== Trackpad ==========
 # Trackpad: enable tap to click for this user and for the login screen
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
@@ -122,18 +126,18 @@ defaults write -g com.apple.trackpad.scaling 10
 defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick bool true
 defaults write com.apple.AppleMultitouchTrackpad TrackpadCornerSecondaryClick -int 0
 
-# ---- Keyboard ----
+# ========== Keyboard ===========
 defaults write -g NSGlobalDomain KeyRepeat -int 2   # Set a blazingly fast keyboard repeat rate
 defaults write -g NSGlobalDomain InitialKeyRepeat -int 15   # Set delay until keyboard repeat
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false   # Disable auto-correct
 
-# ---- Menu bar ----
+# ========== Menu bar ==========
 defaults write com.apple.menuextra.battery ShowPercent -string "YES"   #Menu bar: show battery percentage
 # Menu bar: show battery, bluetooth, wifi, and clock icons
 defaults write com.apple.systemuiserver menuExtras -array "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" "/System/Library/CoreServices/Menu Extras/AirPort.menu" "/System/Library/CoreServices/Menu Extras/Battery.menu" "/System/Library/CoreServices/Menu Extras/Clock.menu"
 defaults write com.apple.menuextra.clock 'DateFormat' -string 'EEE H:mm:ss'   # Date options: Show the day of the week: on
 
-# ---- Others ----
+# ========== Others ==========
 defaults write com.apple.LaunchServices LSQuarantine -bool false   # Disable the “Are you sure you want to open this application?” dialog
 defaults write NSGlobalDomain NSTextShowsControlCharacters -bool true   # Display ASCII control characters using caret notation in standard text views
 defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40    # Bluetooth ヘッドフォン・ヘッドセットの音質を向上させる
@@ -142,10 +146,10 @@ killall Finder
 killall Dock
 echo "${GREEN}Done setup defaults${ESC_END}"
 
-# ================================================================================
+# --------------------------------------------------------------------------------
 #   Homebrew
-# ================================================================================
-# Install Homebrew
+# --------------------------------------------------------------------------------
+# ========== Install Homebrew ==========
 if [ ! -x "`which brew`" ] ; then
   echo "${CYAN}Installing homebrew...${ESC_END}"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -157,7 +161,7 @@ echo "${CYAN}Upgrading homebrew${ESC_END}"
 brew upgrade
 brew -v
 
-echo "${CYAN}Installing packages with homebrew...${ESC_END}"
+echo "${CYAN}Installing packages by homebrew...${ESC_END}"
 # TODO brew install系を別ファイル化(brewfile, brew bundle, gistにアップ?)
 brew tap beeftornado/rmtree
 brew tap homebrew/cask
@@ -191,10 +195,7 @@ sudo echo '/usr/local/bin/zsh' >> /etc/shells
 chsh -s /usr/local/bin/zsh   # change shell to zsh
 chmod -R go-w '/usr/local/share/zsh'    # Avoid showing warnings
 
-# echo "${CYAN}Installing Homebrew-cask${ESC_END}"
-# brew install cask
-
-echo "${CYAN}Installing applications with Homebrew cask...${ESC_END}"
+echo "${CYAN}Installing applications by homebrew...${ESC_END}"
 brew install --cask alfred
 brew install --cask appcleaner
 brew install --cask authy
@@ -206,7 +207,6 @@ brew install --cask font-hack-nerd-font    # used for nerdtree(vim-devicons)
 brew install --cask google-chrome
 brew install --cask google-japanese-ime
 brew install --cask hyper
-# brew install --cask hyperswitch
 brew install --cask iterm2
 brew install --cask omnigraffle
 brew install --cask postman
@@ -219,25 +219,26 @@ brew install --cask visual-studio-code
 
 echo "${GREEN}Done brew settings${ESC_END}"
 
-# ================================================================================
+# --------------------------------------------------------------------------------
 # Setup VSCode
-# ================================================================================
+# --------------------------------------------------------------------------------
 if [ -x "`which code`" ]; then
   echo "${CYAN}Setup VSCode...${ESC_END}"
   code --install-extension Shan.code-settings-sync -r
   echo "${GREEN}Done${ESC_END}"
 fi
 
-# ================================================================================
+# --------------------------------------------------------------------------------
 #  Create symlink at home directory
 #  skip .git
-# ================================================================================
+# --------------------------------------------------------------------------------
 echo "${CYAN}Creating symlink of dotfiles to home directory${ESC_END}"
-if [ ! -d ~/.zsh.d ] ; then
-  mkdir ~/.zsh.d
+if [ ! -d "$HOME/.zsh.d" ] ; then
+  mkdir "$HOME/.zsh.d"
 fi
 
 PWD = pwd
+ZDOTDIR = $HOME/.zsh.d
 for f in .??*; do
     [ "$f" = ".git" ] && continue
     [ "$f" = ".gitignore" ] && continue
@@ -246,18 +247,16 @@ for f in .??*; do
     # -f force overwrite
     # -n replace existing symlink
     # -v display progress
-    if [[ "$f" = ".zshenv" ]]; then
-      ln -snfv "$PWD/$f" "$HOME/$f"
-    elif [[ "$f" = ".z"* ]]; then
+    if [[ "$f" = ".z"*  -a "$f" != ".zshenv" ]]; then
       ln -snfv "$PWD/$f" "${ZDOTDIR:-$HOME}/$f"
     else
       ln -snfv "$PWD/$f" "$HOME/$f"
     fi
 done
 
-# ================================================================================
+# --------------------------------------------------------------------------------
 # Setup vim
-# ================================================================================
+# --------------------------------------------------------------------------------
 echo "${CYAN}Installing Vundle and plugins${ESC_END}"
 # if [ ! -d ~/.vim/bundle ] ; then
 #   mkdir -p ~/.vim/bundle/Vundle.vim
@@ -266,29 +265,27 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 echo "${GREEN}Done${ESC_END}"
 
-# ================================================================================
+# --------------------------------------------------------------------------------
 # Setup nvm
-# ================================================================================
-if [ ! -d ~/.nvm ] ; then
-  mkdir ~/.nvm
+# --------------------------------------------------------------------------------
+if [ ! -d "$HOME/.nvm" ] ; then
+  mkdir $HOME/.nvm
 fi
 
-# ================================================================================
+# --------------------------------------------------------------------------------
 # Install zprezto
-# ================================================================================
+# --------------------------------------------------------------------------------
 echo "${CYAN}Installing and setup zprezto${ESC_END}"
-source ~/.zshenv
+source $HOME/.zshenv
 git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 setopt EXTENDED_GLOB
 for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
   ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
 done
-# echo -e "source $ZDOTDIR/.zshenv" >> .zshenv # TODO: delete this line if it isn't necessary
-source $ZDOTDIR/.zshrc
 
-# ================================================================================
+# --------------------------------------------------------------------------------
 # Install other apps
-# ================================================================================
+# --------------------------------------------------------------------------------
 # if [  -x "`which wget`" ]; then
 #   echo 'Install other Apps'
 #   if [ ! -e "/Applications/forghetti.app" ]; then
@@ -303,9 +300,9 @@ source $ZDOTDIR/.zshrc
 #   echo 'done'
 # fi
 
-# ================================================================================
+# --------------------------------------------------------------------------------
 # Setup iTerm
-# ================================================================================
+# --------------------------------------------------------------------------------
 # coming soon...
 
 cat << EOS
@@ -333,8 +330,12 @@ Launch iTerm2 and apply preferences source directory from 'Prefernces > General 
 Enjoy!
 EOS
 
+source $ZDOTDIR/.zshrc
+
 # 参考記事
 # http://neos21.hatenablog.com/entry/2019/01/10/080000 (defaultsコマンド)
 # https://qiita.com/kai_kou/items/af5d0c81facc1317d836 (setup.shまとめ)
 # https://qiita.com/kai_kou/items/3107e0a056c7a1b569cd (環境構築系記事)
 # https://qiita.com/hkusu/items/18cbe582abb9d3172019 (Gistについて)
+# https://github.com/ulwlu/dotfiles/blob/master/system/macos.sh (defauls一覧)
+
