@@ -10,9 +10,6 @@ fi
 #-----------------------------------------
 # aliases
 #-----------------------------------------
-# 設定ファイルをどこからでもすぐ開く
-alias -g zrc='~/.zshrc'
-alias -g vrc='~/.vimrc'
 #ls
 alias l='ls -la'
 # 設定即反映
@@ -49,18 +46,9 @@ export HISTFILE=${HOME}/.zsh.d/.zhistory
 # export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 # nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
-#android-studio
-# export ANDROID_HOMNE=$HOME/Library/Android/sdk
-# export PATH=$PATH:$ANDROID_HOME/tools
-# export PATH=$PATH:$ANDOROID_HOME/tools/bin
-# export PATH=$PATH:$ANDROID_HOME/platform-tools
-
-# export EXPO_DEBUG=true
-
+export NVM_DIR=${HOME}/.nvm
+## パスは環境毎に違うので環境に応じて書き換え
+source /usr/local/Cellar/nvm/0.38.0/nvm.sh
 
 #-----------------------------------------
 # others
@@ -85,13 +73,3 @@ colors
 # 入力ワード無しの状態でTABの挿入阻止
 zstyle ':completion:*' insert-tab false
 
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-# [[ -f /Users/takatoshihino/.nodebrew/node/v10.15.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/takatoshihino/.nodebrew/node/v10.15.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-# [[ -f /Users/takatoshihino/.nodebrew/node/v10.15.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/takatoshihino/.nodebrew/node/v10.15.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-# [[ -f /Users/takatoshihino/.nodebrew/node/v10.15.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/takatoshihino/.nodebrew/node/v10.15.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
