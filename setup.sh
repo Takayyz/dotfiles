@@ -38,7 +38,7 @@ if [ $? -ne 0 ]; then
   echo "${CYAN}Installing command line toos for xcode...${ESC_END}"
 else
   echo "${YELLOW}NOTICE: command line tools already exists${ESC_END}"
-  echo "Updating command line tools..."
+  echo "Reinstalling command line tools..."
   sudo rm -rf /Library/Developer/CommandLineTools
 fi
 xcode-select --install
@@ -46,49 +46,46 @@ xcode-select --install
 # --------------------------------------------------------------------------------
 #   Configure Macbook settings
 # --------------------------------------------------------------------------------
-# ========== Appreance ==========
-# - Dark
-defaults delete .GlobalPreferences AppleInterfaceStyleSwitchesAutomatically > /dev/null 2>&1
-defaults write .GlobalPreferences AppleInterfaceStyle -string "Dark"
-
 sudo nvram SystemAudioVolume=%80    # ブート時のサウンド無効化
 
 echo "${CYAN}Setup defaults${ESC_END}"
 # ========= Language ==========
-defaults write -g AppleLanguages -array en-US ja   # set OS language to en
+defaults write -g AppleLanguages -array en ja   # set OS language to en
+
+# ========== Appreance ==========
+# - Dark
+osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to true'
+# defaults delete .GlobalPreferences AppleInterfaceStyleSwitchesAutomatically > /dev/null 2>&1
+# defaults write .GlobalPreferences AppleInterfaceStyle -string "Dark"
 
 # ========== Finder ==========
-defaults write com.apple.finder QuitMenuItem -bool true   # Finder: allow quitting via ⌘ + Q; doing so will also hide desktop icons
-defaults write com.apple.finder FXPreferredViewStyle -string "clmv"   # Finder: set view as column by default
-chflags nohidden ~/Library    # show ~/Library by default
 sudo chflags nohidden /Volumes    # show /Volumes by default
+defaults write -g AppleShowAllExtensions -bool true   # Finder: show all filename extensions
 defaults write com.apple.finder AppleShowAllFiles -bool true   # Finder: show hidden files by default
-defaults write NSGlobalDomain AppleShowAllExtensions -bool true   # Finder: show all filename extensions
-defaults write com.apple.finder ShowStatusBar -bool true   # Finder: show status bar
-defaults write com.apple.finder ShowPathbar -bool true   # Finder: show path bar
-defaults write com.apple.finder ShowTabView -bool true   # Finder: show tab bar
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"   # When performing a search, search the current folder by default
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false   # Disable the warning when changing a file extension
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"   # Finder: set view as column by default
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true   # Display full POSIX path as Finder window title
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false   # hide icons for external dard drives
 defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false   # hide icons for hard drives
 defaults write com.apple.finder ShowMountedServersOnDesktop -bool false   # hide icons for servers
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false   # hide icons for removable media
-defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"   # When performing a search, search the current folder by default
-defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false   # Disable the warning when changing a file extension
-defaults write NSGlobalDomain com.apple.springing.enabled -bool true   # Enable spring loading for directories
-defaults write NSGlobalDomain com.apple.springing.delay -float 0   # Remove the spring loading delay for directories
+defaults write com.apple.finder ShowStatusBar -bool true   # Finder: show status bar
+defaults write com.apple.finder ShowPathbar -bool true   # Finder: show path bar
+defaults write com.apple.finder ShowTabView -bool true   # Finder: show tab bar
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true   # Avoid creating .DS_Store files on network volumes
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true   # Avoid creating .DS_Store files on USB volumes
 
 # ========== Dock and Mission Control ==========
-defaults write com.apple.dock tilesize -int 36   # Set the icon size of Dock items to 36 pixels
-defaults write com.apple.dock show-process-indicators -bool true   # Show indicator lights for open applications in the Dock
-defaults write com.apple.dock launchanim -bool false   # Don’t animate opening applications from the Dock
+defaults write com.apple.dock autohide -bool true   # Automatically hide and show the Dock
 defaults write com.apple.dock autohide-delay -float 0   # Remove the auto-hiding Dock delay
 defaults write com.apple.dock autohide-time-modifier -float 0   # Remove the animation when hiding/showing the Dock
-defaults write com.apple.dock autohide -bool true   # Automatically hide and show the Dock
-defaults write com.apple.dock showhidden -bool true   # Make Dock icons of hidden applications translucent
 defaults write com.apple.dock expose-group-by-app -bool false   # Don’t group windows by application in Mission Control
+defaults write com.apple.dock launchanim -bool false   # Don’t animate opening applications from the Dock
 defaults write com.apple.dock mru-spaces -bool false   # Don’t automatically rearrange Spaces based on most recent use
+defaults write com.apple.dock show-process-indicators -bool true   # Show indicator lights for open applications in the Dock
+defaults write com.apple.dock showhidden -bool true   # Make Dock icons of hidden applications translucent
+defaults write com.apple.dock tilesize -int 36   # Set the icon size of Dock items to 36 pixels
 
 # ========== Hot corners ==========
 # Possible values:
@@ -108,19 +105,21 @@ defaults write com.apple.dock wvous-bl-modifier -int 0
 
 # ========== Screen ==========
 # Require password immediately after sleep or screen saver begins
-defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPassword -bool true
 defaults write com.apple.screensaver askForPasswordDelay -int 0
 
 # ========== Screen capture ==========
 defaults write com.apple.screencapture disable-shadow -bool true   # Disable shadow in screenshots
+if [ ! -d "$HOME/Downloads/screenshots" ]; then
+	mkdir "$HOME/Downloads/screenshots"
+fi
 defaults write com.apple.screencapture location -string "$HOME/Downloads/screenshots"   # Save screenshots to the downloads/screenshots
 
 # ========== Trackpad ==========
 # Trackpad: enable tap to click for this user and for the login screen
+defaults write com.apple.driver.AppleMultitouchTrackpad Clicking -bool true
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 #Trackpad: adjust tracking speed
-defaults write -g com.apple.mouse.scaling 10
 defaults write -g com.apple.trackpad.scaling 10
 # Trackpad: map click or tap with two-fingers to right-click
 defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick bool true
@@ -162,7 +161,6 @@ brew upgrade
 brew -v
 
 echo "${CYAN}Installing packages by homebrew...${ESC_END}"
-# TODO brew install系を別ファイル化(brewfile, brew bundle, gistにアップ?)
 brew tap beeftornado/rmtree
 brew tap homebrew/cask
 brew tap homebrew/cask-fonts
@@ -237,8 +235,8 @@ if [ ! -d "$HOME/.zsh.d" ] ; then
   mkdir "$HOME/.zsh.d"
 fi
 
-PWD = pwd
-ZDOTDIR = $HOME/.zsh.d
+PWD=$(pwd)
+ZDOTDIR=$HOME/.zsh.d
 for f in .??*; do
     [ "$f" = ".git" ] && continue
     [ "$f" = ".gitignore" ] && continue
@@ -247,7 +245,9 @@ for f in .??*; do
     # -f force overwrite
     # -n replace existing symlink
     # -v display progress
-    if [[ "$f" = ".z"*  -a "$f" != ".zshenv" ]]; then
+		if [[ "$f" = ".zshenv" ]]; then
+			ln -snfv "$PWD/$f" "$HOME/$f"
+    elif [[ "$f" = ".z"* ]]; then
       ln -snfv "$PWD/$f" "${ZDOTDIR:-$HOME}/$f"
     else
       ln -snfv "$PWD/$f" "$HOME/$f"
@@ -331,6 +331,10 @@ Enjoy!
 EOS
 
 source $ZDOTDIR/.zshrc
+
+# TODO
+# - 関数化
+# - brew install系を別ファイル化(brewfile, brew bundle, gistにアップ?)
 
 # 参考記事
 # http://neos21.hatenablog.com/entry/2019/01/10/080000 (defaultsコマンド)
