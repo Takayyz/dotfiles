@@ -16,7 +16,6 @@ Plugin 'ryanoasis/vim-devicons'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'skanehira/preview-markdown.vim'
 Plugin 'thinca/vim-quickrun'
-Plugin 'w0ng/vim-hybrid'
 Plugin 'cocopon/iceberg.vim'
 
 call vundle#end()
@@ -26,8 +25,8 @@ filetype plugin indent on
 " basic setting
 "---------------------------------
 " theme color
-let g:hybrid_use_iTerm_colors = 1
-colorscheme hybrid
+set background=dark
+colorscheme iceberg
 " 文字コード
 set encoding=utf-8
 set fileencoding=utf-8
