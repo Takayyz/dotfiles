@@ -6,7 +6,6 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-
 #-----------------------------------------
 # aliases
 #-----------------------------------------
@@ -42,19 +41,18 @@ export PAGER='less'
 # historyコマンドのファイル指定
 export HISTFILE=${HOME}/.zsh.d/.zhistory
 
-#nodebrew
-# export PATH=$HOME/.nodebrew/current/bin:$PATH
-
 # nvm
 export NVM_DIR=${HOME}/.nvm
-## パスは環境毎に違うので環境に応じて書き換え
-source /usr/local/Cellar/nvm/0.38.0/nvm.sh
 
 #-----------------------------------------
 # others
 #-----------------------------------------
+# cdしたあとで、自動的に ls する
+function chpwd() { ls -la }
 # cd省略
 setopt auto_cd
+# beep音停止
+setopt no_beep
 # 曖昧な補完で、自動的に選択肢をリストアップ
 setopt AUTO_LIST
 # historyに日付表示追加
@@ -63,8 +61,6 @@ setopt EXTENDED_HISTORY
 HISTTIMEFORMAT="[%Y/%M/%D %H:%M:%S] "
 #historyコマンドをhistoryに入れない
 unsetopt HIST_NO_STORE
-# cdしたあとで、自動的に ls する
-function chpwd() { ls -la }
 autoload -U compinit
 compinit -u
 # 補完機能に色付け
@@ -72,4 +68,3 @@ autoload -U colors
 colors
 # 入力ワード無しの状態でTABの挿入阻止
 zstyle ':completion:*' insert-tab false
-
