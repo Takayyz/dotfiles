@@ -26,10 +26,12 @@ alias glcd='git log --no-merges'
 alias gb='git branch'
 alias gc='git checkout'
 alias gcb='git checkout -b'
+alias gp='git pull'
 # viでvim起動
 alias vi='vim'
 # history実行時にコマンド実行日時表示
 alias hist='history -i'
+alias dkc='docker-compose'
 
 #-----------------------------------------
 # paths
