@@ -12,7 +12,8 @@ fi
 #ls
 alias l='ls -la'
 # 設定即反映
-alias sz='source ~/.zsh.d/.zshrc'
+alias sz="source ${HOME}/.zsh.d/.zshrc"
+alias st="tmux source ${HOME}/.tmux.conf"
 # lazygit
 alias lg='lazygit'
 # Preztoアップデート
