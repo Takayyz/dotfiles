@@ -22,6 +22,7 @@ key_bindings:
   - { key: H,     mods: Option,        chars: "\x1bb" }
   - { key: L,     mods: Option,        chars: "\x1bf" }
   - { key: Back,  mods: Command,       chars: "\x15" } # 行削除
+  - { key: N,     mods: Command|Shift, chars: "\x01\x2c" } # windowをリネーム
   - { key: Tab,   mods: Control,       chars: "\x01\x6e" } # 次のwindow
   - { key: Tab,   mods: Control|Shift, chars: "\x01\x70" } # 前のwindow
   - { key: Key1,  mods: Command,       chars: "\x01\x31" }
