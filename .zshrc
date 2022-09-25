@@ -11,6 +11,7 @@ fi
 #-----------------------------------------
 #ls
 alias l='exa --git --time-style=long-iso -agl'
+alias lt='exa -T -L 3 -a'
 # 設定即反映
 alias sz="source ${HOME}/.zsh.d/.zshrc"
 alias st="tmux source ${HOME}/.tmux.conf"
