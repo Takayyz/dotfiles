@@ -10,7 +10,7 @@ fi
 # aliases
 #-----------------------------------------
 #ls
-alias l='ls -la'
+alias l='exa --git --time-style=long-iso -agl'
 # 設定即反映
 alias sz="source ${HOME}/.zsh.d/.zshrc"
 alias st="tmux source ${HOME}/.tmux.conf"
@@ -51,7 +51,7 @@ export NVM_DIR=${HOME}/.nvm
 # others
 #-----------------------------------------
 # cdしたあとで、自動的に ls する
-function chpwd() { ls -la }
+function chpwd() { l }
 # cd省略
 setopt auto_cd
 # beep音停止
