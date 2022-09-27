@@ -1,0 +1,38 @@
+#==============================
+# General
+#==============================
+set line-graphics = utf-8
+set mouse = true
+set vertical-split = yes
+set ignore-case = true
+set diff-options = -m --first-parent
+set editor-line-number = yes
+set diff-highlight = true
+
+#==============================
+# View
+#==============================
+set main-view = id date author:full commit-title:graph=yes,refs=yes
+set stage-view = line-number:yes,interval=1 text
+set diff-view = line-number:yes,interval=1 text
+set log-view = line-number:yes,interval=1 text
+set blob-view = line-number:yes,interval=1 text
+
+#==============================
+# Color
+#==============================
+color cursor 234 7
+color main-tracked 105 default bold
+color diff-header default magenta
+color diff-chunk black white
+
+#==============================
+# Key bindings
+#==============================
+bind generic g move-first-line
+bind generic G move-last-line
+bind main G move-last-line
+# git関連
+bind generic U ?git pull $(remote)
+bind generic F ?git fetch %(remote)
+bind main F ?git fetch %(remote)
