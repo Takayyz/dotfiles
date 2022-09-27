@@ -17,6 +17,10 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'skanehira/preview-markdown.vim'
 Plugin 'thinca/vim-quickrun'
 Plugin 'cocopon/iceberg.vim'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'ervandew/supertab'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'Yggdroot/indentLine'
 
 call vundle#end()
 filetype plugin indent on
@@ -92,14 +96,26 @@ set showmatch
 set wrap
 " ステータスライン表示
 set laststatus=2
-" Escの2回押しでハイライト消去
-nnoremap <Esc><Esc> :nohlsearch<CR><ESC>
+
 " HTML/XML閉じタグ自動補完
 augroup MyXML
   autocmd!
   autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
   autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
 augroup END
+
+"---------------------------------
+" Key bindings
+"---------------------------------
+let mapleader = "\<Space>"
+nnoremap <Leader>, :edit ~/.vimrc<CR>
+nnoremap <Leader>r :source ~/.vimrc<CR>
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
+" Escの2回押しでハイライト消去
+nnoremap <silent><Esc><Esc> :nohlsearch<CR><ESC>
+noremap <Leader>c <Plug>NERDCommenterToggle<CR>
+nnoremap <silent><Leader>t :<C-u>NERDTreeToggle<CR>
 
 "---------------------------------
 " lightline.vim
@@ -124,6 +140,8 @@ let g:lightline = {
 "---------------------------------
 " NerdTree
 "---------------------------------
+let g:NERDTreeShowHidden=1
+let g:NERDTreeShowBookmarks=1
 " Start NERDTree. If a file is specified, move the cursor to its window.
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
@@ -139,3 +157,8 @@ let g:NERDSpaceDelims=1
 " コメント記号を左揃え
 let g:NERDDefaultAlign='left'
 
+"---------------------------------
+" indentLine
+"---------------------------------
+let g:indentLine_setColors = 0
+let g:indentLine_char = '┊'
