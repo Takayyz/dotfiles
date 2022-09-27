@@ -169,9 +169,11 @@ brew tap homebrew/services
 brew tap sanemat/font
 brew tap skanehira/docui
 
+brew install bat
 brew install composer
 brew install docker-compose
 brew install docui
+brew install exa
 brew install git
 brew install jesseduffield/lazygit/lazygit
 brew install jq
@@ -182,6 +184,7 @@ brew services start php@7.4
 brew install ricty
 cp -f /usr/local/opt/ricty/share/fonts/Ricty*.ttf ~/Library/Fonts/
 fc-cache -vf
+brew install tig
 brew install tree
 brew install vim
 brew install wget
@@ -194,6 +197,7 @@ chsh -s /usr/local/bin/zsh   # change shell to zsh
 chmod -R go-w '/usr/local/share/zsh'    # Avoid showing warnings
 
 echo "${CYAN}Installing applications by homebrew...${ESC_END}"
+brew install --cask alacritty
 brew install --cask alfred
 brew install --cask appcleaner
 brew install --cask authy
@@ -210,6 +214,7 @@ brew install --cask omnigraffle
 brew install --cask postman
 brew install --cask slack
 brew install --cask spectacle
+brew install --cask tmux
 brew install --cask vagrant
 brew install --cask vagrant-manager
 brew install --cask virtualbox
