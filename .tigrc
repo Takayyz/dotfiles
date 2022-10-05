@@ -21,13 +21,12 @@ set blob-view = line-number:yes,interval=1 text
 #==============================
 # Color
 #==============================
-color cursor 226 94
-color status 15 default
-color title-focus 234 250
-color title-blur 234 250
+color cursor 255 default underline
+color status 255 default
+color title-focus black green
+color title-blur white default
 color main-tracked 105 default bold
-color diff-header default magenta
-color diff-chunk black white
+color diff-header black cyan
 
 #==============================
 # Key bindings
