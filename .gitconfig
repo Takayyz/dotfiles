@@ -6,3 +6,4 @@
 	rebase = false
 [core]
 	quotepath = false
+	editor = vim
