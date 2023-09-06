@@ -11,7 +11,7 @@ fi
 #-----------------------------------------
 #ls
 alias l='exa --git --time-style=long-iso -agl'
-alias lt='exa -T -L 3 -a'
+alias lt='exa --icons -T -L 2 -a'
 # 設定即反映
 alias sz="source ${HOME}/.zsh.d/.zshrc"
 alias st="tmux source ${HOME}/.tmux.conf"
@@ -33,7 +33,11 @@ alias gp='git pull'
 alias vi='vim'
 # history実行時にコマンド実行日時表示
 alias hist='history -i'
-alias dkc='docker-compose'
+alias clock='tty-clock'
+
+alias dkc='docker compose'
+
+alias vla='volta list all'
 
 #-----------------------------------------
 # paths
@@ -63,8 +67,10 @@ setopt AUTO_LIST
 setopt EXTENDED_HISTORY
 # Change format of History command
 HISTTIMEFORMAT="[%Y/%M/%D %H:%M:%S] "
-#historyコマンドをhistoryに入れない
+# historyコマンドをhistoryに入れない
 unsetopt HIST_NO_STORE
+# cdしたあとで、自動的にls する
+function chpwd() { l }
 autoload -U compinit
 compinit -u
 # 補完機能に色付け
@@ -72,3 +78,8 @@ autoload -U colors
 colors
 # 入力ワード無しの状態でTABの挿入阻止
 zstyle ':completion:*' insert-tab false
+
+#-----------------------------------------
+# Starshipの設定読み込み
+#-----------------------------------------
+eval "$(starship init zsh)"
