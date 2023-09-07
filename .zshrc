@@ -69,8 +69,6 @@ setopt EXTENDED_HISTORY
 HISTTIMEFORMAT="[%Y/%M/%D %H:%M:%S] "
 # historyコマンドをhistoryに入れない
 unsetopt HIST_NO_STORE
-# cdしたあとで、自動的にls する
-function chpwd() { l }
 autoload -U compinit
 compinit -u
 # 補完機能に色付け
