@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # --------------------------------------------------------------------------------
 #   Variables
@@ -23,22 +23,26 @@ BG_CYAN="${ESC}[46m"    BG_WHITE="${ESC}[47m"   BG_DEFAULT="${ESC}[49m"
 
 
 # --------------------------------------------------------------------------------
-#   Identify MacOS
+#   Identify macOS
 # --------------------------------------------------------------------------------
 if [ "$(uname)" != "Darwin" ] ; then
-  echo "${RED}ERROR: Hmmm, its Not MacOS!${ESC_END}"
+  echo "${RED}ERROR: Hmmm, it's not macOS...${ESC_END}"
   exit 1
 fi
 
-echo "${CYAN}Starting setup MacOS!${ESC_END}"
+echo "${CYAN}INFO: Starting setup macOS${ESC_END}"
+
+# --------------------------------------------------------------------------------
+#   Install Xcode
+# --------------------------------------------------------------------------------
 
 # Command Line Tools for Xcode
 xcode-select -v &> /dev/null
 if [ $? -ne 0 ]; then
-  echo "${CYAN}Installing command line toos for xcode...${ESC_END}"
+  echo "${CYAN}INFO: Installing Xcode...${ESC_END}"
 else
-  echo "${YELLOW}NOTICE: command line tools already exists${ESC_END}"
-  echo "Reinstalling command line tools..."
+  echo "${YELLOW}NOTICE: Xcode already exists${ESC_END}"
+  echo "INFO: Reinstalling Xcode..."
   sudo rm -rf /Library/Developer/CommandLineTools
 fi
 xcode-select --install
@@ -48,7 +52,7 @@ xcode-select --install
 # --------------------------------------------------------------------------------
 sudo nvram SystemAudioVolume=%80    # ブート時のサウンド無効化
 
-echo "${CYAN}Setup defaults${ESC_END}"
+echo "${CYAN}INFO: Setup defaults${ESC_END}"
 # ========= Language ==========
 defaults write -g AppleLanguages -array en ja   # set OS language to en
 
@@ -143,24 +147,24 @@ defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int
 
 killall Finder
 killall Dock
-echo "${GREEN}Done setup defaults${ESC_END}"
+echo "${GREEN}INFO: Done setup defaults${ESC_END}"
 
 # --------------------------------------------------------------------------------
 #   Homebrew
 # --------------------------------------------------------------------------------
 # ========== Install Homebrew ==========
 if [ ! -x "`which brew`" ] ; then
-  echo "${CYAN}Installing homebrew...${ESC_END}"
+  echo "${CYAN}INFO: Installing homebrew...${ESC_END}"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-echo "${CYAN}Updating homebrew${ESC_END}"
+echo "${CYAN}INFO: Updating homebrew...${ESC_END}"
 brew update
-echo "${CYAN}Upgrading homebrew${ESC_END}"
+echo "${CYAN}INFO: Upgrading homebrew...${ESC_END}"
 brew upgrade
 brew -v
 
-echo "${CYAN}Installing packages by homebrew...${ESC_END}"
+echo "${CYAN}INFO: Installing packages by homebrew...${ESC_END}"
 brew tap beeftornado/rmtree
 brew tap homebrew/cask
 brew tap homebrew/cask-fonts
@@ -169,6 +173,7 @@ brew tap homebrew/services
 brew tap sanemat/font
 brew tap skanehira/docui
 
+brew install awscli
 brew install bat
 brew install composer
 brew install docker-compose
@@ -179,24 +184,26 @@ brew install jesseduffield/lazygit/lazygit
 brew install jq
 brew install nkf
 brew install nvm
-brew install php@7.4
-brew services start php@7.4
+brew install php@8.2
+brew services start php@8.2
 brew install ricty
 cp -f /usr/local/opt/ricty/share/fonts/Ricty*.ttf ~/Library/Fonts/
 fc-cache -vf
+brew insatll tfenv
 brew install tig
 brew install tree
+brew install tty-clock
 brew install vim
 brew install wget
 brew install zsh
 brew install zsh-autosuggestions
 brew install zsh-completions
 brew install zsh-syntax-highlighting
-sudo echo '/usr/local/bin/zsh' >> /etc/shells
-chsh -s /usr/local/bin/zsh   # change shell to zsh
-chmod -R go-w '/usr/local/share/zsh'    # Avoid showing warnings
+sudo echo '/opt/homebrew/bin/zsh' >> /etc/shells
+chsh -s /opt/homebrew/bin/zsh # change shell to zsh
+chmod -R go-w /opt/homebrew/share/zsh # Avoid showing warnings
 
-echo "${CYAN}Installing applications by homebrew...${ESC_END}"
+echo "${CYAN}INFO: Installing applications by homebrew...${ESC_END}"
 brew install --cask alacritty
 brew install --cask alfred
 brew install --cask appcleaner
@@ -220,22 +227,22 @@ brew install --cask vagrant-manager
 brew install --cask virtualbox
 brew install --cask visual-studio-code
 
-echo "${GREEN}Done brew settings${ESC_END}"
+echo "${GREEN}INFO: Done brew settings${ESC_END}"
 
 # --------------------------------------------------------------------------------
 # Setup VSCode
 # --------------------------------------------------------------------------------
 if [ -x "`which code`" ]; then
-  echo "${CYAN}Setup VSCode...${ESC_END}"
+  echo "${CYAN}INFO: Setup VSCode...${ESC_END}"
   code --install-extension Shan.code-settings-sync -r
-  echo "${GREEN}Done${ESC_END}"
+  echo "${GREEN}INFO: Done${ESC_END}"
 fi
 
 # --------------------------------------------------------------------------------
 #  Create symlink at home directory
 #  skip .git
 # --------------------------------------------------------------------------------
-echo "${CYAN}Creating symlink of dotfiles to home directory${ESC_END}"
+echo "${CYAN}INFO: Creating symlink of dotfiles to home directory${ESC_END}"
 if [ ! -d "$HOME/.zsh.d" ] ; then
   mkdir "$HOME/.zsh.d"
 fi
@@ -262,13 +269,13 @@ done
 # --------------------------------------------------------------------------------
 # Setup vim
 # --------------------------------------------------------------------------------
-echo "${CYAN}Installing Vundle and plugins${ESC_END}"
+echo "${CYAN}INFO: Installing Vundle and plugins${ESC_END}"
 # if [ ! -d ~/.vim/bundle ] ; then
 #   mkdir -p ~/.vim/bundle/Vundle.vim
 # fi
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
-echo "${GREEN}Done${ESC_END}"
+echo "${GREEN}INFO: Done${ESC_END}"
 
 # --------------------------------------------------------------------------------
 # Setup nvm
@@ -280,7 +287,7 @@ fi
 # --------------------------------------------------------------------------------
 # Install zprezto
 # --------------------------------------------------------------------------------
-echo "${CYAN}Installing and setup zprezto${ESC_END}"
+echo "${CYAN}INFO: Installing and setup zprezto...${ESC_END}"
 source $HOME/.zshenv
 git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 setopt EXTENDED_GLOB
@@ -304,11 +311,6 @@ done
 #   fi
 #   echo 'done'
 # fi
-
-# --------------------------------------------------------------------------------
-# Setup iTerm
-# --------------------------------------------------------------------------------
-# coming soon...
 
 cat << EOS
 Congrats!! You are all set!
@@ -340,6 +342,7 @@ source $ZDOTDIR/.zshrc
 # TODO
 # - 関数化
 # - brew install系を別ファイル化(brewfile, brew bundle, gistにアップ?)
+# - shell lint check (https://github.com/rtakasuke/.dotfiles/blob/9524a89ef4a42e30a8a0823a82631390c5232d9c/.github/workflows/lint.yml)
 
 # 参考記事
 # http://neos21.hatenablog.com/entry/2019/01/10/080000 (defaultsコマンド)
@@ -347,4 +350,3 @@ source $ZDOTDIR/.zshrc
 # https://qiita.com/kai_kou/items/3107e0a056c7a1b569cd (環境構築系記事)
 # https://qiita.com/hkusu/items/18cbe582abb9d3172019 (Gistについて)
 # https://github.com/ulwlu/dotfiles/blob/master/system/macos.sh (defauls一覧)
-
