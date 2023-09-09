@@ -1,51 +1,60 @@
 #-----------------------------------------
-# zpreztoの設定読み込み
+# zprezto
 #-----------------------------------------
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+# Preztoアップデート
+alias preup='cd ~/.zprezto && git pull && git submodule update --init --recursive ; cd -'
+
 #-----------------------------------------
 # aliases
 #-----------------------------------------
-#ls
+# ls
 alias l='exa --git --time-style=long-iso -agl'
 alias lt='exa --icons -T -L 2 -a'
-# 設定即反映
+
+# 設定反映
 alias sz="source ${HOME}/.zsh.d/.zshrc"
 alias st="tmux source ${HOME}/.tmux.conf"
+
 # lazygit
 alias lg='lazygit'
-# Preztoアップデート
-alias preup='cd ~/.zprezto && git pull && git submodule update --init --recursive ; cd -'
+
 # Git関連
+alias gb='git branch'
+alias gsw='git switch'
+alias gsc='git switch -c'
+alias gp='git pull'
 alias gs='git status'
 alias glg='git log --graph --abbrev-commit --date=format:"%Y-%m-%d %H:%M:%S(%a)" --pretty=format:"%C(yellow)commit %h%Creset %Cred%d%Creset%nCommitter: %Cblue%cn%Creset <%ce>%nDate:      %Cgreen%cd%Creset%n%n    %w(80)%s%Creset%n"'
 alias glo='git log --oneline --pretty=format:"%Cred%h%Creset %Cgreen[%cd]%Creset %C(yellow)%d%Creset %s %Cblue<%cn>%Creset" --date=format:"%Y-%m-%d %H:%M:%S"'
+alias glst='git log --stat
 # ブランチ間の差分をコミット単位で確認 ex)glcd master..develop
 alias glcd='git log --no-merges'
-alias gb='git branch'
-alias gc='git checkout'
-alias gcb='git checkout -b'
-alias gp='git pull'
+
 # viでvim起動
 alias vi='vim'
 # history実行時にコマンド実行日時表示
 alias hist='history -i'
 alias clock='tty-clock'
 
+# Docker関連
 alias dkc='docker compose'
 
+# Volta関連
 alias vla='volta list all'
 
 #-----------------------------------------
-# paths
+# exports
 #-----------------------------------------
 # Editors
 export EDITOR='vim'
 export VISUAL='vim'
 export PAGER='less'
+
 # historyコマンドのファイル指定
 export HISTFILE=${HOME}/.zsh.d/.zhistory
 
@@ -82,6 +91,7 @@ colors
 zstyle ':completion:*' insert-tab false
 
 #-----------------------------------------
-# Starshipの設定読み込み
+# Starship
 #-----------------------------------------
+# 設定読み込み
 eval "$(starship init zsh)"
