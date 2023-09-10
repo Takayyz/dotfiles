@@ -169,17 +169,15 @@ brew install --cask alacritty
 brew install --cask alfred
 brew install --cask appcleaner
 brew install --cask authy
-brew install --cask clipy
 brew install --cask chrome-remote-desktop-host
 brew install --cask docker
 brew install --cask filezilla
 brew install --cask font-hack-nerd-font # used for nerdtree(vim-devicons)
 brew install --cask google-chrome
 brew install --cask google-japanese-ime
-brew install --cask hyper
-brew install --cask iterm2
 brew install --cask omnigraffle
 brew install --cask postman
+brew install --cask raycast
 brew install --cask slack
 brew install --cask spectacle
 brew install --cask tmux
