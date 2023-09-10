@@ -171,7 +171,6 @@ brew install --cask appcleaner
 brew install --cask authy
 brew install --cask chrome-remote-desktop-host
 brew install --cask docker
-brew install --cask filezilla
 brew install --cask font-hack-nerd-font # used for nerdtree(vim-devicons)
 brew install --cask google-chrome
 brew install --cask google-japanese-ime
@@ -181,9 +180,6 @@ brew install --cask raycast
 brew install --cask slack
 brew install --cask spectacle
 brew install --cask tmux
-brew install --cask vagrant
-brew install --cask vagrant-manager
-brew install --cask virtualbox
 brew install --cask visual-studio-code
 
 echo "${CYAN}INFO: Installing packages by homebrew...${ESC_END}"
