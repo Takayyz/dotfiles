@@ -58,9 +58,6 @@ export PAGER='less'
 # historyコマンドのファイル指定
 export HISTFILE=${HOME}/.zsh.d/.zhistory
 
-# nvm
-export NVM_DIR=${HOME}/.nvm
-
 # Volta
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
