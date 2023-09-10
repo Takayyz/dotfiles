@@ -222,7 +222,7 @@ brew install zsh-autosuggestions
 brew install zsh-completions
 brew install zsh-syntax-highlighting
 
-sudo echo '/opt/homebrew/bin/zsh' >> /etc/shells
+sudo sh -c "echo '/opt/homebrew/bin/zsh' >> /etc/shells"
 chsh -s /opt/homebrew/bin/zsh # change shell to zsh
 chmod -R go-w /opt/homebrew/share/zsh # Avoid showing warnings
 
