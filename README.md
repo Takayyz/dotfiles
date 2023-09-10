@@ -9,10 +9,10 @@
 
 ### Via https
 ```sh
-git clone https://github.com/Takayyz/dotfiles.git && cd dotfiles && ./init.sh
+git clone https://github.com/Takayyz/dotfiles.git && cd dotfiles && make all
 ```
 
 ### Via ssh
 ```sh
-git clone git@github.com:Takayyz/dotfiles.git && cd dotfiles && ./init.sh
+git clone git@github.com:Takayyz/dotfiles.git && cd dotfiles && make all
 ```
