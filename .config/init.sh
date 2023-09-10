@@ -180,15 +180,13 @@ brew install docker-compose
 brew install docui
 brew install exa
 brew install git
+brew install font-hackgen-nerd
 brew install jesseduffield/lazygit/lazygit
 brew install jq
 brew install nkf
 brew install nvm
 brew install php@8.2
 brew services start php@8.2
-brew install ricty
-cp -f /usr/local/opt/ricty/share/fonts/Ricty*.ttf ~/Library/Fonts/
-fc-cache -vf
 brew insatll tfenv
 brew install tig
 brew install tree
@@ -199,6 +197,7 @@ brew install zsh
 brew install zsh-autosuggestions
 brew install zsh-completions
 brew install zsh-syntax-highlighting
+
 sudo echo '/opt/homebrew/bin/zsh' >> /etc/shells
 chsh -s /opt/homebrew/bin/zsh # change shell to zsh
 chmod -R go-w /opt/homebrew/share/zsh # Avoid showing warnings
