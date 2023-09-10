@@ -174,6 +174,7 @@ brew tap sanemat/font
 brew tap skanehira/docui
 
 brew install awscli
+brew link --overwrite awscli
 brew install bat
 brew install composer
 brew install docker-compose
