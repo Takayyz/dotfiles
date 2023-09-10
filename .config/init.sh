@@ -188,8 +188,6 @@ brew install --cask vagrant-manager
 brew install --cask virtualbox
 brew install --cask visual-studio-code
 
-echo "${GREEN}INFO: Done brew settings${ESC_END}"
-
 echo "${CYAN}INFO: Installing packages by homebrew...${ESC_END}"
 brew tap beeftornado/rmtree
 brew tap homebrew/cask
@@ -197,7 +195,6 @@ brew tap homebrew/cask-fonts
 brew tap homebrew/core
 brew tap homebrew/services
 brew tap sanemat/font
-brew tap skanehira/docui
 
 brew install awscli
 brew link --overwrite awscli
@@ -206,21 +203,19 @@ brew install composer
 brew install docker-compose
 mkdir -p ~/.docker/cli-plugins
 ln -sfn /opt/homebrew/opt/docker-compose/bin/docker-compose ~/.docker/cli-plugins/docker-compose
-brew install docui
 brew install exa
 brew install git
 brew install font-hackgen-nerd
-brew install jesseduffield/lazygit/lazygit
 brew install jq
 brew install nkf
-brew install nvm
 brew install php@8.2
 brew services start php@8.2
-brew insatll tfenv
+brew install tfenv
 brew install tig
 brew install tree
 brew install tty-clock
 brew install vim
+brew install volta
 brew install wget
 brew install zsh
 brew install zsh-autosuggestions
@@ -230,6 +225,8 @@ brew install zsh-syntax-highlighting
 sudo echo '/opt/homebrew/bin/zsh' >> /etc/shells
 chsh -s /opt/homebrew/bin/zsh # change shell to zsh
 chmod -R go-w /opt/homebrew/share/zsh # Avoid showing warnings
+
+echo "${GREEN}INFO: Done brew settings${ESC_END}"
 
 # --------------------------------------------------------------------------------
 # Setup VSCode
