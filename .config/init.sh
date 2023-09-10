@@ -164,6 +164,32 @@ echo "${CYAN}INFO: Upgrading homebrew...${ESC_END}"
 brew upgrade
 brew -v
 
+echo "${CYAN}INFO: Installing applications by homebrew...${ESC_END}"
+brew install --cask alacritty
+brew install --cask alfred
+brew install --cask appcleaner
+brew install --cask authy
+brew install --cask clipy
+brew install --cask chrome-remote-desktop-host
+brew install --cask docker
+brew install --cask filezilla
+brew install --cask font-hack-nerd-font # used for nerdtree(vim-devicons)
+brew install --cask google-chrome
+brew install --cask google-japanese-ime
+brew install --cask hyper
+brew install --cask iterm2
+brew install --cask omnigraffle
+brew install --cask postman
+brew install --cask slack
+brew install --cask spectacle
+brew install --cask tmux
+brew install --cask vagrant
+brew install --cask vagrant-manager
+brew install --cask virtualbox
+brew install --cask visual-studio-code
+
+echo "${GREEN}INFO: Done brew settings${ESC_END}"
+
 echo "${CYAN}INFO: Installing packages by homebrew...${ESC_END}"
 brew tap beeftornado/rmtree
 brew tap homebrew/cask
@@ -178,6 +204,8 @@ brew link --overwrite awscli
 brew install bat
 brew install composer
 brew install docker-compose
+mkdir -p ~/.docker/cli-plugins
+ln -sfn /opt/homebrew/opt/docker-compose/bin/docker-compose ~/.docker/cli-plugins/docker-compose
 brew install docui
 brew install exa
 brew install git
@@ -202,32 +230,6 @@ brew install zsh-syntax-highlighting
 sudo echo '/opt/homebrew/bin/zsh' >> /etc/shells
 chsh -s /opt/homebrew/bin/zsh # change shell to zsh
 chmod -R go-w /opt/homebrew/share/zsh # Avoid showing warnings
-
-echo "${CYAN}INFO: Installing applications by homebrew...${ESC_END}"
-brew install --cask alacritty
-brew install --cask alfred
-brew install --cask appcleaner
-brew install --cask authy
-brew install --cask clipy
-brew install --cask chrome-remote-desktop-host
-brew install --cask docker
-brew install --cask filezilla
-brew install --cask font-hack-nerd-font    # used for nerdtree(vim-devicons)
-brew install --cask google-chrome
-brew install --cask google-japanese-ime
-brew install --cask hyper
-brew install --cask iterm2
-brew install --cask omnigraffle
-brew install --cask postman
-brew install --cask slack
-brew install --cask spectacle
-brew install --cask tmux
-brew install --cask vagrant
-brew install --cask vagrant-manager
-brew install --cask virtualbox
-brew install --cask visual-studio-code
-
-echo "${GREEN}INFO: Done brew settings${ESC_END}"
 
 # --------------------------------------------------------------------------------
 # Setup VSCode
