@@ -203,15 +203,6 @@ chmod -R go-w /opt/homebrew/share/zsh # Avoid showing warnings
 echo "${GREEN}INFO: Done brew settings${ESC_END}"
 
 # --------------------------------------------------------------------------------
-# Setup VSCode
-# --------------------------------------------------------------------------------
-if [ -x "`which code`" ]; then
-  echo "${CYAN}INFO: Setup VSCode...${ESC_END}"
-  code --install-extension Shan.code-settings-sync -r
-  echo "${GREEN}INFO: Done${ESC_END}"
-fi
-
-# --------------------------------------------------------------------------------
 #  Create symlink at home directory
 #  skip .git
 # --------------------------------------------------------------------------------
