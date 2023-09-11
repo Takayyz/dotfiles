@@ -2,7 +2,7 @@
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-source ~/dotfiles/.config/colors.txt
+source ${SCRIPT_DIR}/colors.txt
 
 echo "${CYAN}INFO: Creating symlinks to home directory...${ESC_END}"
 

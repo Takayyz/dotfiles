@@ -1,6 +1,8 @@
 #!/bin/bash
 
-source ./colors.txt
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+source ${SCRIPT_DIR}/colors.txt
 
 # --------------------------------------------------------------------------------
 #   Identify macOS
