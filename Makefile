@@ -5,15 +5,15 @@ help: ## makeコマンドのサブコマンドリストと、各コマンドの�
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 .PHONY := all
-all: init ## Execute all setup commands
+all: init link ## Execute all setup commands
 
 .PHONY := init
 init: ## Set initial preference
 	@.config/init.sh
 
-# .PHONY := link
-# link: ## Link dotfiles
-# 	@.config/link.sh
+.PHONY := link
+link: ## Link dotfiles
+	@.config/link.sh
 
 # .PHONY := defaults
 # defaults: ## Set macOS system preferences

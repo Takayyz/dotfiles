@@ -203,34 +203,6 @@ chmod -R go-w /opt/homebrew/share/zsh # Avoid showing warnings
 echo "${GREEN}INFO: Done brew settings${ESC_END}"
 
 # --------------------------------------------------------------------------------
-#  Create symlink at home directory
-#  skip .git
-# --------------------------------------------------------------------------------
-echo "${CYAN}INFO: Creating symlink of dotfiles to home directory${ESC_END}"
-if [ ! -d "$HOME/.zsh.d" ] ; then
-  mkdir "$HOME/.zsh.d"
-fi
-
-PWD=$(pwd)
-ZDOTDIR=$HOME/.zsh.d
-for f in .??*; do
-    [ "$f" = ".git" ] && continue
-    [ "$f" = ".gitignore" ] && continue
-
-    # -s create a symlink
-    # -f force overwrite
-    # -n replace existing symlink
-    # -v display progress
-		if [[ "$f" = ".zshenv" ]]; then
-			ln -snfv "$PWD/$f" "$HOME/$f"
-    elif [[ "$f" = ".z"* ]]; then
-      ln -snfv "$PWD/$f" "${ZDOTDIR:-$HOME}/$f"
-    else
-      ln -snfv "$PWD/$f" "$HOME/$f"
-    fi
-done
-
-# --------------------------------------------------------------------------------
 # Setup vim
 # --------------------------------------------------------------------------------
 echo "${CYAN}INFO: Installing Vundle and plugins${ESC_END}"
