@@ -14,7 +14,6 @@ if [ ! -d "$HOME/.config" ] ; then
   mkdir "$HOME/.config"
 fi
 
-PWD=$(pwd)
 ZDOTDIR=$HOME/.zsh.d
 for dotfile in "${SCRIPT_DIR}"/.??* ; do
     [[ "$dotfile" == ".git" ]] && continue
