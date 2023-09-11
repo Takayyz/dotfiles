@@ -159,7 +159,6 @@ brew install --cask postman
 brew install --cask raycast
 brew install --cask slack
 brew install --cask spectacle
-brew install --cask tmux
 brew install --cask visual-studio-code
 
 echo "${CYAN}INFO: Installing packages by homebrew...${ESC_END}"
@@ -186,6 +185,7 @@ brew install php@8.2
 brew services start php@8.2
 brew install tfenv
 brew install tig
+brew install tmux
 brew install tree
 brew install tty-clock
 brew install vim
