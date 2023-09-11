@@ -55,10 +55,10 @@ cursor:
 font:
   size: 14
   normal:
-    family: Ricty
+    family: HackGen Console NF
     style: Regular
   bold:
-    family: Ricty
+    family: HackGen Console NF
     style: Bold
 
 #====================
