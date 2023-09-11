@@ -6,7 +6,7 @@
   "workbench.iconTheme": "material-icon-theme",
   "plantuml.render": "PlantUMLServer",
   "plantuml.server": "http://www.plantuml.com/plantuml",
-  "editor.fontFamily": "HackGen Console NFJ",
+  "editor.fontFamily": "HackGen Console NF",
   "redhat.telemetry.enabled": true,
   "editor.tabSize": 2,
   "[php]": {
