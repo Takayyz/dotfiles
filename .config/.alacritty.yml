@@ -42,7 +42,7 @@ window:
   padding:
     x: 5
     y: 0
-    dynamic_pading: false
+  dynamic_padding: false
 
 cursor:
   style:
