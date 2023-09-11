@@ -38,4 +38,6 @@ for dotfile in "${SCRIPT_DIR}"/.??* ; do
     fi
 done
 
+source $ZDOTDIR/.zshrc
+
 echo "${GREEN}INFO: Done${ESC_END}"
