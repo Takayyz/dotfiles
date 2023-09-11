@@ -24,12 +24,7 @@ for dotfile in "${SCRIPT_DIR}"/.??* ; do
     # -f force overwrite
     # -n replace existing symlink
     # -v display progress
-		if [[ "$dotfile" = ".alacritty" ]]; then
-      if [ ! -d "$HOME/.config/alacritty" ] ; then
-        mkdir "$HOME/.config/alacritty"
-      fi
-			ln -snfv "$dotfile" "$HOME/.config/alacritty"
-		elif [[ "$dotfile" = ".zshenv" ]]; then
+		if [[ "$dotfile" = ".zshenv" ]]; then
 			ln -snfv "$dotfile" "$HOME"
     elif [[ "$dotfile" = ".z"* ]]; then
       ln -snfv "$dotfile" "${ZDOTDIR:-$HOME}"
@@ -37,6 +32,11 @@ for dotfile in "${SCRIPT_DIR}"/.??* ; do
       ln -snfv "$dotfile" "$HOME"
     fi
 done
+
+if [ ! -d "$HOME/.config/alacritty" ] ; then
+  mkdir "$HOME/.config/alacritty"
+fi
+ln -snfv "$dotfile" "$HOME/.config/alacritty"
 
 source $ZDOTDIR/.zshrc
 
