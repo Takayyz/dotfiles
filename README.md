@@ -20,8 +20,8 @@ git clone git@github.com:Takayyz/dotfiles.git && cd dotfiles && make all
 ```
 
 ## 参考記事
-# http://neos21.hatenablog.com/entry/2019/01/10/080000 (defaultsコマンド)
-# https://qiita.com/kai_kou/items/af5d0c81facc1317d836 (setup.shまとめ)
-# https://qiita.com/kai_kou/items/3107e0a056c7a1b569cd (環境構築系記事)
-# https://qiita.com/hkusu/items/18cbe582abb9d3172019 (Gistについて)
-# https://github.com/ulwlu/dotfiles/blob/master/system/macos.sh (defauls一覧)
+- [defaultsコマンド](http://neos21.hatenablog.com/entry/2019/01/10/080000)
+- [defauls一覧](https://github.com/ulwlu/dotfiles/blob/master/system/macos.sh)
+- [setup.shまとめ](https://qiita.com/kai_kou/items/af5d0c81facc1317d836)
+- [環境構築系記事](https://qiita.com/kai_kou/items/3107e0a056c7a1b569cd)
+- [Gistについて](https://qiita.com/hkusu/items/18cbe582abb9d3172019)
