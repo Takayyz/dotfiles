@@ -1,4 +1,3 @@
-2gua.rainbow-brackets
 aaron-bond.better-comments
 amazonwebservices.aws-toolkit-vscode
 Arjun.swagger-viewer
@@ -23,10 +22,10 @@ figma.figma-vscode-extension
 flowtype.flow-for-vscode
 formulahendry.auto-rename-tag
 genieai.chatgpt-vscode
-GitHub.vscode-pull-request-github
 gizak.shortcuts
 Gruntfuggly.todo-tree
 harg.iceberg
+hashicorp.terraform
 hediet.vscode-drawio
 IBM.output-colorizer
 jebbs.plantuml
@@ -54,11 +53,8 @@ ritwickdey.LiveServer
 Shan.code-settings-sync
 shardulm94.trailing-spaces
 skyran.js-jsx-snippets
-TabNine.tabnine-vscode
-tokoph.ghosttext
 unifiedjs.vscode-mdx
 vincaslt.highlight-matching-tag
-vscodevim.vim
 Vue.volar
 WakaTime.vscode-wakatime
 xabikos.JavaScriptSnippets
