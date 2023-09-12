@@ -132,79 +132,6 @@ killall Dock
 echo "${GREEN}INFO: Done setup defaults${ESC_END}"
 
 # --------------------------------------------------------------------------------
-#   Homebrew
-# --------------------------------------------------------------------------------
-# ========== Install Homebrew ==========
-if [ ! -x "`which brew`" ] ; then
-  echo "${CYAN}INFO: Installing homebrew...${ESC_END}"
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-fi
-
-echo "${CYAN}INFO: Updating homebrew...${ESC_END}"
-brew update
-echo "${CYAN}INFO: Upgrading homebrew...${ESC_END}"
-brew upgrade
-brew -v
-
-echo "${CYAN}INFO: Installing applications by homebrew...${ESC_END}"
-brew install --cask alacritty
-brew install --cask alfred
-brew install --cask appcleaner
-brew install --cask authy
-brew install --cask chrome-remote-desktop-host
-brew install --cask docker
-brew install --cask font-hack-nerd-font # used for nerdtree(vim-devicons)
-brew install --cask google-chrome
-brew install --cask google-japanese-ime
-brew install --cask omnigraffle
-brew install --cask postman
-brew install --cask raycast
-brew install --cask slack
-brew install --cask spectacle
-brew install --cask visual-studio-code
-
-echo "${CYAN}INFO: Installing packages by homebrew...${ESC_END}"
-brew tap beeftornado/rmtree
-brew tap homebrew/cask
-brew tap homebrew/cask-fonts
-brew tap homebrew/core
-brew tap homebrew/services
-brew tap sanemat/font
-
-brew install awscli
-brew link --overwrite awscli
-brew install bat
-brew install composer
-brew install docker-compose
-mkdir -p ~/.docker/cli-plugins
-ln -sfn /opt/homebrew/opt/docker-compose/bin/docker-compose ~/.docker/cli-plugins/docker-compose
-brew install exa
-brew install git
-brew install font-hackgen-nerd
-brew install jq
-brew install nkf
-brew install php@8.2
-brew services start php@8.2
-brew install tfenv
-brew install tig
-brew install tmux
-brew install tree
-brew install tty-clock
-brew install vim
-brew install volta
-brew install wget
-brew install zsh
-brew install zsh-autosuggestions
-brew install zsh-completions
-brew install zsh-syntax-highlighting
-
-sudo sh -c "echo '/opt/homebrew/bin/zsh' >> /etc/shells"
-chsh -s /opt/homebrew/bin/zsh # change shell to zsh
-chmod -R go-w /opt/homebrew/share/zsh # Avoid showing warnings
-
-echo "${GREEN}INFO: Done brew settings${ESC_END}"
-
-# --------------------------------------------------------------------------------
 # Setup vim
 # --------------------------------------------------------------------------------
 echo "${CYAN}INFO: Installing Vundle and plugins${ESC_END}"
@@ -274,17 +201,3 @@ Launch iTerm2 and apply preferences source directory from 'Prefernces > General 
 
 Enjoy!
 EOS
-
-source $ZDOTDIR/.zshrc
-
-# TODO
-# - 関数化
-# - brew install系を別ファイル化(brewfile, brew bundle, gistにアップ?)
-# - shell lint check (https://github.com/rtakasuke/.dotfiles/blob/9524a89ef4a42e30a8a0823a82631390c5232d9c/.github/workflows/lint.yml)
-
-# 参考記事
-# http://neos21.hatenablog.com/entry/2019/01/10/080000 (defaultsコマンド)
-# https://qiita.com/kai_kou/items/af5d0c81facc1317d836 (setup.shまとめ)
-# https://qiita.com/kai_kou/items/3107e0a056c7a1b569cd (環境構築系記事)
-# https://qiita.com/hkusu/items/18cbe582abb9d3172019 (Gistについて)
-# https://github.com/ulwlu/dotfiles/blob/master/system/macos.sh (defauls一覧)
