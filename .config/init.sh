@@ -25,4 +25,4 @@ else
   echo "INFO: Reinstalling Xcode..."
   sudo rm -rf /Library/Developer/CommandLineTools
 fi
-xcode-select --install
+xcode-select --install > /dev/null
