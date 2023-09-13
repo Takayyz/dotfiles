@@ -15,9 +15,9 @@ init: ## Set initial preference
 link: ## Link dotfiles
 	@.config/link.sh
 
-# .PHONY := defaults
-# defaults: ## Set macOS system preferences
-# 	@.config/defaults.sh
+.PHONY := defaults
+defaults: ## Set macOS system preferences
+	@.config/defaults.sh
 
 .PHONY := brew
 brew: ## Install macOS applications
