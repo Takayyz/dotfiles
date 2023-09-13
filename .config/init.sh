@@ -15,14 +15,6 @@ echo "${CYAN}INFO: Starting setup macOS${ESC_END}"
 # --------------------------------------------------------------------------------
 #   Install Xcode
 # --------------------------------------------------------------------------------
-
 # Command Line Tools for Xcode
-xcode-select -v &> /dev/null
-if [ $? -ne 0 ]; then
-  echo "${CYAN}INFO: Installing Xcode...${ESC_END}"
-else
-  echo "${YELLOW}NOTICE: Xcode already exists${ESC_END}"
-  echo "INFO: Reinstalling Xcode..."
-  sudo rm -rf /Library/Developer/CommandLineTools
-fi
+echo "${CYAN}INFO: Installing Xcode...${ESC_END}"
 xcode-select --install > /dev/null
