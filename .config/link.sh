@@ -29,7 +29,7 @@ for dotfile in "${SCRIPT_DIR}"/.??* ; do
     fi
 done
 
-source ${ZDOTDIR}/.zshrc
+source ${ZDOT_DIR}/.zshrc
 
 
 if [ ! -d "${HOME}/.config" ] ; then
