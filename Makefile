@@ -8,6 +8,7 @@ help: ## makeコマンドのサブコマンドリストと、各コマンドの�
 all: ## Execute all setup commands
 	@make init
 	@make link
+	@make defaults
 	@make brew
 	@make vim
 	@make zsh
