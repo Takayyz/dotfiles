@@ -20,9 +20,9 @@ for dotfile in "${SCRIPT_DIR}"/.??* ; do
     # -f force overwrite
     # -n replace existing symlink
     # -v display progress
-		if [[ "$dotfile" = ".zshenv" ]]; then
+		if [[ "$dotfile" = "${SCRIPT_DIR}/.zshenv" ]]; then
 			ln -snfv "$dotfile" "$HOME"
-    elif [[ "$dotfile" = ".z"* ]]; then
+    elif [[ "$dotfile" = "${SCRIPT_DIR}/.z"* ]]; then
       ln -snfv "$dotfile" "${ZDOT_DIR:-$HOME}"
     else
       ln -snfv "$dotfile" "$HOME"
