@@ -11,11 +11,6 @@ if [ ! -d "${HOME}/.zsh.d" ] ; then
 fi
 ZDOT_DIR=${HOME}/.zsh.d
 
-if [ ! -d "${HOME}/.config" ] ; then
-  mkdir "${HOME}/.config"
-fi
-DOTCONF_DIR=${HOME}/.config
-
 for dotfile in "${SCRIPT_DIR}"/.??* ; do
     [[ "$dotfile" == ".git" ]] && continue
     [[ "$dotfile" == ".gitignore" ]] && continue
@@ -29,18 +24,24 @@ for dotfile in "${SCRIPT_DIR}"/.??* ; do
 			ln -snfv "$dotfile" "$HOME"
     elif [[ "$dotfile" = ".z"* ]]; then
       ln -snfv "$dotfile" "${ZDOT_DIR:-$HOME}"
-    elif [[ "$dotfile" = "alacritty.yml" ]]; then
-      if [ ! -d "${DOTCONF_DIR}/alacritty" ] ; then
-        mkdir -p "${DOTCONF_DIR}/alacritty"
-      fi
-      ln -snfv "$dotfile" "${DOTCONF_DIR}/alacritty"
-    elif [[ "$dotfile" = "starship.toml" ]]; then
-      ln -snfv "$dotfile" "${DOTCONF_DIR}"
     else
       ln -snfv "$dotfile" "$HOME"
     fi
 done
 
 source ${ZDOTDIR}/.zshrc
+
+
+if [ ! -d "${HOME}/.config" ] ; then
+  mkdir "${HOME}/.config"
+fi
+DOTCONF_DIR=${HOME}/.config
+
+if [ ! -d "${DOTCONF_DIR}/alacritty" ] ; then
+  mkdir "${DOTCONF_DIR}/alacritty"
+fi
+ln -snfv "${SCRIPT_DIR}/alacritty.yml" "${DOTCONF_DIR}/alacritty"
+
+ln -snfv "${SCRIPT_DIR}/starship.toml" "${DOTCONF_DIR}"
 
 echo "${GREEN}INFO: Done${ESC_END}"
