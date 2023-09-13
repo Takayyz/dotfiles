@@ -10,6 +10,7 @@ all: ## Execute all setup commands
 	@make link
 	@make brew
 	@make vim
+	@make zsh
 	@echo Congrats!! You are all set!
 
 .PHONY := init
@@ -31,6 +32,10 @@ brew: ## Install macOS applications
 .PHONY := vim
 vim: ## Setup vim
 	@.config/vim.sh
+
+.PHONY := zsh
+zsh: ## Setup vim
+	@.config/zsh.sh
 
 .PHONY := b-vsc
 b-vsc: ## Update vscode extensions file
