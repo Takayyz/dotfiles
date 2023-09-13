@@ -13,7 +13,7 @@ if [ -L "${VSCODE_SET_DIR}/settings.json" ]; then
 fi
 
 # Install extensions using the code command
-if [ "$(which code)" != "" ]; then
+if type code &> /dev/null ; then
   cat < "${SCRIPT_DIR}/extensions" | while read -r line
   do
     code --install-extension "$line"

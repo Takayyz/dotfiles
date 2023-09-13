@@ -6,15 +6,16 @@ source ${SCRIPT_DIR}/colors.txt
 
 echo "${CYAN}INFO: Creating symlinks to home directory...${ESC_END}"
 
-if [ ! -d "$HOME/.zsh.d" ] ; then
-  mkdir "$HOME/.zsh.d"
+if [ ! -d "${HOME}/.zsh.d" ] ; then
+  mkdir "${HOME}/.zsh.d"
 fi
+ZDOT_DIR=${HOME}/.zsh.d
 
-if [ ! -d "$HOME/.config" ] ; then
-  mkdir "$HOME/.config"
+if [ ! -d "${HOME}/.config" ] ; then
+  mkdir "${HOME}/.config"
 fi
+DOTCONF_DIR=${HOME}/.config
 
-ZDOTDIR=$HOME/.zsh.d
 for dotfile in "${SCRIPT_DIR}"/.??* ; do
     [[ "$dotfile" == ".git" ]] && continue
     [[ "$dotfile" == ".gitignore" ]] && continue
@@ -27,17 +28,19 @@ for dotfile in "${SCRIPT_DIR}"/.??* ; do
 		if [[ "$dotfile" = ".zshenv" ]]; then
 			ln -snfv "$dotfile" "$HOME"
     elif [[ "$dotfile" = ".z"* ]]; then
-      ln -snfv "$dotfile" "${ZDOTDIR:-$HOME}"
+      ln -snfv "$dotfile" "${ZDOT_DIR:-$HOME}"
+    elif [[ "$dotfile" = "alacritty.yml" ]]; then
+      if [ ! -d "${DOTCONF_DIR}/alacritty" ] ; then
+        mkdir -p "${DOTCONF_DIR}/alacritty"
+      fi
+      ln -snfv "$dotfile" "${DOTCONF_DIR}/alacritty"
+    elif [[ "$dotfile" = "starship.toml" ]]; then
+      ln -snfv "$dotfile" "${DOTCONF_DIR}"
     else
       ln -snfv "$dotfile" "$HOME"
     fi
 done
 
-if [ ! -d "$HOME/.config/alacritty" ] ; then
-  mkdir "$HOME/.config/alacritty"
-fi
-ln -snfv "$dotfile" "$HOME/.config/alacritty"
-
-source $ZDOTDIR/.zshrc
+source ${ZDOTDIR}/.zshrc
 
 echo "${GREEN}INFO: Done${ESC_END}"
