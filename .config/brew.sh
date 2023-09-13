@@ -1,8 +1,6 @@
 #!/bin/bash
 
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-
-source ${SCRIPT_DIR}/colors.txt
+source "$(cd "$(dirname "$0")" && pwd)/colors.txt"
 
 if [ "$(uname)" != "Darwin" ] ; then
   echo "${RED}ERROR: Hmmm, it's not macOS...${ESC_END}"

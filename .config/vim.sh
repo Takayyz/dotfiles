@@ -1,7 +1,6 @@
 #!/bin/bash
 
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-source ${SCRIPT_DIR}/colors.txt
+source "$(cd "$(dirname "$0")" && pwd)/colors.txt"
 
 echo "${CYAN}INFO: Installing Vundle and plugins${ESC_END}"
 
