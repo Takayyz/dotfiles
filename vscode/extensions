@@ -15,7 +15,6 @@ dbaeumer.vscode-eslint
 dsznajder.es7-react-js-snippets
 eamodio.gitlens
 ecmel.vscode-html-css
-eg2.vscode-npm-script
 emilast.LogFileHighlighter
 esbenp.prettier-vscode
 figma.figma-vscode-extension
@@ -50,7 +49,6 @@ Postman.postman-for-vscode
 redhat.vscode-yaml
 rid9.datetime
 ritwickdey.LiveServer
-Shan.code-settings-sync
 shardulm94.trailing-spaces
 skyran.js-jsx-snippets
 unifiedjs.vscode-mdx
