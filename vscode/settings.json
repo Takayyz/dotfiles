@@ -1,5 +1,4 @@
 {
-  "sync.gist": "6d3eeecb2a04196ffd0b49677b37bc75",
   "workbench.colorTheme": "Iceberg",
   "terminal.integrated.cursorStyle": "line",
   "workbench.editor.enablePreview": false,
@@ -45,12 +44,10 @@
   ],
   "aws.telemetry": false,
   "aws.codeWhisperer.shareCodeWhispererContentWithAWS": false,
-  "npm.keybindingsChangedWarningShown": true,
   "simpleTimer.showAlarm": true,
   "window.zoomLevel": 1,
   "editor.unicodeHighlight.nonBasicASCII": false,
-  "githubPullRequests.pullBranch": "never",
   "explorer.compactFolders": false,
   "files.insertFinalNewline": true,
-  "files.trimFinalNewlines": true,
+  "files.trimFinalNewlines": true
 }
