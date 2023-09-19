@@ -13,8 +13,8 @@ alias preup='cd ~/.zprezto && git pull && git submodule update --init --recursiv
 # aliases
 #-----------------------------------------
 # ls
-alias l='exa --git --time-style=long-iso -agl'
-alias lt='exa --icons -T -L 2 -a'
+alias l='eza -algh --git --icons'
+alias lt='eza -aTL 2 --icons'
 
 # 設定反映
 alias sz="source ${HOME}/.zsh.d/.zshrc"
@@ -25,10 +25,10 @@ alias lg='lazygit'
 
 # Git関連
 alias gb='git branch'
-alias gsw='git switch'
+alias gs='git switch'
 alias gsc='git switch -c'
 alias gp='git pull'
-alias gs='git status'
+alias gst='git status'
 alias glg='git log --graph --abbrev-commit --date=format:"%Y-%m-%d %H:%M:%S(%a)" --pretty=format:"%C(yellow)commit %h%Creset %Cred%d%Creset%nCommitter: %Cblue%cn%Creset <%ce>%nDate:      %Cgreen%cd%Creset%n%n    %w(80)%s%Creset%n"'
 alias glo='git log --oneline --pretty=format:"%Cred%h%Creset %Cgreen[%cd]%Creset %C(yellow)%d%Creset %s %Cblue<%cn>%Creset" --date=format:"%Y-%m-%d %H:%M:%S"'
 alias glst='git log --stat'
