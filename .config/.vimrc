@@ -107,6 +107,7 @@ augroup END
 "---------------------------------
 " Key bindings
 "---------------------------------
+inoremap <silent> jj <ESC>
 let mapleader = "\<Space>"
 nnoremap <Leader>, :edit ~/.vimrc<CR>
 nnoremap <Leader>r :source ~/.vimrc<CR>
