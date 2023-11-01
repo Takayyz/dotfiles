@@ -94,6 +94,10 @@
       "after": ["%"]
     },
     {
+      "before": ["<Leader>", "f"],
+      "after": ["<Leader>", "<Leader>", "s"]
+    },
+    {
       "before": ["<Leader>", "z"],
       "commands": [":noh"]
     },
