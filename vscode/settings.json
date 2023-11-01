@@ -1,13 +1,16 @@
 {
   "workbench.colorTheme": "Iceberg",
-  "terminal.integrated.cursorStyle": "line",
   "workbench.editor.enablePreview": false,
   "workbench.iconTheme": "material-icon-theme",
+  "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.external.osxExec": "Warp.app",
   "plantuml.render": "PlantUMLServer",
   "plantuml.server": "http://www.plantuml.com/plantuml",
   "editor.fontFamily": "HackGen Console NF",
   "redhat.telemetry.enabled": true,
   "editor.tabSize": 2,
+  "editor.unicodeHighlight.nonBasicASCII": false,
   "[php]": {
     "editor.tabSize": 4,
     "editor.insertSpaces": true
@@ -46,8 +49,105 @@
   "aws.codeWhisperer.shareCodeWhispererContentWithAWS": false,
   "simpleTimer.showAlarm": true,
   "window.zoomLevel": 1,
-  "editor.unicodeHighlight.nonBasicASCII": false,
   "explorer.compactFolders": false,
   "files.insertFinalNewline": true,
-  "files.trimFinalNewlines": true
+  "files.trimFinalNewlines": true,
+  "vim.leader": "<space>",
+  "vim.useSystemClipboard": true,
+  "vim.easymotion": true,
+  "vim.hlsearch": true,
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["x"],
+      "after": []
+    },
+    {
+      "before": ["s"],
+      "after": []
+    },
+    {
+      "before": ["j"],
+      "after": ["g", "j"]
+    },
+    {
+      "before": ["k"],
+      "after": ["g", "k"]
+    },
+    {
+      "before": ["n"],
+      "after": ["n", "z", "z"]
+    },
+    {
+      "before": ["N"],
+      "after": ["N", "z", "z"]
+    },
+    {
+      "before": ["<Leader>", "l"],
+      "after": ["$"]
+    },
+    {
+      "before": ["<Leader>", "h"],
+      "after": ["^"]
+    },
+    {
+      "before": ["<Leader>", "m"],
+      "after": ["%"]
+    },
+    {
+      "before": ["<Leader>", "z"],
+      "commands": [":noh"]
+    },
+    {
+      "before": ["<Leader>", "c"],
+      "commands": [
+        {
+          "command": "editor.action.commentLine"
+        }
+      ]
+    },
+    {
+      "before": ["<Leader>", "w"],
+      "after": [],
+      "commands": [
+        {
+          "command": "workbench.action.files.save",
+          "args": []
+        }
+      ]
+    },
+    {
+      "before": ["<Leader>", "q"],
+      "after": [],
+      "commands": [
+        {
+          "command": "workbench.action.closeActiveEditor",
+          "args": []
+        }
+      ]
+    }
+  ],
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "j"],
+      "after": ["<Esc>"]
+    },
+    {
+      "before": [";", ";"],
+      "commands": ["editor.action.trrigerSuggest"]
+    }
+  ],
+  "vim.visualModeKeyBindings": [
+    {
+      "before": ["<Leader>", "l"],
+      "after": ["$"]
+    },
+    {
+      "before": ["<Leader>", "h"],
+      "after": ["^"]
+    },
+    {
+      "before": ["<Leader>", "m"],
+      "after": ["%"]
+    }
+  ]
 }
