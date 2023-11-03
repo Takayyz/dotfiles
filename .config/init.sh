@@ -24,3 +24,5 @@ if [ $? -ne 0 ]; then
 else
   echo "${YELLOW}NOTICE: Xcode already exists${ESC_END}"
 fi
+
+sudo softwareupdate --install-rosetta --agree-to-license
