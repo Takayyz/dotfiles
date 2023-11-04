@@ -44,4 +44,9 @@ ln -snfv "${SCRIPT_DIR}/alacritty.yml" "${DOTCONF_DIR}/alacritty"
 
 ln -snfv "${SCRIPT_DIR}/starship.toml" "${DOTCONF_DIR}"
 
+if [ ! -d "${HOME}/.warp/themes" ] ; then
+  mkdir -p "${HOME}/.warp/themes"
+fi
+ln -snfv "./warp/themes" "${HOME}/.warp/themes"
+
 echo "${GREEN}INFO: Done${ESC_END}"
