@@ -39,7 +39,6 @@ brew "zsh-syntax-highlighting"
 
 cask "1password"
 cask "font-hackgen-nerd"
-cask "alacritty"
 cask "alt-tab"
 cask "android-studio"
 cask "appcleaner"

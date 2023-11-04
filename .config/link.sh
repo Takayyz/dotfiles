@@ -31,16 +31,10 @@ done
 
 source ${ZDOT_DIR}/.zshrc
 
-
 if [ ! -d "${HOME}/.config" ] ; then
   mkdir "${HOME}/.config"
 fi
 DOTCONF_DIR=${HOME}/.config
-
-if [ ! -d "${DOTCONF_DIR}/alacritty" ] ; then
-  mkdir "${DOTCONF_DIR}/alacritty"
-fi
-ln -snfv "${SCRIPT_DIR}/alacritty.yml" "${DOTCONF_DIR}/alacritty"
 
 ln -snfv "${SCRIPT_DIR}/starship.toml" "${DOTCONF_DIR}"
 
