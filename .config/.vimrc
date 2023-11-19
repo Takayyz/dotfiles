@@ -44,10 +44,6 @@ set noerrorbells
 set noswapfile
 " deleteキー有効
 set backspace=indent,eol,start
-" tabインデントレベル設定
-set tabstop=2
-" インデント増減を同じレベルで
-set shiftwidth=2
 " 行をまたいで移動
 set whichwrap=b,s,h,l,<,>,[,],~
 " Ignore case
@@ -58,6 +54,27 @@ set smartcase
 set wrapscan
 " Copy to clip board by yank
 set clipboard=unnamed,autoselect
+
+" tabインデントレベル設定
+set tabstop=2
+" インデント増減を同じレベルで
+set shiftwidth=2
+" 改行時自動インデント
+set autoindent
+" {の次の行は自動インデント
+set smartindent
+" 言語毎のインデント設定
+augroup fileTypeIndent
+  autocmd!
+  autocmd BufNewFile,BufRead Makefile setlocal noexpandtab tabstop=4 shiftwidth=4
+  autocmd BufNewFile,BufRead *.php setlocal tabstop=4 shiftwidth=4
+augroup END
+
+" filetype plugin onにする必要あり?
+augroup MakefileTab
+  autocmd!
+  autocmd FileType make set noexpandtab nosmarttab
+augroup END
 
 "---------------------------------
 " 表示関係
@@ -107,16 +124,29 @@ augroup END
 "---------------------------------
 " Key bindings
 "---------------------------------
-inoremap <silent> jj <ESC>
 let mapleader = "\<Space>"
+" nomal mode
 nnoremap <Leader>, :edit ~/.vimrc<CR>
 nnoremap <Leader>r :source ~/.vimrc<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
+nnoremap <Leader><Tab> :tabnext<CR>
+nnoremap <silent><Leader>t :<C-u>NERDTreeToggle<CR>
 " Escの2回押しでハイライト消去
 nnoremap <silent><Esc><Esc> :nohlsearch<CR><ESC>
+nnoremap <C-j> {
+nnoremap <C-k> }
+nnoremap <C-l> $
+nnoremap <C-h> ^
+nnoremap <C-m> %
+" visual mode
+vnoremap <Tab> >
+vnoremap <S-Tab> <
+" nomal n visual mode
 noremap <Leader>c <Plug>NERDCommenterToggle<CR>
-nnoremap <silent><Leader>t :<C-u>NERDTreeToggle<CR>
+" insert mode
+inoremap <silent> jj <ESC>
+inoremap <S-Tab> <C-d>
 
 "---------------------------------
 " lightline.vim
