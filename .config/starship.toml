@@ -2,6 +2,9 @@ add_newline = true
 
 scan_timeout = 15
 
+[line_break]
+disabled = true
+
 [character]
 error_symbol = "[❯](bold red)"
 success_symbol = "[❯](bold green)"
