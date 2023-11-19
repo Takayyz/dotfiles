@@ -24,7 +24,6 @@ esbenp.prettier-vscode
 figma.figma-vscode-extension
 flowtype.flow-for-vscode
 formulahendry.auto-rename-tag
-genieai.chatgpt-vscode
 gizak.shortcuts
 Gruntfuggly.todo-tree
 harg.iceberg
@@ -61,7 +60,6 @@ usernamehw.errorlens
 vincaslt.highlight-matching-tag
 vscodevim.vim
 Vue.volar
-WakaTime.vscode-wakatime
 xabikos.JavaScriptSnippets
 xdebug.php-debug
 yoavbls.pretty-ts-errors

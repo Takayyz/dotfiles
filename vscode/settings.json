@@ -1,4 +1,5 @@
 {
+  "workbench.activityBar.location": "top",
   "workbench.colorTheme": "Iceberg",
   "workbench.editor.enablePreview": false,
   "workbench.iconTheme": "material-icon-theme",
@@ -7,8 +8,9 @@
   "terminal.external.osxExec": "Warp.app",
   "plantuml.render": "PlantUMLServer",
   "plantuml.server": "http://www.plantuml.com/plantuml",
-  "editor.fontFamily": "HackGen Console NF",
   "redhat.telemetry.enabled": true,
+  "telemetry.telemetryLevel": "error",
+  "editor.fontFamily": "HackGen Console NF",
   "editor.tabSize": 2,
   "editor.unicodeHighlight.nonBasicASCII": false,
   "[php]": {
