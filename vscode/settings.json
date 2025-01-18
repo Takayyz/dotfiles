@@ -54,6 +54,7 @@
   "explorer.compactFolders": false,
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
+  "php-docblocker.useShortNames": true,
   "vim.leader": "<space>",
   "vim.useSystemClipboard": true,
   "vim.easymotion": true,
