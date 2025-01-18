@@ -6,4 +6,5 @@
 	rebase = false
 [core]
 	quotepath = false
-	editor = [ $TERM_PROGRAM = "vscode" ] && "code --wait $@" || vim
+	editor = [ $TERM_PROGRAM = "cursor" ] && "cursor --wait $@" || vim
+	autocrlf = false
