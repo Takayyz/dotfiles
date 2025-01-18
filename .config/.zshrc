@@ -43,7 +43,6 @@ alias lg='lazygit'
 
 # Git関連
 alias gb='git branch'
-alias gs='git switch'
 alias gsc='git switch -c'
 alias gp='git pull'
 alias gst='git status'
@@ -89,6 +88,14 @@ function ghq-fzf() {
   zle -R -c
 }
 zle -N ghq-fzf
+function gs() {
+  if [[ -n "$1" ]]; then
+    git switch $1
+    return
+  fi
+
+  git switch $(gb | fzf)
+}
 
 #-----------------------------------------
 # key bindings
@@ -124,3 +131,8 @@ zstyle ':completion:*' insert-tab false
 #-----------------------------------------
 # 設定読み込み
 eval "$(starship init zsh)"
+
+#-----------------------------------------
+# direnv
+#-----------------------------------------
+eval "$(direnv hook zsh)"
