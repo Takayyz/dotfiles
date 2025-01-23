@@ -9,6 +9,7 @@ tap "sanemat/font"
 
 brew "awscli"
 brew "bat"
+brew "btop"
 brew "cocoapods"
 brew "composer"
 brew "curl"
