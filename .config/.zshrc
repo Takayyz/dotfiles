@@ -31,8 +31,8 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 alias vi='vim'
 
 # ls
-alias l='eza -algh --git --icons'
-alias lt='eza -aTL 2 --icons'
+alias l='(){eza $1 -algh --git --icons}'
+alias lt='(){eza $1 -aTL 2 --icons}'
 
 # 設定反映
 alias sz="source ${HOME}/.zsh.d/.zshrc"
