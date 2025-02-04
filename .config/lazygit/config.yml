@@ -478,7 +478,7 @@ keybinding:
     remove: d
     new: "n"
     edit: e
-    openFile: o
+    openFile: <disabled>
     scrollUpMain: <pgup>
     scrollDownMain: <pgdown>
     scrollUpMain-alt1: K
