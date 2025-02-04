@@ -21,6 +21,7 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'ervandew/supertab'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'Yggdroot/indentLine'
+Plugin 'easymotion/vim-easymotion'
 
 call vundle#end()
 filetype plugin indent on
