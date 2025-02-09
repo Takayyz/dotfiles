@@ -34,3 +34,5 @@ abbr dkc='docker compose'
 
 # Volta関連
 abbr vla='volta list all'
+
+abbr fp='cd $(ghq root)/$(ghq list | fzf --preview "bat --color=always --style=header,grid --line-range :50 $(ghq root)/{}/README.*")'
