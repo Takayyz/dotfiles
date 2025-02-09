@@ -127,6 +127,8 @@ autoload -U colors
 colors
 # 入力ワード無しの状態でTABの挿入阻止
 zstyle ':completion:*' insert-tab false
+# 大文字・小文字に関わらず補完を効かせる
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 #-----------------------------------------
 # Starship
