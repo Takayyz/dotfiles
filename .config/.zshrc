@@ -1,30 +1,48 @@
 #-----------------------------------------
-# zprezto
-#-----------------------------------------
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
-
-# Preztoアップデート
-alias preup='cd ~/.zprezto && git pull && git submodule update --init --recursive ; cd -'
-
-#-----------------------------------------
 # exports
 #-----------------------------------------
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # Editors
 export EDITOR='vim'
 export VISUAL='vim'
 export PAGER='less'
 
 # historyコマンドのファイル指定
-export HISTFILE=${HOME}/.zsh.d/.zhistory
-
-export XDG_CONFIG_HOME="$HOME/.config"
+export HISTFILE="$ZDOTDIR/.zhistory"
 
 # Volta
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+
+#-----------------------------------------
+# Plugin manager
+#-----------------------------------------
+# source command override technique
+function source {
+  ensure_zcompiled $1
+  builtin source $1
+}
+function ensure_zcompiled {
+  local compiled="$1.zwc"
+  if [[ ! -r "$compiled" || "$1" -nt "$compiled" ]]; then
+    echo "\033[1;36mCompiling\033[m $1"
+    zcompile $1
+  fi
+}
+ensure_zcompiled "$ZDOTDIR/.zshrc"
+
+# sheldon cache technique
+export SHELDON_CONFIG_DIR="$XDG_CONFIG_HOME/zsh/sheldon"
+sheldon_cache="$SHELDON_CONFIG_DIR/sheldon.zsh"
+sheldon_toml="$SHELDON_CONFIG_DIR/plugins.toml"
+if [[ ! -r "$sheldon_cache" || "$sheldon_toml" -nt "$sheldon_cache" ]]; then
+  sheldon source > $sheldon_cache
+fi
+source "$sheldon_cache"
+unset sheldon_cache sheldon_toml
+
+zsh-defer unfunction source
 
 #-----------------------------------------
 # aliases
