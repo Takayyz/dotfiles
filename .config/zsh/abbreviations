@@ -1,0 +1,36 @@
+abbr vi='vim'
+
+abbr l='(){eza $1 -algh --git --icons}'
+abbr lt='(){eza $1 -aTL 2 --icons}'
+abbr cdr='cd $(git rev-parse --show-toplevel)'
+
+abbr sz="source ${HOME}/.zsh.d/.zshrc"
+abbr st="tmux source ${HOME}/.tmux.conf"
+
+abbr lg='lazygit'
+abbr clock='tty-clock'
+
+abbr gb='git branch'
+abbr gsc='git switch -c'
+abbr gp='git pull'
+abbr gst='git status'
+abbr glg='git log --graph --abbrev-commit --date=format:"%Y-%m-%d %H:%M:%S(%a)" --pretty=format:"%C(yellow)commit %h%Creset %Cred%d%Creset%nCommitter: %Cblue%cn%Creset <%ce>%nDate:      %Cgreen%cd%Creset%n%n    %w(80)%s%Creset%n"'
+abbr glo='git log --oneline --pretty=format:"%Cred%h%Creset %Cgreen[%cd]%Creset %C(yellow)%d%Creset %s %Cblue<%cn>%Creset" --date=format:"%Y-%m-%d %H:%M:%S"'
+abbr glst='git log --stat'
+# ブランチ間の差分をコミット単位で確認 ex)glcd master..develop
+abbr glcd='git log --no-merges'
+
+# TODO gh repo createコマンドをインタラクティブにする
+#
+# Organization/Userを選択
+# repo nameを入力
+# public/privateを選択
+
+# history実行時にコマンド実行日時表示
+abbr hist='history -i'
+
+# Docker関連
+abbr dkc='docker compose'
+
+# Volta関連
+abbr vla='volta list all'
