@@ -67,7 +67,7 @@ function gs() {
     return
   fi
 
-  git switch $(gb | fzf)
+  git switch $(git branch | fzf)
 }
 
 #-----------------------------------------
@@ -91,7 +91,7 @@ setopt EXTENDED_HISTORY
 HISTTIMEFORMAT="[%Y/%M/%D %H:%M:%S] "
 # historyコマンドをhistoryに入れない
 unsetopt HIST_NO_STORE
-autoload -U compinit
+autoload -Uz compinit
 compinit -u
 # 補完機能に色付け
 autoload -U colors
@@ -111,3 +111,11 @@ eval "$(starship init zsh)"
 # direnv
 #-----------------------------------------
 eval "$(direnv hook zsh)"
+
+# pnpm
+export PNPM_HOME="$HOME/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
