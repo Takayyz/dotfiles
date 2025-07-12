@@ -6,5 +6,7 @@
 	rebase = false
 [core]
 	quotepath = false
-	editor = [ $TERM_PROGRAM = "cursor" ] && "cursor --wait $@" || vim
-	autocrlf = false
+	editor = vim
+	autocrlf = input
+[ghq]
+	root = ~/repo
