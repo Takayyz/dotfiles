@@ -2,7 +2,7 @@ abbr vi='vim'
 
 abbr l='(){eza $1 -algh --git --icons}'
 abbr lt='(){eza $1 -aTL 2 --icons}'
-abbr cdr='cd $(git rev-parse --show-toplevel)'
+abbr cpr='cd $(git rev-parse --show-toplevel)'
 
 abbr sz="source ${HOME}/.zsh.d/.zshrc"
 abbr st="tmux source ${HOME}/.tmux.conf"
