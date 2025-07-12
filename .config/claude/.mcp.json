@@ -5,5 +5,12 @@
       "-y",
       "@upstash/context7-mcp@latest"
     ]
+  },
+  "voicevox": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@t09tanaka/mcp-simple-voicevox"
+    ]
   }
 }
