@@ -8,17 +8,19 @@
 		],
 		"deny": []
 	},
-	"stop": [
-		{
-			"matcher": "",
-			"hooks": [
-				{
-					"type": "command",
-					"command": "$HOME/.claude/hooks/hook_stop_words.sh"
-				}
-			]
-		}
-	],
+	"hooks": {
+		"Stop": [
+			{
+				"matcher": "",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "$HOME/.claude/hooks/hook_stop_words.sh"
+					}
+				]
+			}
+		]
+	},
 	"env": {
 		"DISABLE_TELEMETRY": 1
 	}
