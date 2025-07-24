@@ -56,6 +56,7 @@ set wrapscan
 " Copy to clip board by yank
 set clipboard=unnamed,autoselect
 
+set expandtab
 " tabインデントレベル設定
 set tabstop=2
 " インデント増減を同じレベルで
@@ -68,7 +69,10 @@ set smartindent
 augroup fileTypeIndent
   autocmd!
   autocmd BufNewFile,BufRead Makefile setlocal noexpandtab tabstop=4 shiftwidth=4
-  autocmd BufNewFile,BufRead *.php setlocal tabstop=4 shiftwidth=4
+  autocmd FileType php setlocal expandtab tabstop=4 shiftwidth=4
+  autocmd FileType javascript setlocal expandtab tabstop=2 shiftwidth=2
+  autocmd FileType typescript setlocal expandtab tabstop=2 shiftwidth=2
+  autocmd FileType markdown setlocal expandtab tabstop=2 shiftwidth=2
 augroup END
 
 " filetype plugin onにする必要あり?
