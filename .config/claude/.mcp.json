@@ -12,5 +12,12 @@
       "-y",
       "@t09tanaka/mcp-simple-voicevox"
     ]
+  },
+  "deepwiki": {
+    "command": "npx",
+    "args": [
+      "mcp-remote",
+      "https://mcp.deepwiki.com/sse"
+    ]
   }
 }
