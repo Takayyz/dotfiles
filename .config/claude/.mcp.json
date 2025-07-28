@@ -19,5 +19,11 @@
       "mcp-remote",
       "https://mcp.deepwiki.com/sse"
     ]
+  },
+  "playright": {
+    "command": "npx",
+    "args": [
+      "@playwright/mcp@latest"
+    ]
   }
 }
