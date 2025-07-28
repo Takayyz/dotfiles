@@ -6,7 +6,22 @@
 			"Bash(pnpm run lint)",
 			"Bash(pnpm run test)"
 		],
-		"deny": []
+		"deny": [
+			"Bash(rm -rf /)",
+			"Bash(rm -rf /*)",
+			"Bash(rm -rf ~)",
+			"Bash(rm -rf ~/*)",
+			"Bash(rm -rf:*)",
+			"Bash(rm -r:*)",
+			"Bash(rm -R:*)",
+			"Bash(rm --recursive:*)",
+      "Bash(rm --force:*)",
+			"Bash(rm:*)",
+			"Bash(find * -delete:*)",
+      "Bash(find * -exec rm:*)",
+			"Bash(git push -f:*)",
+			"Bash(git push --force:*)"
+		]
 	},
 	"hooks": {
 		"Stop": [
