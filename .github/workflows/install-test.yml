@@ -1,9 +1,9 @@
 name: macos
 
 on:
-  push:
-    branches: [ 'master' ]
-  pull_request:
+  # push:
+  #   branches: [ 'master' ]
+  # pull_request:
   workflow_dispatch:
 
 permissions:
@@ -12,6 +12,8 @@ permissions:
 jobs:
   macos:
     runs-on: macos-13
+    # Apple silicon対応osは有料...
+    # runs-on: macos-13-xlarge
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
