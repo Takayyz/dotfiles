@@ -1,4 +1,12 @@
 {
+  "container-use": {
+    "type": "stdio",
+    "command": "container-use",
+    "args": [
+      "stdio"
+    ],
+    "env": {}
+  },
   "context7": {
     "command": "npx",
     "args": [
@@ -25,5 +33,14 @@
     "args": [
       "@playwright/mcp@latest"
     ]
-  }
+  },
+  "markdownify": {
+      "command": "node",
+      "args": [
+        "{ABSOLUTE PATH TO FILE HERE}/dist/index.js"
+      ],
+      "env": {
+        "UV_PATH": "/path/to/uv"
+      }
+    }
 }
