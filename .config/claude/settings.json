@@ -15,10 +15,9 @@
 			"Bash(rm -r:*)",
 			"Bash(rm -R:*)",
 			"Bash(rm --recursive:*)",
-      "Bash(rm --force:*)",
-			"Bash(rm:*)",
+			"Bash(rm --force:*)",
 			"Bash(find * -delete:*)",
-      "Bash(find * -exec rm:*)",
+			"Bash(find * -exec rm:*)",
 			"Bash(git push -f:*)",
 			"Bash(git push --force:*)"
 		]
