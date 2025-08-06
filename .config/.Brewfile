@@ -45,6 +45,7 @@ brew "volta"
 brew "wasmtime"
 brew "wget"
 brew "yazi"
+brew "yq"
 brew "zrok"
 brew "zsh"
 
