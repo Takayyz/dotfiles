@@ -12,6 +12,8 @@
   "telemetry.telemetryLevel": "error",
   "editor.fontFamily": "HackGen Console NF",
   "editor.tabSize": 2,
+  "editor.minimap.side": "left",
+  "editor.minimap.enabled": false,
   "editor.unicodeHighlight.nonBasicASCII": false,
   "[php]": {
     "editor.tabSize": 4,
@@ -156,5 +158,66 @@
       "before": ["<Leader>", "m"],
       "after": ["%"]
     }
-  ]
+  ],
+  "todo-tree.general.tags": [
+    "BUG",
+    "FIXME",
+    "INFO",
+    "HACK",
+    "TODO",
+    "WARN",
+    "[ ]",
+    "[x]",
+    "XXX"
+  ],
+   "todo-tree.highlights.defaultHighlight": {
+    "gutterIcon": true
+  },
+  "todo-tree.highlights.customHighlight": {
+    "BUG": {
+      "icon": "bug",
+      "foreground": "#b00",
+      "iconColour": "#b00"
+    },
+    "FIXME": {
+      "icon": "tools",
+      "foreground": "#c90",
+      "iconColour": "#c90"
+    },
+    "INFO": {
+      "icon": "info",
+      "foreground": "#00bfff",
+      "iconColour": "#00bfff"
+    },
+    "HACK": {
+      "icon": "sync",
+      "foreground": "#9E76B4",
+      "iconColour": "#9E76B4"
+    },
+    "TODO": {
+      "icon": "megaphone",
+      "foreground": "#fd7e00",
+      "iconColour": "#fd7e00"
+    },
+    "WARN": {
+      "icon": "alert",
+      "foreground": "#ffff4c",
+      "iconColour": "#ffff4c"
+    },
+    "XXX": {
+      "icon": "pulse",
+      "foreground": "#b00",
+      "iconColour": "#b00"
+    },
+    "[ ]": {
+      "icon": "megaphone",
+      "foreground": "#fd7e00",
+      "iconColour": "#fd7e00"
+    },
+    "[x]": {
+      "icon": "check-circle-fill",
+      "foreground": "#080",
+      "iconColour": "#080"
+    }
+  }
 }
