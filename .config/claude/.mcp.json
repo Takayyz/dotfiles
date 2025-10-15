@@ -35,12 +35,20 @@
     ]
   },
   "markdownify": {
-      "command": "node",
-      "args": [
-        "{ABSOLUTE PATH TO FILE HERE}/dist/index.js"
-      ],
-      "env": {
-        "UV_PATH": "/path/to/uv"
-      }
+    "command": "node",
+    "args": [
+      "{ABSOLUTE PATH TO FILE HERE}/dist/index.js"
+    ],
+    "env": {
+      "UV_PATH": "/path/to/uv"
     }
+  },
+  "chrome-devtools": {
+    "type": "stdio",
+    "command": "npx",
+    "args": [
+      "chrome-devtools-mcp@latest"
+    ],
+    "env": {}
+  }
 }
