@@ -43,5 +43,12 @@
       "chrome-devtools-mcp@latest"
     ],
     "env": {}
+  },
+  "sequential-thinking": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@modelcontextprotocol/server-sequential-thinking"
+    ]
   }
 }
