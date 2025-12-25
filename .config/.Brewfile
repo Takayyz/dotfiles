@@ -81,5 +81,4 @@ cask "spacedrive"
 cask "spacesaver"
 cask "stoplight-studio"
 cask "visual-studio-code"
-cask "voicevox", args: { no_quarantine: true }
 cask "zoom"
