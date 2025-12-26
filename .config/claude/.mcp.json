@@ -21,12 +21,6 @@
       "https://mcp.deepwiki.com/sse"
     ]
   },
-  "playright": {
-    "command": "npx",
-    "args": [
-      "@playwright/mcp@latest"
-    ]
-  },
   "markdownify": {
     "command": "node",
     "args": [
