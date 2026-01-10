@@ -1,7 +1,8 @@
 {
   "env": {
     "DISABLE_TELEMETRY": "1",
-    "DISABLE_AUTOUPDATER": "1"
+    "DISABLE_AUTOUPDATER": "1",
+    "DISABLE_ERROR_REPORTING": "1"
   },
   "includeCoAuthoredBy": false,
   "permissions": {
@@ -43,5 +44,6 @@
   "enabledPlugins": {
     "example-skills@anthropic-agent-skills": true,
     "document-skills@anthropic-agent-skills": true
-  }
+  },
+  "outputStyle": "Explanatory"
 }
