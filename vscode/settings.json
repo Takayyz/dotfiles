@@ -5,16 +5,16 @@
   "workbench.iconTheme": "material-icon-theme",
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.cursorBlinking": true,
-  "terminal.external.osxExec": "Warp.app",
+  "terminal.external.osxExec": "Ghostty.app",
   "plantuml.render": "PlantUMLServer",
   "plantuml.server": "http://www.plantuml.com/plantuml",
-  "redhat.telemetry.enabled": true,
-  "telemetry.telemetryLevel": "error",
   "editor.fontFamily": "HackGen Console NF",
+  "redhat.telemetry.enabled": true,
   "editor.tabSize": 2,
-  "editor.minimap.side": "left",
-  "editor.minimap.enabled": false,
   "editor.unicodeHighlight.nonBasicASCII": false,
+  "accessibility.signals.terminalBell": {
+    "sound": "on"
+  },
   "[php]": {
     "editor.tabSize": 4,
     "editor.insertSpaces": true
@@ -50,13 +50,13 @@
     "!Split sequence"
   ],
   "aws.telemetry": false,
-  "aws.codeWhisperer.shareCodeWhispererContentWithAWS": false,
   "simpleTimer.showAlarm": true,
-  "window.zoomLevel": 1,
   "explorer.compactFolders": false,
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
   "php-docblocker.useShortNames": true,
+  "search.useIgnoreFiles": false,
+  "window.zoomLevel": 1,
   "vim.leader": "<space>",
   "vim.useSystemClipboard": true,
   "vim.easymotion": true,
@@ -87,6 +87,10 @@
       "after": ["N", "z", "z"]
     },
     {
+      "before": ["f"],
+      "after": ["leader", "leader", "leader", "b", "d", "w"]
+    },
+    {
       "before": ["<Leader>", "l"],
       "after": ["$"]
     },
@@ -101,6 +105,10 @@
     {
       "before": ["<Leader>", "f"],
       "after": ["<Leader>", "<Leader>", "s"]
+    },
+    {
+      "before": ["<Leader>", "j"],
+      "after": ["g", "d"]
     },
     {
       "before": ["<Leader>", "z"],
@@ -136,6 +144,10 @@
     }
   ],
   "vim.insertModeKeyBindings": [
+    // {
+    //   "before": ["<Esc>"],
+    //   "after": []
+    // },
     {
       "before": ["j", "j"],
       "after": ["<Esc>"]
@@ -159,6 +171,29 @@
       "after": ["%"]
     }
   ],
+  "database-client.autoSync": true,
+  "geminicodeassist.project": "develop-416800",
+  "editor.minimap.side": "left",
+  "editor.minimap.enabled": false,
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "php.validate.run": "onType",
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false,
+    "typescriptreact": false
+  },
+  "docker.extension.enableComposeLanguageServer": false,
+  "chat.instructionsFilesLocations": {
+    ".github/instructions": true,
+    "/var/folders/v4/ztftkr8d4jdcs3wcnz4lwhfm0000gp/T/postman-http-request-post-response.instructions.md": true,
+    "/var/folders/v4/ztftkr8d4jdcs3wcnz4lwhfm0000gp/T/postman-http-request-pre-request.instructions.md": true,
+    "/var/folders/v4/ztftkr8d4jdcs3wcnz4lwhfm0000gp/T/postman-collections-post-response.instructions.md": true,
+    "/var/folders/v4/ztftkr8d4jdcs3wcnz4lwhfm0000gp/T/postman-collections-pre-request.instructions.md": true,
+    "/var/folders/v4/ztftkr8d4jdcs3wcnz4lwhfm0000gp/T/postman-folder-post-response.instructions.md": true,
+    "/var/folders/v4/ztftkr8d4jdcs3wcnz4lwhfm0000gp/T/postman-folder-pre-request.instructions.md": true
+  },
   "todo-tree.general.tags": [
     "BUG",
     "FIXME",
@@ -170,7 +205,7 @@
     "[x]",
     "XXX"
   ],
-   "todo-tree.highlights.defaultHighlight": {
+  "todo-tree.highlights.defaultHighlight": {
     "gutterIcon": true
   },
   "todo-tree.highlights.customHighlight": {
@@ -219,5 +254,23 @@
       "foreground": "#080",
       "iconColour": "#080"
     }
-  }
+  },
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    },
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "geminicodeassist.displayInlineContextHint": false,
+  "git.autofetch": true,
+  "claudeCode.preferredLocation": "panel"
 }
+
