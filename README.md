@@ -19,6 +19,24 @@ git clone https://github.com/Takayyz/dotfiles.git && cd dotfiles && make all
 git clone git@github.com:Takayyz/dotfiles.git && cd dotfiles && make all
 ```
 
+## Volta (.Voltafile)
+
+Node.js のランタイム・パッケージマネージャー・グローバルパッケージを Brewfile と同様の形式で宣言的に管理します。
+
+```sh
+# 個別実行
+make volta
+
+# .Voltafile にパッケージを追加した後に再実行すれば差分インストールされます
+```
+
+`.config/.Voltafile` の記法:
+```
+runtime "node" "24.11.1"       # バージョン固定
+manager "pnpm" "10.21.0"       # バージョン固定
+package "@anthropic-ai/claude-code"  # 最新バージョン
+```
+
 ## 参考記事
 - [defaultsコマンド](http://neos21.hatenablog.com/entry/2019/01/10/080000)
 - [defauls一覧](https://github.com/ulwlu/dotfiles/blob/master/system/macos.sh)

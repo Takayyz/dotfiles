@@ -10,6 +10,7 @@ all: ## Execute all setup commands
 	@make link
 	@make defaults
 	@make brew
+	@make volta
 	@make vim
 	@make zsh
 	@echo Congrats!! You are all set!
@@ -29,6 +30,10 @@ defaults: ## Set macOS system preferences
 .PHONY := brew
 brew: ## Install macOS applications
 	@.config/brew.sh
+
+.PHONY := volta
+volta: ## Install Node.js toolchain via Volta
+	@.config/volta.sh
 
 .PHONY := vim
 vim: ## Setup vim

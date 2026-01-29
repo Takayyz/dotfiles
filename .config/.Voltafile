@@ -1,0 +1,18 @@
+# ====================
+# Runtime
+# ====================
+runtime "node" "24.11.1"
+
+# ====================
+# Package Managers
+# ====================
+manager "npm" "11.5.1"
+manager "pnpm" "10.21.0"
+manager "yarn" "4.1.1"
+
+# ====================
+# Global Packages
+# ====================
+package "@anthropic-ai/claude-code"
+package "claude-code-monitor"
+package "kiri-mcp-server"
