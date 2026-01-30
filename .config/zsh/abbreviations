@@ -20,6 +20,8 @@ abbr glst='git log --stat'
 # ブランチ間の差分をコミット単位で確認 ex)glcd master..develop
 abbr glcd='git log --no-merges'
 
+abbr fp='cd $(ghq root)/$(ghq list | fzf --preview "bat --color=always --style=header,grid --line-range :50 $(ghq root)/{}/README.*")'
+
 # TODO gh repo createコマンドをインタラクティブにする
 #
 # Organization/Userを選択
@@ -35,4 +37,4 @@ abbr dkc='docker compose'
 # Volta関連
 abbr vla='volta list all'
 
-abbr fp='cd $(ghq root)/$(ghq list | fzf --preview "bat --color=always --style=header,grid --line-range :50 $(ghq root)/{}/README.*")'
+abbr -S -qq vpn='vpnutil'
