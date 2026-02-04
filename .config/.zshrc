@@ -1,4 +1,11 @@
 #-----------------------------------------
+# tmux
+#-----------------------------------------
+if [[ -z "$TMUX" && -z "$VIM" && "$TERM_PROGRAM" != "vscode" && $- == *l* ]] ; then
+  tmux attach-session -t default || tmux new-session -s default
+fi
+
+#-----------------------------------------
 # exports
 #-----------------------------------------
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -74,6 +81,7 @@ vpn_connect_with_fzf() {
 
   # Get the name and status of the VPN and select it with fzf.
   selected_vpn=$(echo "$vpn_data" | jq -r '.VPNs[] | "\(.name) (\(.status))"' | fzf --prompt="choose a vpn: ")
+  selected_vpn=$(echo "$vpn_data" | jq -r '.VPNs[] | "\(.name) (\(.status))"' | fzf --tmux --prompt="choose a vpn: ")
 
   # If there is no selected VPN, exit
   if [[ -z "$selected_vpn" ]]; then
