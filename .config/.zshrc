@@ -1,11 +1,4 @@
 #-----------------------------------------
-# tmux
-#-----------------------------------------
-if [[ -z "$TMUX" && -z "$VIM" && "$TERM_PROGRAM" != "vscode" && $- == *l* ]] ; then
-  tmux attach-session -t default || tmux new-session -s default
-fi
-
-#-----------------------------------------
 # exports
 #-----------------------------------------
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -23,6 +16,13 @@ export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
 export ABBR_USER_ABBREVIATIONS_FILE="$ZDOTDIR/abbreviations"
+
+#-----------------------------------------
+# tmux
+#-----------------------------------------
+if [[ -z "$TMUX" && -z "$VIM" && "$TERM_PROGRAM" != "vscode" && $- == *l* ]] ; then
+  tmux attach-session -t default || tmux new-session -s default
+fi
 
 #-----------------------------------------
 # Plugin manager
@@ -80,7 +80,6 @@ vpn_connect_with_fzf() {
   vpn_data=$(vpnutil list)
 
   # Get the name and status of the VPN and select it with fzf.
-  selected_vpn=$(echo "$vpn_data" | jq -r '.VPNs[] | "\(.name) (\(.status))"' | fzf --prompt="choose a vpn: ")
   selected_vpn=$(echo "$vpn_data" | jq -r '.VPNs[] | "\(.name) (\(.status))"' | fzf --tmux --prompt="choose a vpn: ")
 
   # If there is no selected VPN, exit
@@ -126,7 +125,7 @@ vpn_disconnect_if_connected() {
 function chpwd() { eza $1 -algh --git --icons }
 # ghqで選択したrepoへcd
 function ghq-fzf() {
-  local src=$(ghq list | fzf --preview "bat --color=always --style=header,grid --line-range :50 $(ghq root)/{}/README.*")
+  local src=$(ghq list | fzf --tmux --preview "bat --color=always --style=header,grid --line-range :50 $(ghq root)/{}/README.*")
   if [ -n "$src" ] ; then
     BUFFER="cd $(ghq root)/$src"
     zle accept-line
@@ -140,7 +139,7 @@ function gs() {
     return
   fi
 
-  git switch $(git branch | fzf)
+  git switch $(git branch | fzf --tmux)
 }
 
 #-----------------------------------------
