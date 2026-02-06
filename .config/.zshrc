@@ -80,7 +80,7 @@ vpn_connect_with_fzf() {
   vpn_data=$(vpnutil list)
 
   # Get the name and status of the VPN and select it with fzf.
-  selected_vpn=$(echo "$vpn_data" | jq -r '.VPNs[] | "\(.name) (\(.status))"' | fzf --tmux --prompt="choose a vpn: ")
+  selected_vpn=$(echo "$vpn_data" | jq -r '.VPNs[] | "\(.name) (\(.status))"' | fzf --tmux --reverse --prompt="choose a vpn: ")
 
   # If there is no selected VPN, exit
   if [[ -z "$selected_vpn" ]]; then
@@ -125,7 +125,7 @@ vpn_disconnect_if_connected() {
 function chpwd() { eza $1 -algh --git --icons }
 # ghqで選択したrepoへcd
 function ghq-fzf() {
-  local src=$(ghq list | fzf --tmux --preview "bat --color=always --style=header,grid --line-range :50 $(ghq root)/{}/README.*")
+  local src=$(ghq list | fzf --tmux --reverse --preview "bat --color=always --style=header,grid --line-range :50 $(ghq root)/{}/README.*")
   if [ -n "$src" ] ; then
     BUFFER="cd $(ghq root)/$src"
     zle accept-line
@@ -139,7 +139,7 @@ function gs() {
     return
   fi
 
-  git switch $(git branch | fzf --tmux)
+  git switch $(git branch | fzf --tmux --reverse)
 }
 
 #-----------------------------------------
