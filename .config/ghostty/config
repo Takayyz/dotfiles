@@ -1,5 +1,7 @@
 theme = Iceberg Dark
 
+desktop-notifications = true
+
 background-opacity = 0.85
 background-blur-radius = 5
 
