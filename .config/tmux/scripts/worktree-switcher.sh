@@ -10,7 +10,6 @@ set -euo pipefail
 # Constants
 #========================================
 readonly CREATE_NEW_BRANCH="[+] Create new branch"
-readonly FZF_HEIGHT="80%"
 readonly FZF_PREVIEW_COMMITS=20
 
 #========================================
@@ -111,7 +110,6 @@ select_branch() {
   local branch_list="$1"
 
   echo "$branch_list" | fzf \
-    --height="$FZF_HEIGHT" \
     --reverse \
     --prompt="Select branch > " \
     --header="[worktree]=existing, [local]=local only, [remote]=remote only" \
