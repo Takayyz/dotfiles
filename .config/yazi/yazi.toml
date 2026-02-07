@@ -1,0 +1,6 @@
+# Yazi configuration
+# @ref https://yazi-rs.github.io/docs/configuration/yazi/
+
+[mgr]
+# 隠しファイルを常に表示する
+show_hidden = true
