@@ -22,6 +22,7 @@ Plugin 'ervandew/supertab'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'Yggdroot/indentLine'
 Plugin 'easymotion/vim-easymotion'
+Plugin 'tpope/vim-surround'
 
 call vundle#end()
 filetype plugin indent on
