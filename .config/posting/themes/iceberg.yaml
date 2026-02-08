@@ -1,0 +1,64 @@
+name: iceberg
+
+# ------------------------------
+# Core colors (from cocopon/iceberg.vim)
+# ------------------------------
+primary: '#84a0c6'    # Blue - buttons, fixed table columns
+secondary: '#a093c7'  # Magenta/Violet - method selector, minor labels
+accent: '#89b8c2'     # Cyan - header text, scrollbars, cursors, focus highlights
+background: '#161821' # Dark background
+surface: '#1e2132'    # Slightly lighter bg - panels
+error: '#e27878'      # Red
+success: '#b4be82'    # Green
+warning: '#e2a478'    # Yellow/Orange
+
+# ------------------------------
+# Syntax highlighting
+# ------------------------------
+syntax:
+  json_key: '#84a0c6'     # Blue
+  json_string: '#b4be82'  # Green
+  json_number: '#e2a478'  # Yellow/Orange
+  json_boolean: '#a093c7' # Magenta
+  json_null: '#6b7089'    # Comment gray
+
+# ------------------------------
+# HTTP method colors
+# ------------------------------
+method:
+  get: '#84a0c6'     # Blue
+  post: '#b4be82'    # Green
+  put: '#e2a478'     # Yellow/Orange
+  delete: '#e27878'  # Red
+  patch: '#89b8c2'   # Cyan
+  options: '#a093c7' # Magenta
+  head: '#ada0d3'    # Bright Magenta
+
+# ------------------------------
+# URL display
+# ------------------------------
+url:
+  base: '#c6c8d1'       # Foreground
+  protocol: '#6b7089'   # Comment gray
+  separator: 'dim #6b7089'
+
+# ------------------------------
+# Text area
+# ------------------------------
+text_area:
+  cursor: 'reverse'
+  selection: 'on #272c42'          # Visual selection bg
+  cursor_line: 'on #1e2132'
+  matched_bracket: 'underline #e2a478'
+
+# ------------------------------
+# Variables
+# ------------------------------
+variable:
+  resolved: '#b4be82'    # Green
+  unresolved: '#e27878'  # Red
+
+# Metadata
+author: Takayyz
+description: Dark blue color scheme based on cocopon/iceberg.vim
+homepage: https://github.com/Takayyz

@@ -38,6 +38,17 @@ DOTCONF_DIR=${HOME}/.config
 
 ln -snfv "${SCRIPT_DIR}/starship.toml" "${DOTCONF_DIR}"
 
+# posting (config: ~/.config, themes: ~/.local/share)
+if [ ! -d "${DOTCONF_DIR}/posting" ] ; then
+  mkdir -p "${DOTCONF_DIR}/posting"
+fi
+ln -snfv "${SCRIPT_DIR}/posting/config.yaml" "${DOTCONF_DIR}/posting"
+
+if [ ! -d "${HOME}/.local/share/posting" ] ; then
+  mkdir -p "${HOME}/.local/share/posting"
+fi
+ln -snfv "${SCRIPT_DIR}/posting/themes" "${HOME}/.local/share/posting"
+
 if [ ! -d "${HOME}/.warp/themes" ] ; then
   mkdir -p "${HOME}/.warp/themes"
 fi
