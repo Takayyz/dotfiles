@@ -17,6 +17,14 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 
 export ABBR_USER_ABBREVIATIONS_FILE="$ZDOTDIR/abbreviations"
 
+# fzf
+export FZF_DEFAULT_OPTS=" \
+  --reverse \
+  --color=fg:#c6c8d1,bg:-1,fg+:#d2d4de,bg+:#1e2132 \
+  --color=hl:#e27878,hl+:#e27878,info:#6b7089,prompt:#84a0c6 \
+  --color=pointer:#89b8c2,marker:#b4be82,spinner:#a093c7,header:#e2a478 \
+  --color=border:#6b7089,gutter:-1"
+
 #-----------------------------------------
 # tmux
 #-----------------------------------------
@@ -80,7 +88,7 @@ vpn_connect_with_fzf() {
   vpn_data=$(vpnutil list)
 
   # Get the name and status of the VPN and select it with fzf.
-  selected_vpn=$(echo "$vpn_data" | jq -r '.VPNs[] | "\(.name) (\(.status))"' | fzf --tmux --reverse --prompt="choose a vpn: ")
+  selected_vpn=$(echo "$vpn_data" | jq -r '.VPNs[] | "\(.name) (\(.status))"' | fzf --tmux --prompt="choose a vpn: ")
 
   # If there is no selected VPN, exit
   if [[ -z "$selected_vpn" ]]; then
@@ -125,7 +133,7 @@ vpn_disconnect_if_connected() {
 function chpwd() { eza $1 -algh --git --icons }
 # ghqで選択したrepoへcd
 function ghq-fzf() {
-  local src=$(ghq list | fzf --tmux --reverse --preview "bat --color=always --style=header,grid --line-range :50 $(ghq root)/{}/README.*")
+  local src=$(ghq list | fzf --tmux --preview "bat --color=always --style=header,grid --line-range :50 $(ghq root)/{}/README.*")
   if [ -n "$src" ] ; then
     BUFFER="cd $(ghq root)/$src"
     zle accept-line
@@ -139,7 +147,7 @@ function gs() {
     return
   fi
 
-  git switch $(git branch | fzf --tmux --reverse)
+  git switch $(git branch | fzf --tmux)
 }
 
 #-----------------------------------------

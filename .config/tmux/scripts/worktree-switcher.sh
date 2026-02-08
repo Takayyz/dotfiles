@@ -110,7 +110,6 @@ select_branch() {
   local branch_list="$1"
 
   echo "$branch_list" | fzf \
-    --reverse \
     --prompt="Select branch > " \
     --header="[worktree]=existing, [local]=local only, [remote]=remote only" \
     --preview="git log --oneline --graph -n $FZF_PREVIEW_COMMITS {-1} 2>/dev/null || echo 'No commits yet'" \
