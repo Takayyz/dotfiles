@@ -1,8 +1,10 @@
 {
   "env": {
     "DISABLE_TELEMETRY": "1",
-    "DISABLE_AUTOUPDATER": "1",
-    "DISABLE_ERROR_REPORTING": "1"
+    "DISABLE_ERROR_REPORTING": "1",
+    "CLAUDE_CODE_DISABLE_TERMINAL_TITLE": "1",
+    "CLAUDE_CODE_MONITOR_GHOSTTY_ASKED": "1",
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
   "includeCoAuthoredBy": false,
   "outputStyle": "Explanatory",
