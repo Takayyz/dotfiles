@@ -28,6 +28,36 @@ call vundle#end()
 filetype plugin indent on
 
 "---------------------------------
+" Key bindings
+"---------------------------------
+let mapleader = "\<Space>"
+" nomal mode
+nnoremap <Leader>, :edit ~/.vimrc<CR>
+nnoremap <Leader>h ^
+nnoremap <Leader>j {
+nnoremap <Leader>k }
+nnoremap <Leader>l $
+nnoremap <Leader>m %
+nnoremap <Leader>n :tabnew<CR>
+nnoremap <Leader>p :tabprevious<CR>
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader>r :source ~/.vimrc<CR>
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>x :tabclose<CR>
+nnoremap <Leader><Tab> :tabnext<CR>
+nnoremap <silent><Leader>t :<C-u>NERDTreeToggle<CR>
+" Escの2回押しでハイライト消去
+nnoremap <silent><Esc><Esc> :nohlsearch<CR><ESC>
+" nomal n visual mode
+noremap <Leader>c <Plug>NERDCommenterToggle<CR>
+" visual mode
+vnoremap <Tab> >
+vnoremap <S-Tab> <
+" insert mode
+inoremap <silent> jj <ESC>
+inoremap <S-Tab> <C-d>
+
+"---------------------------------
 " basic setting
 "---------------------------------
 " theme color
@@ -76,37 +106,25 @@ augroup fileTypeIndent
   autocmd FileType markdown setlocal expandtab tabstop=2 shiftwidth=2
 augroup END
 
-" filetype plugin onにする必要あり?
-augroup MakefileTab
-  autocmd!
-  autocmd FileType make set noexpandtab nosmarttab
-augroup END
-
 "---------------------------------
 " 表示関係
 "---------------------------------
 " 行番号表示
 set number
-" 行番号の色や現在行の設定
-autocmd ColorScheme * highlight LineNr ctermfg=12
-highlight CursorLineNr ctermbg=4 ctermfg=0
 " カーソル行ハイライト
 set cursorline
 " カーソル列ハイライト
 set cursorcolumn
-highlight clear CursorLine
 augroup TransparentBG
   autocmd!
-	autocmd Colorscheme * highlight Normal ctermbg=none
-	autocmd Colorscheme * highlight NonText ctermbg=none
-	autocmd Colorscheme * highlight LineNr ctermbg=none
-	autocmd Colorscheme * highlight Folded ctermbg=none
-	autocmd Colorscheme * highlight EndOfBuffer ctermbg=none
+  autocmd Colorscheme * highlight Normal ctermbg=none
+  autocmd Colorscheme * highlight NonText ctermbg=none
+  autocmd Colorscheme * highlight LineNr ctermfg=12 ctermbg=none
+  autocmd Colorscheme * highlight Folded ctermbg=none
+  autocmd Colorscheme * highlight EndOfBuffer ctermbg=none
+  autocmd Colorscheme * highlight CursorLineNr ctermbg=4 ctermfg=0
+  autocmd Colorscheme * highlight clear CursorLine
 augroup END
-" highlight Normal ctermbg=NONE guibg=NONE
-" highlight NonText ctermbg=NONE guibg=NONE
-" highlight SpecialKey ctermbg=NONE guibg=NONE
-" highlight EndOfBuffer ctermbg=NONE guibg=NONE
 " シンタックスハイライト有効
 syntax enable
 " 検索結果ハイライト有効
@@ -126,33 +144,6 @@ augroup MyXML
   autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
   autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
 augroup END
-
-"---------------------------------
-" Key bindings
-"---------------------------------
-let mapleader = "\<Space>"
-" nomal mode
-nnoremap <Leader>, :edit ~/.vimrc<CR>
-nnoremap <Leader>r :source ~/.vimrc<CR>
-nnoremap <Leader>w :w<CR>
-nnoremap <Leader>q :q<CR>
-nnoremap <Leader><Tab> :tabnext<CR>
-nnoremap <silent><Leader>t :<C-u>NERDTreeToggle<CR>
-" Escの2回押しでハイライト消去
-nnoremap <silent><Esc><Esc> :nohlsearch<CR><ESC>
-nnoremap <C-j> {
-nnoremap <C-k> }
-nnoremap <C-l> $
-nnoremap <C-h> ^
-nnoremap <C-m> %
-" visual mode
-vnoremap <Tab> >
-vnoremap <S-Tab> <
-" nomal n visual mode
-noremap <Leader>c <Plug>NERDCommenterToggle<CR>
-" insert mode
-inoremap <silent> jj <ESC>
-inoremap <S-Tab> <C-d>
 
 "---------------------------------
 " lightline.vim
@@ -199,6 +190,7 @@ let g:NERDDefaultAlign='left'
 "---------------------------------
 let g:indentLine_setColors = 0
 let g:indentLine_char = '┊'
+let g:indentLine_fileTypeExclude = ['markdown']
 
 "---------------------------------
 " auto-pairs
