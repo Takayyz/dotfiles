@@ -123,7 +123,6 @@ augroup TransparentBG
   autocmd Colorscheme * highlight Folded ctermbg=none
   autocmd Colorscheme * highlight EndOfBuffer ctermbg=none
   autocmd Colorscheme * highlight CursorLineNr ctermbg=4 ctermfg=0
-  autocmd Colorscheme * highlight clear CursorLine
 augroup END
 " シンタックスハイライト有効
 syntax enable
