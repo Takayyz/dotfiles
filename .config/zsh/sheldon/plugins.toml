@@ -6,9 +6,6 @@ defer = "{{ hooks | get: \"pre\" | nl }}{% for file in files %}zsh-defer source 
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
 
-# TODO:sync読み込み(local)
-# TODO:defer読み込み(local)
-
 [plugins.zsh-autosuggestions]
 github = 'zsh-users/zsh-autosuggestions'
 use = ['{{ name }}.zsh']
@@ -27,3 +24,16 @@ apply = ["defer"]
 github = "olets/zsh-abbr"
 use = ['{{ name }}.zsh']
 apply = ["defer"]
+
+# TODO: ローカルzshスクリプトをsheldonで管理する構成案
+# - dotfiles-defers: sync.zsh以外を遅延読み込み
+# - dotfiles-sync: sync.zshのみ即時読み込み（PATH等の起動時必須設定用）
+#
+# [plugins.dotfiles-defers]
+# local = "~/dotfiles/zsh"
+# use = ["{!sync,*}.zsh"]
+#
+# [plugins.dotfiles-sync]
+# local = "~/dotfiles/zsh"
+# use = ["sync.zsh"]
+# apply = ["source"]
