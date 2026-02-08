@@ -20,8 +20,6 @@ abbr glst='git log --stat'
 # ブランチ間の差分をコミット単位で確認 ex)glcd master..develop
 abbr glcd='git log --no-merges'
 
-abbr fp='cd $(ghq root)/$(ghq list | fzf --tmux --preview "bat --color=always --style=header,grid --line-range :50 $(ghq root)/{}/README.*")'
-
 # TODO gh repo createコマンドをインタラクティブにする
 #
 # Organization/Userを選択
