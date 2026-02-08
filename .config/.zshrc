@@ -14,6 +14,7 @@ export HISTFILE="$ZDOTDIR/.zhistory"
 # Volta
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+export VOLTA_FEATURE_PNPM=1
 
 export ABBR_USER_ABBREVIATIONS_FILE="$ZDOTDIR/abbreviations"
 
@@ -196,10 +197,17 @@ eval "$(starship init zsh)"
 #-----------------------------------------
 eval "$(direnv hook zsh)"
 
+#-----------------------------------------
 # pnpm
+#-----------------------------------------
 export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+#-----------------------------------------
+# Rust
+#-----------------------------------------
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
