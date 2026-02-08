@@ -33,7 +33,7 @@ gui:
   sidePanelWidth: 0.3333
 
   # If true, increase the height of the focused side window; creating an accordion effect.
-  expandFocusedSidePanel: false
+  expandFocusedSidePanel: true
 
   # The weight of the expanded side panel, relative to the other panels. 2 means
   # twice as tall as the other panels. Only relevant if `expandFocusedSidePanel` is true.
@@ -427,8 +427,8 @@ keybinding:
     nextPage: .
     scrollLeft: H
     scrollRight: L
-    gotoTop: <
-    gotoBottom: '>'
+    gotoTop: T
+    gotoBottom: G
     toggleRangeSelect: v
     rangeSelectDown: <s-down>
     rangeSelectUp: <s-up>
