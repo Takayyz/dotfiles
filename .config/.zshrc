@@ -172,7 +172,11 @@ HISTTIMEFORMAT="[%Y/%M/%D %H:%M:%S] "
 # historyコマンドをhistoryに入れない
 unsetopt HIST_NO_STORE
 autoload -Uz compinit
-compinit -u
+if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
 # 補完機能に色付け
 autoload -U colors
 colors
