@@ -40,3 +40,6 @@ style_root = "red bold"
 format = "[$user🌱]($style) "
 disabled = false
 show_always = false
+
+[pijul_channel]
+disabled = true
