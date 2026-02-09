@@ -24,3 +24,4 @@ mouse-hide-while-typing = true
 
 keybind = cmd+backspace=text:\x15
 keybind = shift+enter=text:\n
+keybind = ctrl+v=unbind

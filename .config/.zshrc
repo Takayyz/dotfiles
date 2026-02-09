@@ -191,6 +191,23 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 #-----------------------------------------
 # 設定読み込み
 eval "$(starship init zsh)"
+# OSC 133 shell integration (required for tmux previous-prompt/next-prompt)
+_osc133_executed=false
+_osc133_precmd() {
+  local ret=$?
+  if $_osc133_executed; then
+    printf '\e]133;D;%s\a' "$ret"
+  fi
+  _osc133_executed=false
+  printf '\e]133;A\a'
+}
+_osc133_preexec() {
+  _osc133_executed=true
+  printf '\e]133;C\a'
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd _osc133_precmd
+add-zsh-hook preexec _osc133_preexec
 
 #-----------------------------------------
 # direnv
