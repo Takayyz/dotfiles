@@ -13,6 +13,5 @@ manager "yarn" "4.1.1"
 # ====================
 # Global Packages
 # ====================
-package "@anthropic-ai/claude-code"
 package "claude-code-monitor"
 package "kiri-mcp-server"
