@@ -141,7 +141,6 @@ function ghq-fzf() {
   fi
   zle -R -c
 }
-zle -N ghq-fzf
 function gs() {
   if [[ -n "$1" ]]; then
     git switch $1
@@ -150,11 +149,6 @@ function gs() {
 
   git switch $(git branch | fzf --tmux)
 }
-
-#-----------------------------------------
-# key bindings
-#-----------------------------------------
-bindkey '^g' ghq-fzf
 
 #-----------------------------------------
 # others
