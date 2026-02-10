@@ -7,8 +7,11 @@
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
   "includeCoAuthoredBy": false,
+  "notificationChannel": "auto",
   "outputStyle": "Explanatory",
   "plansDirectory": "./.claude/plans",
+  "teammateMode": "tmux",
+  "terminalProgressBarEnabled": true,
   "permissions": {
     "allow": [
       "Bash(npm run lint)",
