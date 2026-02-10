@@ -23,5 +23,6 @@ macos-titlebar-style = tabs
 mouse-hide-while-typing = true
 
 keybind = cmd+backspace=text:\x15
+keybind = cmd+left=text:\x1b[H
 keybind = shift+enter=text:\n
 keybind = ctrl+v=unbind
