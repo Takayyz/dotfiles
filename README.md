@@ -37,6 +37,22 @@ manager "pnpm" "10.21.0"       # バージョン固定
 package "@anthropic-ai/claude-code"  # 最新バージョン
 ```
 
+## tmux キーバインド (カスタム)
+
+prefix は `C-a` に変更済み。
+
+| キー | 説明 |
+|------|------|
+| `C-l` | lazygit をポップアップで開く |
+| `M-z` | ペインのズーム切替 |
+| `prefix + x` | ペインを閉じる |
+| `prefix + c` | 新規ウィンドウ |
+| `prefix + %` / `"` | ペイン分割 (横/縦) |
+| `prefix + w` | worktree switcher |
+| `prefix + f` | yazi (ファイルマネージャー) |
+| `prefix + m` | btop (システムモニター) |
+| `prefix + d` | Docker Compose status (Iceberg テーマで色付き表示、2秒ごと自動更新) |
+| `M-f p` | ghq project switcher |
 ## 参考記事
 - [defaultsコマンド](http://neos21.hatenablog.com/entry/2019/01/10/080000)
 - [defauls一覧](https://github.com/ulwlu/dotfiles/blob/master/system/macos.sh)
