@@ -3,6 +3,8 @@
 #-----------------------------------------
 # historyコマンドのファイル指定
 export HISTFILE="$ZDOTDIR/.zhistory"
+export HISTSIZE=10000
+export SAVEHIST=10000
 
 export ABBR_USER_ABBREVIATIONS_FILE="$ZDOTDIR/abbreviations"
 

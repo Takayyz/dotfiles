@@ -6,35 +6,36 @@ source ${SCRIPT_DIR}/colors.txt
 
 echo "${CYAN}INFO: Creating symlinks to home directory...${ESC_END}"
 
-if [ ! -d "${HOME}/.zsh.d" ] ; then
-  mkdir "${HOME}/.zsh.d"
-fi
-ZDOT_DIR=${HOME}/.zsh.d
-
-for dotfile in "${SCRIPT_DIR}"/.??* ; do
-    [[ "$dotfile" == ".git" ]] && continue
-    [[ "$dotfile" == ".gitignore" ]] && continue
-    [[ "$dotfile" == ".DS_Store" ]] && continue
-
-    # -s create a symlink
-    # -f force overwrite
-    # -n replace existing symlink
-    # -v display progress
-		if [[ "$dotfile" = "${SCRIPT_DIR}/.zshenv" ]]; then
-			ln -snfv "$dotfile" "$HOME"
-    elif [[ "$dotfile" = "${SCRIPT_DIR}/.z"* ]]; then
-      ln -snfv "$dotfile" "${ZDOT_DIR:-$HOME}"
-    else
-      ln -snfv "$dotfile" "$HOME"
-    fi
-done
-
-source ${ZDOT_DIR}/.zshrc
-
 if [ ! -d "${HOME}/.config" ] ; then
   mkdir "${HOME}/.config"
 fi
 DOTCONF_DIR=${HOME}/.config
+
+# zsh: link .zshenv to $HOME, others to $ZDOTDIR ($HOME/.config/zsh)
+ZSH_DIR="${SCRIPT_DIR}/zsh"
+ZDOT_DIR="${DOTCONF_DIR}/zsh"
+mkdir -p "$ZDOT_DIR"
+
+ln -snfv "${ZSH_DIR}/.zshenv" "$HOME"
+for zfile in "${ZSH_DIR}"/.z*; do
+  [[ "$(basename "$zfile")" == ".zshenv" ]] && continue
+  ln -snfv "$zfile" "$ZDOT_DIR"
+done
+ln -snfv "${ZSH_DIR}/abbreviations" "$ZDOT_DIR"
+mkdir -p "$ZDOT_DIR/sheldon"
+ln -snfv "${ZSH_DIR}/sheldon/plugins.toml" "$ZDOT_DIR/sheldon"
+
+source "${ZDOT_DIR}/.zshrc"
+
+# dotfiles in .config/ (non-zsh)
+for dotfile in "${SCRIPT_DIR}"/.??* ; do
+    [[ "$dotfile" == "${SCRIPT_DIR}/.git" ]] && continue
+    [[ "$dotfile" == "${SCRIPT_DIR}/.gitignore" ]] && continue
+    [[ "$dotfile" == "${SCRIPT_DIR}/.DS_Store" ]] && continue
+    [[ "$dotfile" == "${SCRIPT_DIR}/.agents" ]] && continue
+
+    ln -snfv "$dotfile" "$HOME"
+done
 
 ln -snfv "${SCRIPT_DIR}/starship.toml" "${DOTCONF_DIR}"
 

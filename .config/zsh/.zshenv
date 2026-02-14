@@ -3,8 +3,8 @@
 #
 # Authors: Takayyz
 #
-export ZDOTDIR=$HOME/.zsh.d
 export XDG_CONFIG_HOME="$HOME/.config"
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 # Editors
 export EDITOR='vim'

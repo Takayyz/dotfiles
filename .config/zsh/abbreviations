@@ -4,8 +4,8 @@ abbr l='(){eza $1 -algh --git --icons}'
 abbr lt='(){eza $1 -aTL 2 --icons}'
 abbr cpr='cd $(git rev-parse --show-toplevel)'
 
-abbr sz="source ${HOME}/.zsh.d/.zshrc"
-abbr st="tmux source ${HOME}/.config/tmux/tmux.conf"
+abbr sz="source ${ZDOTDIR}/.zshrc"
+abbr st="tmux source ${XDG_CONFIG_HOME}/tmux/tmux.conf"
 
 abbr lg='lazygit'
 abbr clock='tty-clock'
