@@ -71,6 +71,6 @@
   "outputStyle": "Explanatory",
   "plansDirectory": "./.claude/plans",
   "notificationChannel": "auto",
-  "teammateMode": "tmux",
+  "teammateMode": "in-process",
   "terminalProgressBarEnabled": true
 }
