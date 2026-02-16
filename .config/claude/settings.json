@@ -7,11 +7,6 @@
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
   "includeCoAuthoredBy": false,
-  "notificationChannel": "auto",
-  "outputStyle": "Explanatory",
-  "plansDirectory": "./.claude/plans",
-  "teammateMode": "tmux",
-  "terminalProgressBarEnabled": true,
   "permissions": {
     "allow": [
       "Bash(npm run lint)",
@@ -70,6 +65,12 @@
   },
   "enabledPlugins": {
     "example-skills@anthropic-agent-skills": true,
-    "document-skills@anthropic-agent-skills": true
-  }
+    "document-skills@anthropic-agent-skills": true,
+    "claude-mem@thedotmack": true
+  },
+  "outputStyle": "Explanatory",
+  "plansDirectory": "./.claude/plans",
+  "notificationChannel": "auto",
+  "teammateMode": "tmux",
+  "terminalProgressBarEnabled": true
 }
