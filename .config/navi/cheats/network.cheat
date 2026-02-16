@@ -1,0 +1,7 @@
+% network
+
+# Show global IP address
+curl -s ifconfig.co
+
+# Query a specific DNS server non-recursively (check cache or authority directly)
+dig +norec @<dns_server> <domain>

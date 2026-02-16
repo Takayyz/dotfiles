@@ -1,0 +1,7 @@
+% aws
+
+# Open AWS resource in console by ARN
+open "https://console.aws.amazon.com/go/view?arn=<arn>"
+
+# List all AWS CLI profiles
+aws configure list-profiles

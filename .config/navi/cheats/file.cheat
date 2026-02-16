@@ -1,0 +1,15 @@
+% file
+
+# Tail follow with syntax highlighting via bat
+tail -f <file_path> | bat --paging=never -l <language>
+
+$ language: echo -e "log\njson\nyaml\ncsv\nxml" --- --preview "echo 'syntax: {}'"
+
+# Sync directories excluding specific dirs (dry-run)
+rsync -ahvn <source>/ <destination> --exclude '<exclude1>' --exclude '<exclude2>'
+
+# Sync directories excluding specific dirs
+rsync -ahv --progress <source>/ <destination> --exclude '<exclude1>' --exclude '<exclude2>'
+
+# Create a dummy file with specified size (zero-filled)
+dd bs=<size> count=1 if=/dev/zero of=<output_file>

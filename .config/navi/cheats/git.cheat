@@ -1,0 +1,4 @@
+% git
+
+# Recursively grep for a string with filename and line number
+git grep -rin '<pattern>' <target_directory>

@@ -1,0 +1,4 @@
+% claude-code
+
+# Check Claude Code usage cost
+npx -y ccusage@latest

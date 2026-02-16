@@ -1,0 +1,7 @@
+% docker
+
+# Remove dangling volumes (unused volumes not referenced by any container)
+docker volume prune -f
+
+# Compose down and remove all related resources (volumes, images, orphan containers)
+docker compose down -v --rmi all --remove-orphans
