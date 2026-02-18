@@ -12,7 +12,9 @@
       "Bash(npm run lint)",
       "Bash(npm run test)",
       "Bash(pnpm run lint)",
-      "Bash(pnpm run test)"
+      "Bash(pnpm run test)",
+      "mcp__sequential-thinking",
+      "mcp__deepwiki"
     ],
     "deny": [
       "Bash(rm -rf:*)",
