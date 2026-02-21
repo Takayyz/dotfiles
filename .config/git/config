@@ -10,3 +10,23 @@
 	autocrlf = input
 [ghq]
 	root = ~/repo
+
+# Delta pager — Iceberg-inspired theme
+# Lazygit picks this up automatically via `delta --dark`
+[delta]
+	syntax-theme = Nord
+	# diff backgrounds (subtle tints on iceberg bg #161821)
+	minus-style = syntax "#271f2f"
+	minus-emph-style = syntax bold "#37263b"
+	plus-style = syntax "#1c2724"
+	plus-emph-style = syntax bold "#27372b"
+	# line numbers
+	line-numbers-minus-style = "#e27878"
+	line-numbers-plus-style = "#b4be82"
+	line-numbers-zero-style = "#6b7089"
+	# headers
+	hunk-header-style = "#84a0c6" bold
+	hunk-header-decoration-style = "#6b7089" box
+	file-style = "#89b8c2" bold
+	file-decoration-style = "#6b7089" ul
+	commit-style = "#e2a478" bold
