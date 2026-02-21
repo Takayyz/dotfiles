@@ -9,6 +9,9 @@ return {
     local transparent_groups = {
       "Normal",
       "NormalNC",
+      "NormalFloat",
+      "FloatBorder",
+      "FloatTitle",
       "NonText",
       "SignColumn",
       "EndOfBuffer",
