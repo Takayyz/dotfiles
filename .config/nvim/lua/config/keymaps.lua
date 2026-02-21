@@ -21,6 +21,7 @@ map("n", "<Leader><", "<<", { desc = "Dedent line" })
 map("n", "<Leader>>", ">>", { desc = "Indent line" })
 map("n", "<Leader>-", "<Cmd>split<CR>", { desc = "Split pane horizontally" })
 map("n", "<Leader>\\", "<Cmd>vsplit<CR>", { desc = "Split pane vertically" })
+map("n", "gg", "gg0", { desc = "Go to first character of file" })
 map("n", "<Leader>n", "<Cmd>enew<CR>", { desc = "New file" })
 map("n", "<Leader>t", "<Cmd>tabnew<CR>", { desc = "New tab" })
 
