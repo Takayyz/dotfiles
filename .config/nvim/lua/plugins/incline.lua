@@ -7,8 +7,9 @@ return {
   config = function()
     local devicons = require("nvim-web-devicons")
 
-    local fg_inactive = "#6b7089"  -- iceberg comment color
-    local fg_dirname = "#6b7089"   -- parent dir shown in muted color
+    local palette = require("config.palette")
+    local fg_inactive = palette.comment
+    local fg_dirname = palette.comment
 
     -- Filenames too generic to identify alone
     local generic_filenames = {
@@ -88,7 +89,7 @@ return {
           table.insert(result, { dirname .. "/", guifg = props.focused and fg_dirname or fg_inactive })
         end
         table.insert(result, { filename, gui = props.focused and "bold" or nil, guifg = not props.focused and fg_inactive or nil })
-        table.insert(result, { vim.bo[props.buf].modified and " ●" or " ", guifg = props.focused and "#e2a478" or fg_inactive })
+        table.insert(result, { vim.bo[props.buf].modified and " ●" or " ", guifg = props.focused and palette.orange or fg_inactive })
         return result
       end,
     })

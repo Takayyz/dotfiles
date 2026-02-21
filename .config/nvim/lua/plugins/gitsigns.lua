@@ -20,6 +20,7 @@ return {
       },
       current_line_blame_formatter = "<author>, <author_time:%R> - <summary>",
     })
-    vim.api.nvim_set_hl(0, "GitSignsCurrentLineBlame", { fg = "#818596", italic = true })
+    local palette = require("config.palette")
+    vim.api.nvim_set_hl(0, "GitSignsCurrentLineBlame", { fg = palette.gray, italic = true })
   end,
 }

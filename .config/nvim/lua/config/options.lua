@@ -8,7 +8,8 @@ vim.opt.wrap = false
 vim.opt.list = true
 vim.opt.listchars = "tab:│─,trail:_,extends:»,precedes:«,nbsp:･"
 -- highlight trailing whitespace
-vim.api.nvim_set_hl(0, "TrailingWhitespace", { bg = "#e27878" })
+local palette = require("config.palette")
+vim.api.nvim_set_hl(0, "TrailingWhitespace", { bg = palette.red })
 vim.api.nvim_create_autocmd("BufWinEnter", {
   group = vim.api.nvim_create_augroup("TrailingWhitespace", { clear = true }),
   callback = function()
