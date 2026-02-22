@@ -43,7 +43,8 @@ prefix は `C-a` に変更済み。
 
 | キー | 説明 |
 |------|------|
-| `C-l` | lazygit をポップアップで開く |
+| `C-h/j/k/l` | Neovim / tmux ペイン間をシームレスに移動 (vim-tmux-navigator) |
+| `C-g` | lazygit をポップアップで開く |
 | `C-n` | navi (チートシート) をポップアップで開く |
 | `M-z` | ペインのズーム切替 |
 | `prefix + x` | ペインを閉じる |
