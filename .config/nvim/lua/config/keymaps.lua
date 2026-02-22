@@ -24,6 +24,8 @@ map("n", "<Leader>\\", "<Cmd>vsplit<CR>", { desc = "Split pane vertically" })
 map("n", "gg", "gg0", { desc = "Go to first character of file" })
 map("n", "<Leader>n", "<Cmd>enew<CR>", { desc = "New file" })
 map("n", "<Leader>t", "<Cmd>tabnew<CR>", { desc = "New tab" })
+map("n", "<Leader><Tab>", "<Cmd>tabnext<CR>", { desc = "Next tab" })
+map("n", "<Leader><S-Tab>", "<Cmd>tabprevious<CR>", { desc = "Previous tab" })
 
 -----------------------------------
 -- Visual mode
