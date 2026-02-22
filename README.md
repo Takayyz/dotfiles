@@ -54,6 +54,64 @@ prefix は `C-a` に変更済み。
 | `prefix + m` | btop (システムモニター) |
 | `prefix + d` | Docker Compose status (Iceberg テーマで色付き表示、2秒ごと自動更新) |
 | `M-f p` | ghq project switcher |
+
+## Neovim キーバインド (カスタム)
+
+Leader は `Space`。プラグイン管理は lazy.nvim。
+
+### Picker (snacks.nvim)
+
+| キー | 説明 |
+|------|------|
+| `<Leader>?` | Keymaps 一覧 |
+| `<Leader><Space>` | Smart Find Files |
+| `<Leader>,` | Buffers |
+| `<Leader>/` | Grep |
+| `<Leader>:` | Command History |
+| `<Leader>ff` | Find Files |
+| `<Leader>fg` | Find Git Files |
+| `<Leader>fr` | Recent Files |
+| `<Leader>fc` | Find Config File |
+| `<Leader>gs` | Git Status |
+| `<Leader>gl` | Git Log |
+| `<Leader>gd` | Git Diff (Hunks) |
+| `<Leader>sg` | Grep |
+| `<Leader>sw` | Grep Word (normal/visual) |
+| `<Leader>sh` | Help Pages |
+| `<Leader>sk` | Keymaps |
+| `<Leader>sd` | Diagnostics |
+| `<Leader>sR` | Resume Last Picker |
+| `<Leader>su` | Undo History |
+| `gd` | LSP: Goto Definition |
+| `gr` | LSP: References |
+| `gI` | LSP: Goto Implementation |
+| `gy` | LSP: Goto Type Definition |
+
+### Toggle (snacks.nvim)
+
+| キー | 説明 |
+|------|------|
+| `<Leader>us` | Toggle Spelling |
+| `<Leader>uw` | Toggle Wrap |
+| `<Leader>ul` | Toggle Line Numbers |
+| `<Leader>uL` | Toggle Relative Numbers |
+| `<Leader>ud` | Toggle Diagnostics |
+| `<Leader>uh` | Toggle Inlay Hints |
+| `<Leader>ug` | Toggle Indent Guides |
+| `<Leader>uT` | Toggle Treesitter |
+| `<Leader>uc` | Toggle Conceal |
+| `<Leader>ub` | Toggle Dark/Light Background |
+
+### Noice (noice.nvim)
+
+| キー | 説明 |
+|------|------|
+| `<S-Enter>` | コマンドライン出力をリダイレクト (cmdline モード) |
+| `<Leader>snl` | 最後のメッセージを表示 |
+| `<Leader>snh` | メッセージ履歴 |
+| `<Leader>sna` | 全メッセージ |
+| `<Leader>snd` | 通知をすべて消す |
+
 ## 参考記事
 - [defaultsコマンド](http://neos21.hatenablog.com/entry/2019/01/10/080000)
 - [defauls一覧](https://github.com/ulwlu/dotfiles/blob/master/system/macos.sh)

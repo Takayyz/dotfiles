@@ -5,6 +5,7 @@ vim.opt.termguicolors = true
 vim.opt.number = true
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = true
+vim.opt.cmdheight = 0
 vim.opt.wrap = false
 vim.opt.list = true
 vim.opt.listchars = "tab:│─,trail:_,extends:»,precedes:«,nbsp:･"
