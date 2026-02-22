@@ -70,11 +70,13 @@ return {
           hint  = vim.fn.nr2char(0xf0eb),  -- nf-fa-lightbulb_o
         }
         local label = {}
+        local has_problems = false
         for severity, icon in pairs(diag_icons) do
           local n = #vim.diagnostic.get(props.buf, {
             severity = vim.diagnostic.severity[string.upper(severity)],
           })
           if n > 0 then
+            if severity == "error" or severity == "warn" then has_problems = true end
             local color = fg_inactive
             if props.focused then
               local hl = vim.api.nvim_get_hl(0, { name = "DiagnosticSign" .. severity })
@@ -94,7 +96,8 @@ return {
         if dirname then
           table.insert(result, { dirname .. "/", guifg = props.focused and fg_dirname or fg_inactive })
         end
-        table.insert(result, { filename, gui = props.focused and "bold" or nil, guifg = not props.focused and fg_inactive or nil })
+        local fg_filename = not props.focused and fg_inactive or (has_problems and palette.red or nil)
+        table.insert(result, { filename, gui = props.focused and "bold" or nil, guifg = fg_filename })
         table.insert(result, { vim.bo[props.buf].modified and " ●" or " ", guifg = props.focused and palette.orange or fg_inactive })
         return result
       end,
