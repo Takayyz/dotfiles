@@ -24,5 +24,21 @@ return {
       hl.bg = nil
       vim.api.nvim_set_hl(0, group, hl)
     end
+
+    -- nvim-notify: iceberg-themed notification colors
+    local palette = require("config.palette")
+    local notify_levels = {
+      ERROR = palette.red,
+      WARN  = palette.orange,
+      INFO  = palette.green,
+      DEBUG = palette.purple,
+      TRACE = palette.cyan,
+    }
+    for level, color in pairs(notify_levels) do
+      vim.api.nvim_set_hl(0, "Notify" .. level .. "Border", { fg = color })
+      vim.api.nvim_set_hl(0, "Notify" .. level .. "Icon",   { fg = color })
+      vim.api.nvim_set_hl(0, "Notify" .. level .. "Title",  { fg = color })
+    end
+    vim.api.nvim_set_hl(0, "NotifyBackground", { bg = palette.bg })
   end,
 }

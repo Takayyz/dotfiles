@@ -9,4 +9,5 @@ return {
   cyan    = "#89b8c2",
   gray    = "#818596",
   comment = "#6b7089",
+  bg      = "#161821",
 }
