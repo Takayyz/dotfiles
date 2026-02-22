@@ -22,6 +22,16 @@ export FZF_DEFAULT_OPTS=" \
 if [[ -z "$TMUX" && -z "$VIM" && "$TERM_PROGRAM" != "vscode" && $- == *l* ]] ; then
   tmux attach-session -t default || tmux new-session -s default
 fi
+# tmux内で新しいペイン/ウィンドウを開くたびにグローバル環境変数を同期
+# PWD等のペイン固有変数の上書きを防ぐため、同期対象を明示的に限定する
+if [[ -n "$TMUX" ]]; then
+  {
+    for _var in EDITOR VISUAL DISPLAY SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CONNECTION; do
+      _val="$(tmux show-environment -g "$_var" 2>/dev/null)" && export "$_val"
+    done
+    unset _var _val
+  } 2>/dev/null
+fi
 
 #-----------------------------------------
 # Plugin manager
