@@ -102,6 +102,40 @@ Leader は `Space`。プラグイン管理は lazy.nvim。
 | `<Leader>uc` | Toggle Conceal |
 | `<Leader>ub` | Toggle Dark/Light Background |
 
+### Treesitter (nvim-treesitter)
+
+コード編集全般の AST ベースシンタックスハイライト・インデントを提供。noice.nvim のコマンドラインハイライトにも利用される。
+
+- `ensure_installed`: noice.nvim 推奨パーサー + 作業言語 (TypeScript, PHP 等)
+- `auto_install`: 未インストールの言語を開くと自動でパーサーをインストール
+- 100KB 以上のファイルではハイライトを自動で無効化 (パフォーマンス保護)
+
+#### Textobjects (nvim-treesitter-textobjects)
+
+**Select** — オペレータ (`d`, `c`, `y`, `v`) と組み合わせて使用:
+
+| テキストオブジェクト | 対象 |
+|---------------------|------|
+| `af` / `if` | 関数 (outer/inner) |
+| `ac` / `ic` | クラス (outer/inner) |
+| `aa` / `ia` | 引数・パラメータ (outer/inner) |
+| `al` / `il` | ループ (outer/inner) |
+
+**Move** — 関数/クラス間ジャンプ:
+
+| キー | 説明 |
+|------|------|
+| `]m` / `[m` | 次/前の関数の先頭 |
+| `]M` / `[M` | 次/前の関数の末尾 |
+| `]]` / `[[` | 次/前のクラスの先頭 |
+
+**Swap** — 引数の入れ替え:
+
+| キー | 説明 |
+|------|------|
+| `<Leader>a` | 引数を次と入れ替え |
+| `<Leader>A` | 引数を前と入れ替え |
+
 ### Noice (noice.nvim)
 
 | キー | 説明 |
