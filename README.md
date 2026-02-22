@@ -134,8 +134,74 @@ Leader は `Space`。プラグイン管理は lazy.nvim。
 
 | キー | 説明 |
 |------|------|
-| `<Leader>a` | 引数を次と入れ替え |
-| `<Leader>A` | 引数を前と入れ替え |
+| `<Leader>xa` | 引数を次と入れ替え |
+| `<Leader>xA` | 引数を前と入れ替え |
+
+### LSP (nvim-lspconfig + mason.nvim)
+
+Language Server Protocol による言語支援。mason.nvim でサーバー・ツールを自動インストール。
+
+**自動インストールされる LSP サーバー:**
+- `ts_ls` — TypeScript / JavaScript
+- `intelephense` — PHP
+- `lua_ls` — Lua (Neovim ランタイム認識)
+
+**自動インストールされるツール:**
+- フォーマッター: `prettier`, `stylua`, `php-cs-fixer`
+- リンター: `eslint_d`, `phpstan`
+
+| キー | 説明 |
+|------|------|
+| `gK` | LSP: Signature Help |
+| `<Leader>rn` | LSP: Rename Symbol |
+| `<Leader>ra` | LSP: Code Action (normal/visual) |
+| `gl` | LSP: Line Diagnostics |
+| `<Leader>F` | Format Buffer (conform.nvim) |
+
+### Completion (blink.cmp)
+
+Rust 製の高速補完エンジン。LSP・スニペット・パス・バッファの 4 ソースから補完。
+
+- ゴーストテキスト表示
+- ドキュメント自動表示 (200ms 遅延)
+- キーマップ: `default` プリセット (`<C-space>` で手動トリガー、`<C-y>` で確定、`<C-e>` でキャンセル)
+
+### Formatter (conform.nvim)
+
+| filetype | formatter |
+|----------|-----------|
+| TypeScript / JavaScript / JSON / HTML / CSS / Markdown | prettier |
+| PHP | php-cs-fixer |
+| Lua | stylua |
+
+- **保存時自動フォーマット** (timeout 1s)
+- `<Leader>F` で手動フォーマット
+- `:ConformInfo` でフォーマッター状態確認
+
+### Linter (nvim-lint)
+
+| filetype | linter |
+|----------|--------|
+| TypeScript / JavaScript | eslint_d |
+| PHP | phpstan |
+
+- トリガー: ファイル保存時・開いた時・Insert モード離脱時
+
+### AI Sidekick (sidekick.nvim)
+
+Neovim 内で AI CLI ツール (Claude Code 等) を操作し、Copilot NES (Next Edit Suggestions) をインラインで適用できるプラグイン。
+
+| キー | 説明 |
+|------|------|
+| `<C-.>` | Sidekick CLI をトグル (全モード) |
+| `<Leader>aa` | Sidekick CLI をトグル |
+| `<Leader>as` | CLI ツールを選択 |
+| `<Leader>ad` | CLI セッションをデタッチ |
+| `<Leader>at` | カーソル位置のコードを CLI に送信 |
+| `<Leader>af` | 現在のファイルを CLI に送信 |
+| `<Leader>av` | ビジュアル選択を CLI に送信 |
+| `<Leader>ap` | プロンプトを選択 |
+| `<Leader>ac` | Claude を直接トグル |
 
 ### Noice (noice.nvim)
 
