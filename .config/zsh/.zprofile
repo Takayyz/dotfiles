@@ -15,11 +15,8 @@ fi
 
 #
 # Editors
+# EDITOR, VISUAL, PAGER are defined in .zshenv
 #
-
-export EDITOR='nano'
-export VISUAL='nano'
-export PAGER='less'
 
 #
 # Language

@@ -6,7 +6,7 @@
 	rebase = false
 [core]
 	quotepath = false
-	editor = vim
+	editor = nvim
 	autocrlf = input
 [ghq]
 	root = ~/repo

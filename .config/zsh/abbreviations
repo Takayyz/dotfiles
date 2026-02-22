@@ -1,4 +1,4 @@
-abbr vi='vim'
+abbr vi='nvim'
 
 abbr l='(){eza $1 -algh --git --icons}'
 abbr lt='(){eza $1 -aTL 2 --icons}'
