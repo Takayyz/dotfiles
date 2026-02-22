@@ -52,6 +52,12 @@ return {
     end
 
     require("incline").setup({
+      window = {
+        placement = {
+          horizontal = "left",
+          vertical = "bottom",
+        },
+      },
       render = function(props)
         local filename, dirname = get_display_name(props.buf)
         local ft_icon, ft_color = devicons.get_icon_color(filename)
