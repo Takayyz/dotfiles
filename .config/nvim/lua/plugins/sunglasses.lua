@@ -5,6 +5,6 @@ return {
   event = "UIEnter",
   opts = {
     filter_type = "SHADE",
-    filter_percent = 0.7,
+    filter_percent = 0.5,
   },
 }
