@@ -40,5 +40,10 @@ return {
       vim.api.nvim_set_hl(0, "Notify" .. level .. "Title",  { fg = color })
     end
     vim.api.nvim_set_hl(0, "NotifyBackground", { bg = palette.bg })
+
+    -- PHP: improve class / use declaration readability
+    vim.api.nvim_set_hl(0, "@type.php", { fg = palette.fg })
+    vim.api.nvim_set_hl(0, "@module.php", { fg = palette.fg })
+    vim.api.nvim_set_hl(0, "@keyword.import.php", { fg = palette.cyan })
   end,
 }

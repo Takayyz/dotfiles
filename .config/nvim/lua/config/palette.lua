@@ -10,4 +10,5 @@ return {
   gray    = "#818596",
   comment = "#6b7089",
   bg      = "#161821",
+  fg      = "#c6c8d1",
 }
