@@ -67,6 +67,14 @@ vim.opt.incsearch = true
 vim.opt.hlsearch = true
 
 -----------------------------------
+-- Fold (Treesitter-based)
+-----------------------------------
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldtext = ""
+vim.opt.foldlevelstart = 99
+
+-----------------------------------
 -- Clipboard
 -----------------------------------
 if vim.fn.has("unnamedplus") == 1 then
