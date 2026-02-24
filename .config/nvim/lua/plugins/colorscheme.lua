@@ -41,6 +41,9 @@ return {
     end
     vim.api.nvim_set_hl(0, "NotifyBackground", { bg = palette.bg })
 
+    -- Float border: visible on transparent background
+    vim.api.nvim_set_hl(0, "FloatBorder", { fg = palette.blue })
+
     -- PHP: improve class / use declaration readability
     vim.api.nvim_set_hl(0, "@type.php", { fg = palette.fg })
     vim.api.nvim_set_hl(0, "@module.php", { fg = palette.fg })

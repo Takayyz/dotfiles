@@ -152,6 +152,7 @@ Language Server Protocol による言語支援。mason.nvim でサーバー・�
 
 | キー | 説明 |
 |------|------|
+| `D` | LSP: Hover Documentation (関数定義・ドキュメント表示) |
 | `gK` | LSP: Signature Help |
 | `<Leader>rn` | LSP: Rename Symbol |
 | `<Leader>ra` | LSP: Code Action (normal/visual) |

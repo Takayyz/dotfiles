@@ -79,6 +79,7 @@ return {
           local map = function(mode, lhs, rhs, desc)
             vim.keymap.set(mode, lhs, rhs, { buffer = args.buf, desc = "LSP: " .. desc })
           end
+          map("n", "D", vim.lsp.buf.hover, "Hover Documentation")
           map("n", "gK", vim.lsp.buf.signature_help, "Signature Help")
           map("n", "<leader>rn", vim.lsp.buf.rename, "Rename Symbol")
           map({ "n", "v" }, "<leader>ra", vim.lsp.buf.code_action, "Code Action")

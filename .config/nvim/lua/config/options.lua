@@ -2,6 +2,7 @@
 -- Appearance
 -----------------------------------
 vim.opt.termguicolors = true
+vim.o.winborder = "rounded"
 vim.opt.number = true
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = true
