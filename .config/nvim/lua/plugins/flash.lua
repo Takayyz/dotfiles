@@ -2,7 +2,18 @@ return {
   "folke/flash.nvim",
   event = "VeryLazy",
   ---@type Flash.Config
-  opts = {},
+  opts = {
+    modes = {
+      char = {
+        jump_labels = true,
+      },
+    },
+  },
+  config = function(_, opts)
+    require("flash").setup(opts)
+    local palette = require("config.palette")
+    vim.api.nvim_set_hl(0, "FlashLabel", { fg = palette.red, bg = palette.bg, bold = true })
+  end,
   -- stylua: ignore
   keys = {
     { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
