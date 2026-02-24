@@ -203,6 +203,21 @@ Neovim 内で AI CLI ツール (Claude Code 等) を操作し、Copilot NES (Nex
 | `<Leader>ap` | プロンプトを選択 |
 | `<Leader>ac` | Claude を直接トグル |
 
+### Motion (flash.nvim)
+
+easy-motion 系のジャンプナビゲーション。`s` を押して文字を入力すると、画面上の候補にラベルが表示され、1〜2 キーで瞬時にジャンプできる。
+
+| キー | モード | 説明 |
+|------|--------|------|
+| `s` | n, x, o | Flash: 文字検索ジャンプ |
+| `S` | n, x, o | Flash Treesitter: 構文ノード単位で選択 |
+| `r` | o | Remote Flash: リモートジャンプ (オペレータ待ち) |
+| `R` | o, x | Treesitter Search: 構文ベース検索 |
+| `<C-s>` | c | `/` 検索中に Flash のラベルジャンプを切替 |
+
+- `f`/`F`/`t`/`T` も拡張され、複数候補にラベルが表示される
+- ビルトイン `s` (substitute) は `cl` で代替可能
+
 ### Noice (noice.nvim)
 
 | キー | 説明 |
