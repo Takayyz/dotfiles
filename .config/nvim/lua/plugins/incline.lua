@@ -54,7 +54,7 @@ return {
     require("incline").setup({
       window = {
         placement = {
-          horizontal = "left",
+          horizontal = "right",
           vertical = "bottom",
         },
       },
