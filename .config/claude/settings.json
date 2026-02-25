@@ -14,7 +14,8 @@
       "Bash(pnpm run lint)",
       "Bash(pnpm run test)",
       "mcp__sequential-thinking",
-      "mcp__deepwiki"
+      "mcp__deepwiki",
+      "mcp__plugin_claude-mem_mcp-search"
     ],
     "deny": [
       "Bash(rm -rf:*)",
