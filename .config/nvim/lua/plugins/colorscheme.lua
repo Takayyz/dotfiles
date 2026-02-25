@@ -48,5 +48,8 @@ return {
     vim.api.nvim_set_hl(0, "@type.php", { fg = palette.fg })
     vim.api.nvim_set_hl(0, "@module.php", { fg = palette.fg })
     vim.api.nvim_set_hl(0, "@keyword.import.php", { fg = palette.cyan })
+
+    -- Snacks picker: brighter path for readability
+    vim.api.nvim_set_hl(0, "SnacksPickerDir", { fg = palette.gray })
   end,
 }
