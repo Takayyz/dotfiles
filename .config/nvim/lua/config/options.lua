@@ -68,12 +68,22 @@ vim.opt.incsearch = true
 vim.opt.hlsearch = true
 
 -----------------------------------
+-- Cursor movement
+-----------------------------------
+vim.opt.whichwrap = "b,s,h,l,<,>,[,],~"
+
+-----------------------------------
 -- Fold (Treesitter-based)
 -----------------------------------
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldtext = ""
 vim.opt.foldlevelstart = 99
+
+-----------------------------------
+-- File
+-----------------------------------
+vim.opt.swapfile = false
 
 -----------------------------------
 -- Clipboard

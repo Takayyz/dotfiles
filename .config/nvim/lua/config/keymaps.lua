@@ -7,6 +7,7 @@ local map = vim.keymap.set
 -- Insert mode
 -----------------------------------
 map("i", "jj", "<Esc>", { desc = "Escape" })
+map("i", "<S-Tab>", "<C-d>", { desc = "Dedent" })
 
 -----------------------------------
 -- Normal mode
