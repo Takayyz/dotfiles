@@ -29,6 +29,9 @@ esac
 # Rust
 [[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
 
+# claude-mem (ChromaDB)
+export CLAUDE_MEM_CHROMA_PORT="18000"
+
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
