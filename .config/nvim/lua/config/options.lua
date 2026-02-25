@@ -18,6 +18,8 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
   callback = function()
     if vim.bo.buftype == "" then
       vim.cmd([[match TrailingWhitespace /\s\+$/]])
+    else
+      vim.cmd([[match none]])
     end
   end,
 })

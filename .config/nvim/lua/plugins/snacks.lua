@@ -5,6 +5,91 @@ return {
   ---@type snacks.Config
   opts = {
     ------------------------------------
+    -- Dashboard (GitHub preset)
+    ------------------------------------
+    dashboard = {
+      enabled = true,
+      preset = {
+        keys = {
+          { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
+          { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+          { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
+          { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+          { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+          { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
+          { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+        },
+      },
+      sections = {
+        { section = "header" },
+        { section = "keys", gap = 1, padding = 1 },
+        {
+          pane = 2,
+          icon = " ",
+          desc = "Browse Repo",
+          padding = 1,
+          key = "b",
+          action = function()
+            Snacks.gitbrowse()
+          end,
+        },
+        function()
+          local in_git = Snacks.git.get_root() ~= nil
+          local cmds = {
+            {
+              title = "Notifications",
+              cmd = "gh notify -s -a -n5",
+              action = function()
+                vim.ui.open("https://github.com/notifications")
+              end,
+              key = "N",
+              icon = " ",
+              height = 5,
+              enabled = true,
+            },
+            {
+              title = "Open Issues",
+              cmd = "gh issue list -L 3",
+              key = "i",
+              action = function()
+                vim.fn.jobstart("gh issue list --web", { detach = true })
+              end,
+              icon = " ",
+              height = 7,
+            },
+            {
+              icon = " ",
+              title = "Open PRs",
+              cmd = "gh pr list -L 3",
+              key = "P",
+              action = function()
+                vim.fn.jobstart("gh pr list --web", { detach = true })
+              end,
+              height = 7,
+            },
+            {
+              icon = " ",
+              title = "Git Status",
+              cmd = "git --no-pager diff --stat -B -M -C",
+              height = 10,
+            },
+          }
+          return vim.tbl_map(function(cmd)
+            return vim.tbl_extend("force", {
+              pane = 2,
+              section = "terminal",
+              enabled = in_git,
+              padding = 1,
+              ttl = 5 * 60,
+              indent = 3,
+            }, cmd)
+          end, cmds)
+        end,
+        { section = "startup" },
+      },
+    },
+
+    ------------------------------------
     -- Picker
     ------------------------------------
     picker = {
@@ -130,11 +215,66 @@ return {
   },
 
   init = function()
+    local augroup = vim.api.nvim_create_augroup("snacks_custom", { clear = true })
+
+    ------------------------------------
+    -- Dashboard: transparent background
+    ------------------------------------
+    vim.api.nvim_create_autocmd("User", {
+      group = augroup,
+      pattern = "SnacksDashboardOpened",
+      callback = function()
+        -- Clear trailing-whitespace match (window-local, persists from initial buffer)
+        vim.cmd([[match none]])
+      end,
+    })
+
+    ------------------------------------
+    -- Show dashboard when last buffer is closed
+    ------------------------------------
+    -- Handle :bd (buffer delete) — show dashboard if no listed buffers remain
+    vim.api.nvim_create_autocmd("BufDelete", {
+      group = augroup,
+      callback = function()
+        vim.schedule(function()
+          local remaining = vim.tbl_filter(function(b)
+            return vim.bo[b].buflisted
+          end, vim.api.nvim_list_bufs())
+          if #remaining == 0 then
+            pcall(Snacks.dashboard)
+          end
+        end)
+      end,
+    })
+
+    -- Handle :q on last window — show dashboard instead of quitting
+    vim.api.nvim_create_autocmd("QuitPre", {
+      group = augroup,
+      nested = true,
+      callback = function()
+        -- Count non-floating windows
+        local non_float_wins = vim.tbl_filter(function(w)
+          return vim.api.nvim_win_get_config(w).relative == ""
+        end, vim.api.nvim_list_wins())
+        if #non_float_wins > 1 then return end
+
+        -- Allow quitting from dashboard
+        if vim.bo.filetype == "snacks_dashboard" then return end
+
+        -- Open a split with dashboard so :q only closes the original window
+        local current_win = vim.api.nvim_get_current_win()
+        vim.cmd("new")
+        Snacks.dashboard()
+        vim.api.nvim_set_current_win(current_win)
+      end,
+    })
+
     ------------------------------------
     -- Toggle keymaps  (<leader>u)
     ------------------------------------
     vim.api.nvim_create_autocmd("User", {
       pattern = "VeryLazy",
+      group = augroup,
       callback = function()
         Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
         Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
