@@ -12,6 +12,7 @@ all: ## Execute all setup commands
 	@make brew
 	@make volta
 	@make zsh
+	@make gh
 	@echo Congrats!! You are all set!
 
 .PHONY := init
@@ -38,6 +39,14 @@ volta: ## Install Node.js toolchain via Volta
 zsh: ## Setup vim
 	@.config/zsh.sh
 
+.PHONY := gh
+gh: ## Install gh CLI extensions
+	@.config/gh.sh
+
 .PHONY := b-vsc
 b-vsc: ## Update vscode extensions file
 	@code --list-extensions > ~/dotfiles/vscode/extensions
+
+.PHONY := b-gh
+b-gh: ## Update gh extensions file
+	@gh extension list | awk '{print $$2}' > .config/gh/extensions
