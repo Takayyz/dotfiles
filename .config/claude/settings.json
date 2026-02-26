@@ -26,7 +26,12 @@
       "Bash(rm --force:*)",
       "Bash(rmdir:*)",
       "Bash(git push -f:*)",
-      "Bash(git push --force:*)"
+      "Bash(git push --force:*)",
+      "Bash(chmod 777:*)",
+      "Bash(chmod -R 777:*)",
+      "Bash(chmod 666:*)",
+      "Bash(chmod -R 666:*)",
+      "Bash(chmod a+rwx:*)"
     ]
   },
   "hooks": {
