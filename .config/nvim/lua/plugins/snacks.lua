@@ -35,6 +35,12 @@ return {
         },
         function()
           local in_git = Snacks.git.get_root() ~= nil
+          local is_github = false
+          if in_git then
+            local remote = vim.fn.system("git remote get-url origin 2>/dev/null")
+            is_github = remote:find("github.com") ~= nil
+          end
+          local non_github_msg = 'echo "  GitHub管理外のプロジェクトです"'
           local cmds = {
             {
               title = "Notifications",
@@ -49,22 +55,22 @@ return {
             },
             {
               title = "Open Issues",
-              cmd = "gh issue list -L 3",
-              key = "i",
-              action = function()
+              cmd = is_github and "gh issue list -L 3" or non_github_msg,
+              key = is_github and "i" or nil,
+              action = is_github and function()
                 vim.fn.jobstart("gh issue list --web", { detach = true })
-              end,
+              end or nil,
               icon = " ",
               height = 7,
             },
             {
               icon = " ",
               title = "Open PRs",
-              cmd = "gh pr list -L 3",
-              key = "P",
-              action = function()
+              cmd = is_github and "gh pr list -L 3" or non_github_msg,
+              key = is_github and "P" or nil,
+              action = is_github and function()
                 vim.fn.jobstart("gh pr list --web", { detach = true })
-              end,
+              end or nil,
               height = 7,
             },
             {
