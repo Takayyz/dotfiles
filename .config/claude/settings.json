@@ -31,7 +31,19 @@
       "Bash(chmod -R 777:*)",
       "Bash(chmod 666:*)",
       "Bash(chmod -R 666:*)",
-      "Bash(chmod a+rwx:*)"
+      "Bash(chmod a+rwx:*)",
+      "Read(*.env*)",
+      "Read(*.env)",
+      "Read(*.env.local)",
+      "Read(*.env.development)",
+      "Read(*.env.production)",
+      "Read(*.env.staging)",
+      "Read(*.env.test)",
+      "Bash(cat:*.env*)",
+      "Bash(less:*.env*)",
+      "Bash(more:*.env*)",
+      "Bash(head:*.env*)",
+      "Bash(tail:*.env*)"
     ]
   },
   "hooks": {
