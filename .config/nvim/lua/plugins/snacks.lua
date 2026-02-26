@@ -235,13 +235,16 @@ return {
     -- Handle :bd (buffer delete) — show dashboard if no listed buffers remain
     vim.api.nvim_create_autocmd("BufDelete", {
       group = augroup,
-      callback = function()
+      callback = function(ev)
+        -- Don't reopen dashboard when dashboard itself is closed
+        if vim.bo[ev.buf].filetype == "snacks_dashboard" then return end
         vim.schedule(function()
           local remaining = vim.tbl_filter(function(b)
             return vim.bo[b].buflisted
           end, vim.api.nvim_list_bufs())
           if #remaining == 0 then
-            pcall(Snacks.dashboard)
+            -- Embed in current window (like startup) instead of creating a float
+            pcall(Snacks.dashboard, { buf = 0, win = 0 })
           end
         end)
       end,
@@ -261,10 +264,10 @@ return {
         -- Allow quitting from dashboard
         if vim.bo.filetype == "snacks_dashboard" then return end
 
-        -- Open a split with dashboard so :q only closes the original window
+        -- Open a split with embedded dashboard so :q only closes the original window
         local current_win = vim.api.nvim_get_current_win()
         vim.cmd("new")
-        Snacks.dashboard()
+        Snacks.dashboard({ buf = 0, win = 0 })
         vim.api.nvim_set_current_win(current_win)
       end,
     })
