@@ -1,3 +1,12 @@
+-- stylua: ignore
+local header = table.concat({
+  [[    ______          __                           ]],
+  [[   / ____/___  ____/ /__  ____ __   ______  _____]],
+  [[  / __/ / __ \/ __  / _ \/ __ `/ | / / __ \/ ___/]],
+  [[ / /___/ / / / /_/ /  __/ /_/ /| |/ / /_/ / /    ]],
+  [[/_____/_/ /_/\__,_/\___/\__,_/ |___/\____/_/     ]],
+}, "\n")
+
 return {
   "folke/snacks.nvim",
   priority = 1000,
@@ -10,6 +19,7 @@ return {
     dashboard = {
       enabled = true,
       preset = {
+        header = header,
         keys = {
           { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
           { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
@@ -21,7 +31,7 @@ return {
         },
       },
       sections = {
-        { section = "header" },
+        { section = "header", padding = 2 },
         { section = "keys", gap = 1, padding = 1 },
         {
           pane = 2,
