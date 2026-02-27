@@ -86,7 +86,8 @@
   "enabledPlugins": {
     "example-skills@anthropic-agent-skills": true,
     "document-skills@anthropic-agent-skills": true,
-    "claude-mem@thedotmack": true
+    "claude-mem@thedotmack": true,
+    "slack@claude-plugins-official": true
   },
   "outputStyle": "Explanatory",
   "plansDirectory": "./.claude/plans",
