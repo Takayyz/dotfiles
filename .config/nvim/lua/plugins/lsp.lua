@@ -6,7 +6,7 @@ return {
     opts = {},
   },
 
-  -- LSP server auto-installer
+  -- LSP server auto-installer + auto-enabler
   {
     "mason-org/mason-lspconfig.nvim",
     dependencies = { "mason-org/mason.nvim" },
@@ -16,7 +16,7 @@ return {
         "intelephense",
         "lua_ls",
       },
-      automatic_enable = false,
+      automatic_enable = true,
     },
   },
 
@@ -37,7 +37,7 @@ return {
     },
   },
 
-  -- LSP server configurations
+  -- LSP server configurations (vim.lsp.config API for Neovim 0.11+)
   {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -46,31 +46,24 @@ return {
     },
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-      local capabilities = require("blink.cmp").get_lsp_capabilities()
-      local lspconfig = require("lspconfig")
+      -- Global config applied to all LSP servers
+      vim.lsp.config("*", {
+        capabilities = require("blink.cmp").get_lsp_capabilities(),
+      })
 
-      ---@type table<string, lspconfig.Config>
-      local servers = {
-        ts_ls = {},
-        intelephense = {},
-        lua_ls = {
-          settings = {
-            Lua = {
-              runtime = { version = "LuaJIT" },
-              workspace = {
-                checkThirdParty = false,
-                library = { vim.env.VIMRUNTIME },
-              },
-              completion = { callSnippet = "Replace" },
+      -- Server-specific overrides
+      vim.lsp.config("lua_ls", {
+        settings = {
+          Lua = {
+            runtime = { version = "LuaJIT" },
+            workspace = {
+              checkThirdParty = false,
+              library = { vim.env.VIMRUNTIME },
             },
+            completion = { callSnippet = "Replace" },
           },
         },
-      }
-
-      for server, config in pairs(servers) do
-        config.capabilities = capabilities
-        lspconfig[server].setup(config)
-      end
+      })
 
       -- Keymaps on LSP attach (complement snacks.nvim pickers)
       vim.api.nvim_create_autocmd("LspAttach", {
