@@ -89,6 +89,7 @@ Leader は `Space`。プラグイン管理は lazy.nvim。
 | `<Leader>q` | Quit |
 | `<Leader>h` / `<Leader>l` | 行頭 / 行末 |
 | `<Leader>c` | コメントトグル (normal/visual) |
+| `<Leader>yp` | Git ルートからの相対パスをクリップボードにコピー |
 | `<Leader>-` / `<Leader>\` | 水平 / 垂直分割 |
 
 <details>

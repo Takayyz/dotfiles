@@ -27,6 +27,20 @@ map("n", "<Leader>n", "<Cmd>enew<CR>", { desc = "New file" })
 map("n", "<Leader>t", "<Cmd>tabnew<CR>", { desc = "New tab" })
 map("n", "<Leader><Tab>", "<Cmd>tabnext<CR>", { desc = "Next tab" })
 map("n", "<Leader><S-Tab>", "<Cmd>tabprevious<CR>", { desc = "Previous tab" })
+map("n", "<Leader>yp", function()
+  local absolute = vim.fn.expand("%:p")
+  local git_root = vim.fn.systemlist("git -C " .. vim.fn.shellescape(vim.fn.expand("%:p:h")) .. " rev-parse --show-toplevel")[1]
+  if vim.v.shell_error ~= 0 then
+    -- git repo でなければ CWD 相対にフォールバック
+    local path = vim.fn.expand("%:.")
+    vim.fn.setreg("+", path)
+    vim.notify(path, vim.log.levels.INFO, { title = "Copied path (cwd-relative)" })
+    return
+  end
+  local relative = absolute:sub(#git_root + 2)
+  vim.fn.setreg("+", relative)
+  vim.notify(relative, vim.log.levels.INFO, { title = "Copied path" })
+end, { desc = "Copy git-relative file path" })
 
 -----------------------------------
 -- Visual mode
