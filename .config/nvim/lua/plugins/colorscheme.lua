@@ -44,6 +44,14 @@ return {
     -- Float border: visible on transparent background
     vim.api.nvim_set_hl(0, "FloatBorder", { fg = palette.blue })
 
+    -- Blade/HTML: iceberg's @tag chain ends at htmlTagName/htmlArg which are
+    -- normally defined by syntax/html.vim. Since that file only loads for
+    -- filetype=html, we define the missing links here so treesitter-based
+    -- highlighting works for blade (and any other non-html filetype that
+    -- inherits html queries).
+    vim.api.nvim_set_hl(0, "htmlTagName", { link = "Statement" })
+    vim.api.nvim_set_hl(0, "htmlArg", { link = "Type" })
+
     -- PHP: improve class / use declaration readability
     vim.api.nvim_set_hl(0, "@type.php", { fg = palette.fg })
     vim.api.nvim_set_hl(0, "@module.php", { fg = palette.fg })

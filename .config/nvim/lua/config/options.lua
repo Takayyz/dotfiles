@@ -47,7 +47,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "php",
+  pattern = { "php", "blade" },
   callback = function()
     vim.opt_local.expandtab = true
     vim.opt_local.shiftwidth = 4

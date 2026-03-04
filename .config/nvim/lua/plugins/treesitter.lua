@@ -22,6 +22,7 @@ return {
         "tsx",
         "javascript",
         "php",
+        "blade",
         -- config / data formats
         "json",
         "toml",
