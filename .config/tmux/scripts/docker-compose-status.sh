@@ -1,25 +1,23 @@
 #!/bin/bash
-# Docker Compose status viewer for tmux popup
-# Shows `docker compose ps` with auto-refresh and Iceberg-themed coloring,
-# or a message if no compose file is found.
+# Docker Compose interactive status viewer for tmux popup
+# Uses fzf for fuzzy filtering, log preview, and container actions.
 
-# Iceberg color scheme (256-color for watch compatibility)
-BLUE=$'\033[38;5;146m'    # #84a0c6 - header
-GREEN=$'\033[38;5;187m'   # #b4be82 - running (Up)
-RED=$'\033[38;5;174m'     # #e27878 - exited/dead
-CYAN=$'\033[38;5;152m'    # #89b8c2 - title
-DIM=$'\033[38;5;103m'     # #6b7089 - dim text
-ORANGE=$'\033[38;5;180m'  # #e2a478 - created/paused
+# Iceberg color scheme
+BLUE=$'\033[38;5;146m'
+GREEN=$'\033[38;5;187m'
+RED=$'\033[38;5;174m'
+CYAN=$'\033[38;5;152m'
+DIM=$'\033[38;5;103m'
+ORANGE=$'\033[38;5;180m'
 RESET=$'\033[0m'
 
-# Render mode: output colorized docker compose ps (called by watch)
-if [ "$1" = "--render" ]; then
-  project_name=$(basename "$(pwd)")
-  echo "${CYAN} Docker Compose Status${RESET}  ${DIM}(${project_name})${RESET}"
-  echo "${DIM} Ctrl+C to close | Refreshing every 2s${RESET}"
-  echo ""
-
-  docker compose ps --format table 2>/dev/null | awk '
+# ---------------------------------------------------------------------------
+# Sub-command: --list
+#   Output colorized `docker compose ps` lines (one per container).
+#   First line is the table header (used by fzf --header-lines).
+# ---------------------------------------------------------------------------
+if [ "$1" = "--list" ]; then
+  docker compose ps --format "table {{.Name}}\t{{.Service}}\t{{.Status}}\t{{.Ports}}" 2>/dev/null | awk '
     BEGIN {
       ESC = sprintf("%c", 27)
       blue   = ESC "[1;38;5;146;48;5;235m"
@@ -40,7 +38,56 @@ if [ "$1" = "--render" ]; then
   exit 0
 fi
 
-# --- Main: find compose file and launch watch ---
+# ---------------------------------------------------------------------------
+# Sub-command: --preview <container_name>
+#   Show recent logs for the given container.
+# ---------------------------------------------------------------------------
+if [ "$1" = "--preview" ]; then
+  container="$2"
+  echo "${CYAN}--- Logs: ${container} ---${RESET}"
+  echo ""
+  docker compose logs --tail=50 --no-log-prefix "$container" 2>/dev/null
+  exit 0
+fi
+
+# ---------------------------------------------------------------------------
+# Sub-command: --action <action> <container_name>
+#   Perform an action on a container, then print updated status.
+# ---------------------------------------------------------------------------
+if [ "$1" = "--action" ]; then
+  action="$2"
+  container="$3"
+  case "$action" in
+    restart) docker compose restart "$container" 2>/dev/null ;;
+    stop)    docker compose stop "$container" 2>/dev/null ;;
+    start)   docker compose start "$container" 2>/dev/null ;;
+  esac
+  exit 0
+fi
+
+# ---------------------------------------------------------------------------
+# Sub-command: --logs <container_name>
+#   Follow logs in the current terminal (blocking).
+# ---------------------------------------------------------------------------
+if [ "$1" = "--logs" ]; then
+  container="$2"
+  docker compose logs -f --tail=100 --no-log-prefix "$container" 2>/dev/null
+  exit 0
+fi
+
+# ---------------------------------------------------------------------------
+# Sub-command: --exec <container_name>
+#   Exec into a container with sh (falls back from bash).
+# ---------------------------------------------------------------------------
+if [ "$1" = "--exec" ]; then
+  container="$2"
+  docker compose exec "$container" bash 2>/dev/null || docker compose exec "$container" sh 2>/dev/null
+  exit 0
+fi
+
+# ---------------------------------------------------------------------------
+# Main: find compose file directory and launch fzf
+# ---------------------------------------------------------------------------
 
 find_compose_dir() {
   local dir="$1"
@@ -54,7 +101,6 @@ find_compose_dir() {
         return 0
       fi
     done
-    # Stop at home directory
     if [ "$dir" = "$home" ] || [ "$dir" = "/" ]; then
       return 1
     fi
@@ -65,17 +111,36 @@ find_compose_dir() {
 
 compose_dir=$(find_compose_dir "$(pwd)")
 
-if [ -n "$compose_dir" ]; then
-  cd "$compose_dir" || exit 1
-  watch -n 2 -t --color "$0 --render"
-else
+if [ -z "$compose_dir" ]; then
   clear
   echo ""
-  echo "  ${RED}⚠  Docker Compose is not configured in this project.${RESET}"
+  echo "  ${RED}Warning: Docker Compose is not configured in this project.${RESET}"
   echo ""
   echo "  ${DIM}No compose file found in the directory tree:${RESET}"
   echo "  ${DIM}  compose.yml / compose.yaml${RESET}"
   echo "  ${DIM}  docker-compose.yml / docker-compose.yaml${RESET}"
   echo ""
   read -n 1 -s -r -p "  Press any key to close..."
+  exit 0
 fi
+
+cd "$compose_dir" || exit 1
+
+SCRIPT="$(cd "$(dirname "$0")" && pwd)/$(basename "$0")"
+project_name=$(basename "$compose_dir")
+
+header="${CYAN}Docker Compose${RESET}  ${DIM}(${project_name})${RESET}
+${DIM}enter${RESET}:logs  ${DIM}ctrl-r${RESET}:restart  ${DIM}ctrl-s${RESET}:stop  ${DIM}ctrl-u${RESET}:start  ${DIM}ctrl-e${RESET}:exec  ${DIM}ctrl-space${RESET}:reload"
+
+"$SCRIPT" --list | fzf \
+  --ansi \
+  --header-lines=1 \
+  --header "$header" \
+  --preview "\"$SCRIPT\" --preview {1}" \
+  --preview-window "down:40%:wrap" \
+  --bind "ctrl-space:reload(\"$SCRIPT\" --list | tail -n +2)" \
+  --bind "ctrl-r:execute-silent(\"$SCRIPT\" --action restart {1})+reload(\"$SCRIPT\" --list | tail -n +2)" \
+  --bind "ctrl-s:execute-silent(\"$SCRIPT\" --action stop {1})+reload(\"$SCRIPT\" --list | tail -n +2)" \
+  --bind "ctrl-u:execute-silent(\"$SCRIPT\" --action start {1})+reload(\"$SCRIPT\" --list | tail -n +2)" \
+  --bind "enter:execute(\"$SCRIPT\" --logs {1})" \
+  --bind "ctrl-e:execute(\"$SCRIPT\" --exec {1})"
