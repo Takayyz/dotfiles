@@ -214,6 +214,22 @@ return {
     { "<leader>sp", function() Snacks.picker.lazy() end, desc = "Search for Plugin Spec" },
     { "<leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
     { "<leader>sR", function() Snacks.picker.resume() end, desc = "Resume" },
+    { "<leader>st", function()
+      require("lazy").load({ plugins = { "todo-comments.nvim" } })
+      local sources = require("snacks.picker.config.sources")
+      if not sources.todo_comments then
+        sources.todo_comments = require("todo-comments.snacks").source
+      end
+      Snacks.picker.pick("todo_comments")
+    end, desc = "Todo Comments" },
+    { "<leader>sT", function()
+      require("lazy").load({ plugins = { "todo-comments.nvim" } })
+      local sources = require("snacks.picker.config.sources")
+      if not sources.todo_comments then
+        sources.todo_comments = require("todo-comments.snacks").source
+      end
+      Snacks.picker.pick("todo_comments", { keywords = { "TODO", "FIX", "FIXME" } })
+    end, desc = "Todo/Fix/Fixme" },
     { "<leader>su", function() Snacks.picker.undo() end, desc = "Undo History" },
     { "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
 
