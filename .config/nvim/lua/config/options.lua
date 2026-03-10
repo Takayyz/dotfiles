@@ -86,6 +86,7 @@ vim.opt.foldlevelstart = 99
 -- File
 -----------------------------------
 vim.opt.swapfile = false
+vim.opt.exrc = true
 
 -----------------------------------
 -- Clipboard
