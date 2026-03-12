@@ -1,6 +1,8 @@
 ---
 name: memo
 description: Append a timestamped memo to today's Obsidian daily note (daily/ folder).
+allowedTools:
+  - Read
 ---
 
 # Memo Skill

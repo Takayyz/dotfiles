@@ -1,6 +1,8 @@
 ---
 name: review-create
 description: Create a new code review note in Obsidian vault with project selection, priority, and dependency tracking.
+allowedTools:
+  - Read
 ---
 
 # Review Create Skill
@@ -77,7 +79,16 @@ due: "2026-03-13"
 ---
 ```
 
-### Step 5: Link from Daily Note
+### Step 5: Update Reviews Dashboard
+
+Append the new review entry to the appropriate status section in `$VAULT_DIR/reviews/Reviews.md`.
+
+- Add under `### Open` (since newly created reviews are always `open`)
+- Format: `- [YYYY-MM-DD-slug](YYYY-MM-DD-slug.md) | **{priority}** | due: {due} | {project}`
+  - Omit `due: ` part if no due date is set
+- Insert after the `<!-- ClaudeCodeが自動更新 -->` comment line
+
+### Step 6: Link from Daily Note
 
 Append a Markdown link to the `## Review` section of today's daily note.
 
@@ -85,7 +96,7 @@ Format: `[YYYY-MM-DD-slug](../reviews/YYYY-MM-DD-slug.md)` (relative path from d
 
 If the daily note does not exist, create it from the template first.
 
-### Step 6: Confirm
+### Step 7: Confirm
 
 Display the created note contents.
 

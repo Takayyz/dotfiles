@@ -1,6 +1,8 @@
 ---
 name: review-list
 description: List and filter review notes from Obsidian vault by status, priority, and project. Shows merge readiness.
+allowedTools:
+  - Read
 ---
 
 # Review List Skill
