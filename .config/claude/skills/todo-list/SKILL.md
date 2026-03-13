@@ -55,20 +55,23 @@ Skip files that don't exist or have no `## TODO` section.
 
 ### Step 5: Display Results
 
-Group items by date (newest first). Format:
+Group items by date (newest first). Assign a **global sequential index** across all dates (starting from 1). Format:
 
 ```
+### 2026-01-02
+  1. [ ] task A
+  2. [ ] task B
+
 ### 2026-01-01
-- [ ] task A
-- [ ] task B
-
-### 2025-12-31
-- [x] task C
+  3. [x] task C
 ```
 
-- Incomplete items shown as `- [ ]`
-- Complete items shown as `- [x]` (only when `--all`)
+- Each item gets a unique index number, continuous across dates
+- Ordering: newest date first, then file order within each date
+- Incomplete items shown as `[ ]`
+- Complete items shown as `[x]` (only when `--all`)
 - Dates with no matching items are omitted
+- These indices can be used directly with `/todo-update` (e.g., `/todo-update 1,3`)
 
 ### Step 6: Summary
 

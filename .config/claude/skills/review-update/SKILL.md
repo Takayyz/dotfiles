@@ -30,7 +30,9 @@ Parse frontmatter from each file to extract: `project`, `pr_url`, `priority`, `s
 
 ### Step 3: Select Review Note
 
-Present **non-done** review notes (status: `open` or `in-progress`) as a numbered list:
+**If an index number is provided as an argument** (e.g., `/review-update 1`), use the same ordering as `/review-list` (priority desc, then created date asc) to resolve the index. Skip directly to Step 4 with the matched item.
+
+**Otherwise**, present **non-done** review notes (status: `open` or `in-progress`) as a numbered list:
 
 ```
 Select review to update:
@@ -42,6 +44,8 @@ Enter number (or "all" to include done):
 - Default: show only `open` and `in-progress` notes
 - If user enters "all", re-display including `done` notes
 - If no updatable notes exist, display "No review notes found." and stop
+
+**Index ordering rule**: Items are always ordered by priority desc (high > medium > low), then by created date asc within same priority. This matches the `/review-list` output so indices are interchangeable.
 
 ### Step 4: Select New Status
 

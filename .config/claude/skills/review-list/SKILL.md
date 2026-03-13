@@ -44,13 +44,16 @@ Filter based on arguments:
 
 ### Step 5: Display as Table
 
-Sort by priority (high then medium then low), then by created date within same priority.
+Sort by priority (high then medium then low), then by created date within same priority. Assign a **global sequential index** (starting from 1).
 
-Table columns: Priority, Note, Project, PR, Due, Blocked By, Mergeable
+Table columns: #, Priority, Note, Project, PR, Due, Blocked By, Mergeable
 
+- Each item gets a unique index number, continuous across the list
+- Ordering: priority desc (high > medium > low), then created date asc within same priority
 - HIGH priority items should be displayed in bold
 - Note links formatted as `[note-name](reviews/note-name.md)` (relative path)
 - PR links formatted as `[PR#number](url)` (extract number from URL path)
+- These indices can be used directly with `/review-update` (e.g., `/review-update 1`)
 
 **Merge readiness logic:**
 1. `blocked_by` is empty: "ready"
