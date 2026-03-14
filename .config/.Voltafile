@@ -13,5 +13,6 @@ manager "yarn" "4.1.1"
 # ====================
 # Global Packages
 # ====================
+package "@googleworkspace/cli"
 package "claude-code-monitor"
 package "kiri-mcp-server"
