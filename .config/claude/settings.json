@@ -103,6 +103,7 @@
   },
   "outputStyle": "Explanatory",
   "plansDirectory": "./.claude/plans",
+  "voiceEnabled": true,
   "notificationChannel": "auto",
   "teammateMode": "in-process",
   "terminalProgressBarEnabled": true
