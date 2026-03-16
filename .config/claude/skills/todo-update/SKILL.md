@@ -114,8 +114,9 @@ This item is from a past date. Carry forward to today's note? (y/n):
 ```
 
 - If yes, append the item as `- [ ] content` to today's `## TODO` section
+- In the **original** date's note, mark the carried-forward item as completed with a forward reference:
+  `- [x] content (→M/DD)` where `M/DD` is today's date (e.g., `(→3/16)`)
 - If today's daily note doesn't exist, create it from the template (`$VAULT_DIR/_templates/daily-template.md`, replacing `{{date}}`)
-- Do NOT remove the item from the original date's note
 
 ### Step 8: Confirm
 

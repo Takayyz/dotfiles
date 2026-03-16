@@ -52,6 +52,16 @@ Each item uses Obsidian checkbox format:
 
 Display the full current TODO list from the file.
 
+## Carry Forward Convention
+
+When carrying forward incomplete TODO items from a past date to today:
+1. Append the item as `- [ ] content` to today's `## TODO` section
+2. In the **original** date's note, mark the item as completed with a forward reference:
+   `- [x] content (→M/DD)`
+   where `M/DD` is today's date (e.g., `(→3/16)`)
+
+This distinguishes "actually completed" items from "carried forward" items in the history.
+
 ## Rules
 
 - Never overwrite existing content. Append only.
