@@ -1,6 +1,7 @@
 ---
 name: review-list
 description: List and filter review notes from Obsidian vault by status, priority, and project. Shows merge readiness.
+model: sonnet
 allowedTools:
   - Read
 ---

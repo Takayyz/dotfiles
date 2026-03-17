@@ -1,6 +1,7 @@
 ---
 name: todo
 description: Append a TODO item to today's Obsidian daily note (daily/ folder).
+model: haiku
 ---
 
 # TODO Skill

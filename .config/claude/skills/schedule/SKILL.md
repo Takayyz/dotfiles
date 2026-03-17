@@ -1,6 +1,7 @@
 ---
 name: schedule
 description: Fetch and display Google Calendar schedule using gws CLI.
+model: sonnet
 allowedTools:
   - Bash
 ---

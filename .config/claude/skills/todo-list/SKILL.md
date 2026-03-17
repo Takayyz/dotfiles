@@ -1,6 +1,7 @@
 ---
 name: todo-list
 description: List and filter TODO items from Obsidian daily notes across multiple days.
+model: sonnet
 allowedTools:
   - Read
   - Glob

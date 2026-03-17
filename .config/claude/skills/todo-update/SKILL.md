@@ -1,6 +1,7 @@
 ---
 name: todo-update
 description: Interactively update TODO item status in Obsidian daily notes.
+model: sonnet
 allowedTools:
   - Read
   - Glob
