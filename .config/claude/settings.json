@@ -64,7 +64,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "$HOME/.claude/hooks/hook_stop_words.sh"
+            "command": "$HOME/.claude/hooks/hook_stop_words/check.sh"
           }
         ]
       },
