@@ -1,0 +1,50 @@
+[
+  {
+    "name": "destructive_rm",
+    "pattern": "\\brm\\s+(-[rRf]|--recursive|--force)",
+    "decision": "ask",
+    "reason": "Destructive file deletion detected. Are you sure you want to proceed?"
+  },
+  {
+    "name": "rmdir",
+    "pattern": "\\brmdir\\b",
+    "decision": "ask",
+    "reason": "Directory removal detected. Are you sure you want to proceed?"
+  },
+  {
+    "name": "git_push",
+    "pattern": "\\bgit\\s+push\\b",
+    "decision": "deny",
+    "reason": "Do not execute 'git push'. Ask the user to execute it."
+  },
+  {
+    "name": "git_add_all",
+    "pattern": "\\bgit\\s+add\\s+(-A|--all|\\.|\\*)",
+    "decision": "deny",
+    "reason": "Do not git-add all files. Specify the file name(s) to add."
+  },
+  {
+    "name": "dangerous_chmod",
+    "pattern": "\\bchmod\\s+(-R\\s+)?(777|666|a\\+rwx)",
+    "decision": "ask",
+    "reason": "Dangerous permissions change detected. Are you sure you want to proceed?"
+  },
+  {
+    "name": "env_file_read",
+    "pattern": "\\b(cat|less|more|head|tail)\\s+.*\\.env",
+    "decision": "ask",
+    "reason": "Reading .env files via Bash. These files may contain secrets. Are you sure?"
+  },
+  {
+    "name": "sed_usage",
+    "pattern": "\\bsed\\b",
+    "decision": "deny",
+    "reason": "Use the Edit tool instead of sed for file modifications."
+  },
+  {
+    "name": "awk_usage",
+    "pattern": "\\bawk\\b",
+    "decision": "deny",
+    "reason": "Use the Grep tool or other dedicated tools instead of awk."
+  }
+]

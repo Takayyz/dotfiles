@@ -29,25 +29,6 @@
       "mcp__plugin_slack_slack__slack_search_users"
     ],
     "deny": [
-      "Bash(rm -rf:*)",
-      "Bash(rm -r:*)",
-      "Bash(rm -f:*)",
-      "Bash(rm -R:*)",
-      "Bash(rm --recursive:*)",
-      "Bash(rm --force:*)",
-      "Bash(rmdir:*)",
-      "Bash(git push -f:*)",
-      "Bash(git push --force:*)",
-      "Bash(chmod 777:*)",
-      "Bash(chmod -R 777:*)",
-      "Bash(chmod 666:*)",
-      "Bash(chmod -R 666:*)",
-      "Bash(chmod a+rwx:*)",
-      "Bash(cat:*.env*)",
-      "Bash(less:*.env*)",
-      "Bash(more:*.env*)",
-      "Bash(head:*.env*)",
-      "Bash(tail:*.env*)",
       "Read(*.env*)",
       "Read(*.env)",
       "Read(*.env.local)",
@@ -58,6 +39,17 @@
     ]
   },
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/hook_validate_bash/check.sh"
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "matcher": "",
