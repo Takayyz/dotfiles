@@ -66,7 +66,16 @@ For each review link collected in Step 3b:
 
 Read the target daily note. For each TODO and review link about to be carried over, check if it already exists in the target file. Skip duplicates.
 
-### Step 6: Write to Target
+### Step 6: Mark Source TODOs as Handed Over
+
+For each incomplete TODO that will be carried over, update the **source** daily note:
+
+- Change `- [ ]` to `- [x]`
+- Append ` (→M/D)` (target date in short format, e.g., `(→3/25)`) to the end of the line
+
+Example: `- [ ] [dev]some task` becomes `- [x] [dev]some task (→3/25)`
+
+### Step 7: Write to Target
 
 Use the **Edit tool** to insert items into the target daily note:
 
@@ -75,7 +84,7 @@ Use the **Edit tool** to insert items into the target daily note:
 
 **Never overwrite existing content. Append only.**
 
-### Step 7: Summary
+### Step 8: Summary
 
 Display a summary of what was carried over:
 
@@ -102,7 +111,7 @@ Handover from YYYY-MM-DD: nothing to carry over.
 ## Rules
 
 - Never overwrite existing content in the target daily note. Append only.
-- Never modify the source daily note.
+- Source daily note is modified **only** to mark handed-over TODOs as complete (Step 6). No other changes.
 - Skip duplicate items that already exist in the target.
 - If no source daily note is found, report: "No previous daily note found."
 - If the source has no TODO section or Review section, skip that part silently.
