@@ -41,6 +41,20 @@ manager "pnpm" "10.21.0"       # バージョン固定
 package "@anthropic-ai/claude-code"  # 最新バージョン
 ```
 
+## npm (~/.npmrc)
+
+セキュリティ強化のため、以下の設定を `~/.npmrc` に追加してください。
+
+```ini
+ignore-scripts=true
+min-release-age=3
+```
+
+| 設定 | 説明 |
+|---|---|
+| `ignore-scripts=true` | インストール時に post/preinstall スクリプトを実行しない（サプライチェーン攻撃の緩和） |
+| `min-release-age=3` | 公開から 3 日未満のパッケージバージョンをインストール拒否（新規汚染パッケージの混入防止） |
+
 ## tmux キーバインド (カスタム)
 
 prefix は `C-a` に変更済み。
