@@ -1,7 +1,21 @@
 # Instructions for AI Coding Agents
 
 ## Most Important Rule
-- Use `sequential-thinking` when executing tasks.
+Use `sequential-thinking` to structure your reasoning. When in doubt, use it.
+
+**Required** (must use before acting) when a task involves any of:
+- Editing, creating, or deleting files (code, config, docs)
+- Multi-step investigation or research across files/sources
+- Design, architecture, or trade-off decisions
+- Debugging or root-cause analysis
+- Anything where skipping a step risks a wrong or incomplete result
+
+**Optional** (use your judgment) for:
+- Simple factual Q&A answerable from context already in hand
+- Trivial, single-step mechanical edits with no ambiguity
+- Conversational replies and acknowledgements
+
+If a task is borderline, treat it as Required.
 
 ## Proactively Use Skills and Subagents
 ### How to Choose
