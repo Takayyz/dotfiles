@@ -3,13 +3,13 @@
     "DISABLE_TELEMETRY": "1",
     "DISABLE_ERROR_REPORTING": "1",
     "CLAUDE_CODE_DISABLE_TERMINAL_TITLE": "1",
-    "CLAUDE_CODE_MONITOR_GHOSTTY_ASKED": "1",
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+    "CLAUDE_CODE_MONITOR_GHOSTTY_ASKED": "1"
   },
   "includeCoAuthoredBy": false,
   "permissions": {
     "allow": [
       "Read",
+      "Skill(pr)",
       "Bash(npm run lint)",
       "Bash(npm run test)",
       "Bash(pnpm run lint)",
@@ -94,9 +94,13 @@
     "figma@claude-plugins-official": true
   },
   "outputStyle": "Explanatory",
+  "language": "Japanese",
+  "effortLevel": "xhigh",
   "plansDirectory": "./.claude/plans",
+  "theme": "dark-ansi",
   "voiceEnabled": true,
   "notificationChannel": "auto",
   "teammateMode": "in-process",
-  "terminalProgressBarEnabled": true
+  "terminalProgressBarEnabled": true,
+  "skipWorkflowUsageWarning": true
 }
