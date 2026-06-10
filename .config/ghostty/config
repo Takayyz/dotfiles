@@ -24,4 +24,5 @@ mouse-hide-while-typing = true
 
 keybind = cmd+backspace=text:\x15
 keybind = cmd+left=text:\x1b[H
+keybind = cmd+right=text:\x1b[F
 keybind = ctrl+v=unbind
