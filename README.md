@@ -97,6 +97,7 @@ prefix は `C-a` に変更済み。
 - continuum が 15 分ごとに自動保存 (`~/.local/share/tmux/resurrect/tmux_resurrect_*.txt`)。
 - `@continuum-restore 'on'` により tmux 起動時に最新保存 (`last`) を自動復元。
 - 手動操作: `prefix + C-s` で保存 / `prefix + C-r` で復元。
+- `@resurrect-delete-backup-after '3'` により 3 日より古い保存は save 時に自動削除 (新しい 5 件は常に保持)。デフォルトは 30 日。
 
 ### 復元したら空だったとき (`last` が空保存で上書きされた場合)
 
