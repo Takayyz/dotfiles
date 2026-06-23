@@ -1,17 +1,15 @@
 # ====================
 # Taps
 # ====================
-tap "beeftornado/rmtree"
-tap "d-kuro/tap"
-tap "dagger/tap"
-tap "dart-lang/dart"
-tap "FelixKratz/formulae"
+tap "d-kuro/tap", trusted: { formula: ["gwq"] }
+tap "dagger/tap", trusted: { cask: ["container-use"] }
+tap "FelixKratz/formulae", trusted: { formula: ["borders", "sketchybar"] }
 tap "homebrew/cask-fonts"
 tap "homebrew/core"
-tap "leoafarias/fvm"
-tap "nikitabobko/tap"
-tap "sanemat/font"
-tap "timac/vpnstatus"
+tap "leoafarias/fvm", trusted: { formula: ["fvm"] }
+tap "nikitabobko/tap", trusted: { cask: ["aerospace"] }
+tap "oven-sh/bun", trusted: { formula: ["bun"] }
+tap "timac/vpnstatus", trusted: { formula: ["vpnutil"], cask: ["vpnstatus"] }
 
 # ====================
 # Formulae (CLI tools)
@@ -20,6 +18,7 @@ brew "awscli"
 brew "bat"
 brew "borders"
 brew "btop"
+brew "bun"
 brew "cocoapods"
 brew "composer"
 brew "container-use"
