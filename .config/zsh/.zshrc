@@ -166,6 +166,18 @@ setopt EXTENDED_HISTORY
 HISTTIMEFORMAT="[%Y/%M/%D %H:%M:%S] "
 # historyコマンドをhistoryに入れない
 unsetopt HIST_NO_STORE
+
+#-----------------------------------------
+# fpath repair (zsh更新/継承された古いFPATHへの耐性)
+#-----------------------------------------
+# tmuxサーバー等の長命プロセスが、exportされたFPATHに
+# .../Cellar/zsh/<旧version>/functions のようなバージョン直書きパスを凍結保持
+# することがある。zsh更新でそのディレクトリが消えると compinit/colors/add-zsh-hook
+# が見つからず壊れる。存在しないfpathエントリを除去し、バージョン非依存の
+# コア関数ディレクトリを必ず先頭に補う。
+fpath=( ${HOMEBREW_PREFIX:-/opt/homebrew}/share/zsh/functions ${^fpath}(N-/) )
+typeset -gU fpath
+
 autoload -Uz compinit
 if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
   compinit
