@@ -74,6 +74,13 @@ prefix は `C-a` に変更済み。
 | `prefix + d`       | Docker Compose status (Iceberg テーマで色付き表示、2秒ごと自動更新) |
 | `M-f p`            | ghq project switcher                                                |
 
+> **herdr ネスト時の作業ディレクトリ解決**
+> `prefix + g` (lazygit) / `prefix + d` (docker) / `prefix + w` (worktree) は、tmux ペイン内で
+> [herdr](https://github.com/ogulcancelik/herdr) を動かしている場合でも正しいリポジトリで起動する。
+> tmux の `#{pane_current_path}` は前景プロセス (herdr 本体) の cwd しか見えないため、ネスト時は
+> `tmux/scripts/popup-cwd.sh` が `herdr pane list` から focused ペインの実 cwd を取得して補正する。
+> 素の tmux ペインでは従来どおり `#{pane_current_path}` を使う。
+
 <details>
 <summary>補助キー (コピーモード・ウィンドウ操作)</summary>
 
