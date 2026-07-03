@@ -1,0 +1,35 @@
+# herdr configuration
+# Symlinked from ~/.config/herdr/config.toml (see link.sh)
+#
+# Custom "iceberg" color scheme, matching the palette already used for
+# posting (.config/posting/themes/iceberg.yaml), based on cocopon/iceberg.vim.
+
+[theme]
+# tokyo-night is the closest built-in base (cool dark blue-gray) for any
+# token not explicitly overridden below.
+name = "tokyo-night"
+
+[theme.custom]
+panel_bg = "#161821"    # iceberg background
+surface0 = "#1e2132"    # iceberg surface (cursor line / panels)
+surface1 = "#272c42"    # iceberg selection background
+# iceberg has no darker-than-background tone; interpolated from panel_bg.
+surface_dim = "#0e0f15"
+overlay0 = "#6b7089"    # iceberg comment gray
+# iceberg has only one comment gray; interpolated midtone for a second overlay.
+overlay1 = "#8b90a8"
+text = "#c6c8d1"        # iceberg foreground
+subtext0 = "#6b7089"    # iceberg comment gray
+accent = "#89b8c2"      # iceberg cyan - matches posting's focus-highlight accent
+red = "#e27878"
+green = "#b4be82"
+yellow = "#e2a478"
+blue = "#84a0c6"
+mauve = "#a093c7"       # iceberg magenta/violet
+teal = "#89b8c2"        # iceberg has no separate teal; reuses cyan
+peach = "#e9b189"       # iceberg bright yellow, to differ from yellow above
+
+[ui]
+# Accent color for highlights, borders, active-row emphasis, and navigation UI.
+# This is the main lever for making the active space/agent stand out in the sidebar.
+accent = "#89b8c2"
