@@ -55,4 +55,10 @@ if [ ! -d "${HOME}/.warp/themes" ] ; then
 fi
 ln -snfv "./warp/themes" "${HOME}/.warp/themes"
 
+# herdr (dir also holds runtime logs/sockets/session.json, so only link config.toml)
+if [ ! -d "${DOTCONF_DIR}/herdr" ] ; then
+  mkdir -p "${DOTCONF_DIR}/herdr"
+fi
+ln -snfv "${SCRIPT_DIR}/herdr/config.toml" "${DOTCONF_DIR}/herdr"
+
 echo "${GREEN}INFO: Done${ESC_END}"
