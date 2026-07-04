@@ -33,6 +33,7 @@ for dotfile in "${SCRIPT_DIR}"/.??* ; do
     [[ "$dotfile" == "${SCRIPT_DIR}/.gitignore" ]] && continue
     [[ "$dotfile" == "${SCRIPT_DIR}/.DS_Store" ]] && continue
     [[ "$dotfile" == "${SCRIPT_DIR}/.agents" ]] && continue
+    [[ "$dotfile" == "${SCRIPT_DIR}/.claude" ]] && continue
 
     ln -snfv "$dotfile" "$HOME"
 done
@@ -49,11 +50,6 @@ if [ ! -d "${HOME}/.local/share/posting" ] ; then
   mkdir -p "${HOME}/.local/share/posting"
 fi
 ln -snfv "${SCRIPT_DIR}/posting/themes" "${HOME}/.local/share/posting"
-
-if [ ! -d "${HOME}/.warp/themes" ] ; then
-  mkdir -p "${HOME}/.warp/themes"
-fi
-ln -snfv "./warp/themes" "${HOME}/.warp/themes"
 
 # herdr (dir also holds runtime logs/sockets/session.json, so only link config.toml)
 if [ ! -d "${DOTCONF_DIR}/herdr" ] ; then
