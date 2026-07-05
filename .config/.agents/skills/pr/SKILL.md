@@ -1,6 +1,8 @@
 ---
-allowed-tools: Bash(gh:*), Bash(git:*)
+name: pr
 description: Generate PR description and automatically create pull request on GitHub
+disable-model-invocation: true
+allowed-tools: Bash(gh:*), Bash(git:*)
 ---
 
 ## Context
