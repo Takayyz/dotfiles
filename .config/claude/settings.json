@@ -38,6 +38,7 @@
       "Read(*.env.test)"
     ]
   },
+  "model": "sonnet",
   "hooks": {
     "PreToolUse": [
       {
@@ -97,10 +98,13 @@
   "language": "Japanese",
   "effortLevel": "high",
   "plansDirectory": "./.claude/plans",
+  "tui": "fullscreen",
   "skipWorkflowUsageWarning": true,
   "theme": "dark-ansi",
   "terminalProgressBarEnabled": true,
   "teammateMode": "in-process",
   "voiceEnabled": true,
-  "notificationChannel": "auto"
+  "notificationChannel": "auto",
+  "agentPushNotifEnabled": true,
+  "inputNeededNotifEnabled": true
 }
