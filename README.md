@@ -97,39 +97,21 @@ prefix は `C-a` に変更済み。
 
 </details>
 
-## tmux セッション復元 (resurrect / continuum)
+## tmux セッション永続化について (あえて持たない)
 
-セッションは [tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect) + [tmux-continuum](https://github.com/tmux-plugins/tmux-continuum) で永続化している。
+tmux 側のセッション永続化 (resurrect / continuum) は**意図的に無効化している**。以前は
+tmux-resurrect + tmux-continuum で自動保存/自動復元していたが、tmux の内側で
+[herdr](https://herdr.dev) を動かす構成にしたため、レイアウト・pane の復元は
+herdr に一本化した。
 
-- continuum が 15 分ごとに自動保存 (`~/.local/share/tmux/resurrect/tmux_resurrect_*.txt`)。
-- `@continuum-restore 'on'` により tmux 起動時に最新保存 (`last`) を自動復元。
-- 手動操作: `prefix + C-s` で保存 / `prefix + C-r` で復元。
-- `@resurrect-delete-backup-after '3'` により 3 日より古い保存は save 時に自動削除 (新しい 5 件は常に保持)。デフォルトは 30 日。
+- **永続化の主は herdr**: 常駐サーバ + `~/.config/herdr/session.json` (workspace/tab/pane
+  ツリーのスナップショット) で再起動を跨いで復元される。設定不要で常時有効。
+- **tmux は popup ランチャーに徹する**: lazygit などを `display-popup` で開く役割のみ。
+  復元層を tmux と herdr で二重に持つと、起動時の復元競合や「空セッション復元」を招くため、
+  tmux 側の永続化は持たせない (nested multiplexer の永続化二重化を回避)。
 
-### 復元したら空だったとき (`last` が空保存で上書きされた場合)
-
-シャットダウン直前にウィンドウをほぼ閉じた状態で保存されると、`last` が「ペイン 1 枚」程度の空保存を指してしまい、復元しても何も戻らない。過去の保存ファイル自体は消えていないので、以下で最後のフル状態に戻せる。
-
-```bash
-cd ~/.local/share/tmux/resurrect/
-
-# 1. 各保存のペイン数を一覧し、フル状態の保存を探す (panes が多いものが作業状態)
-ls -t tmux_resurrect_*.txt | head -20 | while read f; do
-  printf "%s  panes=%-3s  %s\n" "$(stat -f '%Sm' -t '%Y-%m-%d %H:%M' "$f")" "$(grep -c '^pane' "$f")" "$f"
-done
-
-# 2. 復元前に continuum の自動保存を一時停止 (空状態での再上書きを防ぐ)
-tmux set -g @continuum-save-interval '0'
-
-# 3. last を最後のフル保存へ貼り替え (ファイル名は手順 1 で選ぶ)
-ln -sf tmux_resurrect_YYYYMMDDThhmmss.txt last
-```
-
-そのあと tmux 内で `prefix + C-r` で復元。戻ったら自動保存を元に戻す:
-
-```bash
-tmux set -gu @continuum-save-interval   # デフォルト(15分)に復帰
-```
+> 復元が欲しくなったら `herdr session list` / `herdr session attach <name>` を使う。
+> tmux 単体運用に戻したい場合のみ `tmux.conf` の resurrect/continuum を復活させる。
 
 ## Neovim キーバインド (カスタム)
 
