@@ -1,0 +1,56 @@
+{
+  "supabase": {
+    "type": "stdio",
+    "command": "npx",
+    "args": [
+      "-y",
+      "@supabase/mcp-server-supabase@latest"
+    ],
+    "env": {
+      "SUPABASE_ACCESS_TOKEN": "${SUPABASE_ACCESS_TOKEN}"
+    }
+  },
+  "context7": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@upstash/context7-mcp@latest"
+    ]
+  },
+  "container-use": {
+    "type": "stdio",
+    "command": "container-use",
+    "args": [
+      "stdio"
+    ],
+    "env": {}
+  },
+  "markdownify": {
+    "command": "node",
+    "args": [
+      "${HOME}/repo/github.com/zcaceres/markdownify-mcp/dist/index.js"
+    ],
+    "env": {
+      "UV_PATH": "${UV_PATH:-/opt/homebrew/bin/uv}"
+    }
+  },
+  "sequential-thinking": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@modelcontextprotocol/server-sequential-thinking"
+    ]
+  },
+  "deepwiki": {
+    "type": "http",
+    "url": "https://mcp.deepwiki.com/mcp"
+  },
+  "chrome-devtools": {
+    "type": "stdio",
+    "command": "npx",
+    "args": [
+      "chrome-devtools-mcp@latest"
+    ],
+    "env": {}
+  }
+}
