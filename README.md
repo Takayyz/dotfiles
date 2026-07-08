@@ -113,6 +113,26 @@ herdr に一本化した。
 > 復元が欲しくなったら `herdr session list` / `herdr session attach <name>` を使う。
 > tmux 単体運用に戻したい場合のみ `tmux.conf` の resurrect/continuum を復活させる。
 
+## herdr の agent status カスタムルール (`working` 検出パッチ)
+
+herdr は agent の状態 (`idle`/`working`/`blocked`/`unknown`) をプロセスではなく画面テキスト/OSC
+シーケンスのルールベース検出 (`herdr agent explain <target> --json` で確認可能) で判定している。
+標準の Claude 用ルールは `working` をターミナルタイトルの点字スピナー文字でしか検出できないが、
+現行の Claude Code はタイトルにスピナーを書かなくなったため (herdr issue
+[#671](https://github.com/ogulcancelik/herdr/issues/671))、標準ルールのままだと `working` 中でも
+`idle` と誤表示される。
+
+`.config/herdr/agent-detection/claude.toml` に、リモートマニフェスト全体をコピーした上で
+画面本体のスピナー/トークン数表示を見る `live_working_spinner` ルールを追加したオーバーライドを
+置いている。herdr はオーバーライドが存在するとリモートマニフェストを丸ごと置き換える (部分マージ
+しない) ため、今後 herdr 側でリモートの `claude.toml` が更新された場合はこのファイルも手動で追従
+させる必要がある。
+
+- 反映は `link.sh` 実行 → `herdr server reload-agent-manifests` (`reload-config` はテーマ設定用で
+  agent-detection には効かないので注意)。
+- 動作確認は `herdr agent explain <target> --json` の `matched_rule.id` が `live_working_spinner` に
+  なっているかで判定する。
+
 ## Neovim キーバインド (カスタム)
 
 Leader は `Space`。プラグイン管理は lazy.nvim。
