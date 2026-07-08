@@ -98,7 +98,7 @@
   "language": "Japanese",
   "effortLevel": "high",
   "plansDirectory": "./.claude/plans",
-  "tui": "fullscreen",
+  "tui": "default",
   "skipWorkflowUsageWarning": true,
   "theme": "dark-ansi",
   "terminalProgressBarEnabled": true,
