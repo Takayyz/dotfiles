@@ -72,7 +72,7 @@ prefix は `C-a` に変更済み。
 | `prefix + f`       | yazi (ファイルマネージャー)                                         |
 | `prefix + m`       | btop (システムモニター)                                             |
 | `prefix + d`       | Docker Compose status (Iceberg テーマで色付き表示、2秒ごと自動更新) |
-| `M-f p`            | ghq project switcher                                                |
+| `M-f p`            | ghq project switcher (選択後 herdr workspace で開く)                |
 
 > **herdr ネスト時の作業ディレクトリ解決**
 > `prefix + g` (lazygit) / `prefix + d` (docker) / `prefix + w` (worktree) は、tmux ペイン内で
