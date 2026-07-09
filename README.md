@@ -133,6 +133,19 @@ herdr は agent の状態 (`idle`/`working`/`blocked`/`unknown`) をプロセス
 - 動作確認は `herdr agent explain <target> --json` の `matched_rule.id` が `live_working_spinner` に
   なっているかで判定する。
 
+## デスクトップ通知は herdr に一本化
+
+agent が `blocked` (入力待ち) / `done` (完了) になった時のデスクトップ通知は、Claude Code の
+`Stop`/`Notification` フック (osascript) ではなく herdr 側のビルトイン機能に一本化している。
+
+- `.config/herdr/config.toml` の `[ui.toast]` で `delivery = "system"` / `delay_seconds = 0` を
+  設定。macOS では `terminal-notifier` があれば優先使用 (通知クリックでターミナルにフォーカス可能)、
+  無ければ `osascript` にフォールバックする。
+- Claude Code 固有のフックだと Claude Code しか通知が飛ばなかったが、herdr 側に寄せたことで
+  codex/copilot など herdr が管理する全 agent に同じ仕組みで通知が効く。
+- 反映は `herdr server reload-config`。動作確認は `herdr notification show <title>` を叩いて
+  `"shown":true` が返るか (`"reason":"disabled"` なら `[ui.toast].delivery` が `off` のまま)。
+
 ## Neovim キーバインド (カスタム)
 
 Leader は `Space`。プラグイン管理は lazy.nvim。
@@ -468,3 +481,35 @@ curl -s http://localhost:18000/api/v2/heartbeat
 - [setup.shまとめ](https://qiita.com/kai_kou/items/af5d0c81facc1317d836)
 - [環境構築系記事](https://qiita.com/kai_kou/items/3107e0a056c7a1b569cd)
 - [Gistについて](https://qiita.com/hkusu/items/18cbe582abb9d3172019)
+
+## TODO
+
+- [ ] review setup scripts
+- macos defaults setting
+  - [ ] command + space for change lang
+  - [ ] set key repeat rate fastest
+  - [ ] set delay until repeat shortest
+  - [ ] set mouse speed fastest
+  - control center
+    - [ ] Date setting
+      - [ ] turn off 24h clock
+      - [ ] show am/pm
+      - [ ] display the time with seconds
+      - [ ] show date to always
+    - [ ] show bluetooth in menu bar
+    - [ ] always show sound in menu bar
+    - [ ] don't show spotlight in menu bar
+  - [ ] keyboard shortcut
+    - [ ] turn off launchpad & dock
+    - [ ] turn off spotlight
+  - [ ] lang & region
+    - [ ] set calendar to gregorian
+  - [ ] trackpad
+    - [ ] tap to click
+    - [ ] secondary click: with two fingers
+
+- Raycast
+  - [ ] auto setup shell
+
+- after all settings, then open(open -a) below...
+  - [ ] raycast

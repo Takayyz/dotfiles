@@ -33,3 +33,10 @@ peach = "#e9b189"       # iceberg bright yellow, to differ from yellow above
 # Accent color for highlights, borders, active-row emphasis, and navigation UI.
 # This is the main lever for making the active space/agent stand out in the sidebar.
 accent = "#89b8c2"
+
+[ui.toast]
+# Desktop notifications when an agent goes blocked (needs input) or done.
+# Replaces the old Claude Code Stop/Notification hooks (osascript), which
+# only covered Claude Code; this covers every agent herdr manages.
+delivery = "system"
+delay_seconds = 0
