@@ -50,11 +50,12 @@ if [ ! -d "${HOME}/.local/share/posting" ] ; then
 fi
 ln -snfv "${SCRIPT_DIR}/posting/themes" "${HOME}/.local/share/posting"
 
-# herdr (dir also holds runtime logs/sockets/session.json, so only link config.toml/agent-detection)
+# herdr (dir also holds runtime logs/sockets/session.json, so only link config.toml/agent-detection/scripts)
 if [ ! -d "${DOTCONF_DIR}/herdr" ] ; then
   mkdir -p "${DOTCONF_DIR}/herdr"
 fi
 ln -snfv "${SCRIPT_DIR}/herdr/config.toml" "${DOTCONF_DIR}/herdr"
 ln -snfv "${SCRIPT_DIR}/herdr/agent-detection" "${DOTCONF_DIR}/herdr"
+ln -snfv "${SCRIPT_DIR}/herdr/scripts" "${DOTCONF_DIR}/herdr"
 
 echo "${GREEN}INFO: Done${ESC_END}"
