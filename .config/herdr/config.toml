@@ -1,3 +1,4 @@
+onboarding = false
 # herdr configuration
 # Symlinked from ~/.config/herdr/config.toml (see link.sh)
 #
@@ -40,3 +41,14 @@ accent = "#89b8c2"
 # only covered Claude Code; this covers every agent herdr manages.
 delivery = "system"
 delay_seconds = 0
+
+[keys]
+# goto (session navigator) moved off prefix+g to make room for the lazygit popup below.
+goto = "prefix+alt+g"
+
+[[keys.command]]
+key = "prefix+g"
+type = "popup"
+command = "lazygit"
+width = "90%"
+height = "90%"
