@@ -59,3 +59,10 @@ type = "popup"
 command = "${XDG_CONFIG_HOME:-$HOME/.config}/herdr/scripts/navi-clipboard.sh"
 width = "90%"
 height = "90%"
+
+[[keys.command]]
+key = "prefix+d"
+type = "popup"
+command = "${XDG_CONFIG_HOME:-$HOME/.config}/herdr/scripts/docker-compose-status.sh"
+width = "90%"
+height = "90%"
