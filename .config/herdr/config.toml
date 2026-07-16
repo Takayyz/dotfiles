@@ -43,6 +43,7 @@ delivery = "system"
 delay_seconds = 0
 
 [keys]
+prefix = "ctrl+a"
 # goto (session navigator) moved off prefix+g to make room for the lazygit popup below.
 goto = "prefix+alt+g"
 
