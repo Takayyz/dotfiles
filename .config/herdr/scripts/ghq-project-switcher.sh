@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
-# ghq-project-switcher.sh
-# fzf で ghq 管理のリポジトリを選択し、新しい tmux ウィンドウで開く
+# ghq-project-switcher.sh (herdr版)
+# fzf で ghq 管理のリポジトリを選択し、herdr の新しい workspace で開く
 #
 
 set -euo pipefail
@@ -13,5 +13,5 @@ selected=$(ghq list | fzf \
 
 if [ -n "$selected" ]; then
   target_dir="$(ghq root)/$selected"
-  tmux new-window -a -c "$target_dir"
+  herdr workspace create --cwd "$target_dir" --label "$(basename "$selected")" --focus
 fi

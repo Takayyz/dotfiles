@@ -61,6 +61,13 @@ width = "90%"
 height = "90%"
 
 [[keys.command]]
+key = "ctrl+p"
+type = "popup"
+command = "zsh -c 'source $ZDOTDIR/.zshrc && ${XDG_CONFIG_HOME:-$HOME/.config}/herdr/scripts/ghq-project-switcher.sh'"
+width = "90%"
+height = "90%"
+
+[[keys.command]]
 key = "prefix+d"
 type = "popup"
 command = "${XDG_CONFIG_HOME:-$HOME/.config}/herdr/scripts/docker-compose-status.sh"
