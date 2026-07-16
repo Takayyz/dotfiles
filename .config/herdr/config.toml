@@ -66,3 +66,10 @@ type = "popup"
 command = "${XDG_CONFIG_HOME:-$HOME/.config}/herdr/scripts/docker-compose-status.sh"
 width = "90%"
 height = "90%"
+
+[[keys.command]]
+key = "prefix+m"
+type = "popup"
+command = "btop"
+width = "90%"
+height = "90%"
