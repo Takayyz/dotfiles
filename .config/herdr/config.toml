@@ -47,7 +47,7 @@ delay_seconds = 0
 goto = "prefix+alt+g"
 
 [[keys.command]]
-key = "prefix+g"
+key = "ctrl+g"
 type = "popup"
 command = "lazygit"
 width = "90%"
