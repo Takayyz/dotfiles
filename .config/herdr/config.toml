@@ -46,6 +46,8 @@ delay_seconds = 0
 prefix = "ctrl+a"
 # goto (session navigator) moved off prefix+g to make room for the lazygit popup below.
 goto = "prefix+alt+g"
+# Moved off the default prefix+q to avoid accidental detach from a stray keypress.
+detach = "prefix+ctrl+q"
 
 [[keys.command]]
 key = "ctrl+g"
