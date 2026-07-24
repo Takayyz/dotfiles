@@ -38,6 +38,11 @@ kitty_graphics = true
 # This is the main lever for making the active space/agent stand out in the sidebar.
 accent = "#89b8c2"
 
+[ui.sidebar.spaces]
+# Blank line between separate space entries (does not affect the gap between
+# the workspace row and the branch row within a single entry).
+row_gap = 1
+
 [ui.toast]
 # Desktop notifications when an agent goes blocked (needs input) or done.
 # Replaces the old Claude Code Stop/Notification hooks (osascript), which
