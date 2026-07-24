@@ -30,6 +30,9 @@ mauve = "#a093c7"       # iceberg magenta/violet
 teal = "#89b8c2"        # iceberg has no separate teal; reuses cyan
 peach = "#e9b189"       # iceberg bright yellow, to differ from yellow above
 
+[experimental]
+kitty_graphics = true
+
 [ui]
 # Accent color for highlights, borders, active-row emphasis, and navigation UI.
 # This is the main lever for making the active space/agent stand out in the sidebar.
@@ -96,3 +99,11 @@ command = "btop"
 description = "Open btop in a popup window"
 width = "90%"
 height = "90%"
+
+[[keys.command]]
+key = "prefix+shift+v"
+type = "popup"
+command = "${XDG_CONFIG_HOME:-$HOME/.config}/herdr/scripts/vpn-connect.sh"
+description = "Select and connect to a VPN in a popup window"
+width = "50%"
+height = "50%"
