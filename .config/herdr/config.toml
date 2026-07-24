@@ -82,6 +82,14 @@ width = "90%"
 height = "90%"
 
 [[keys.command]]
+key = "prefix+f"
+type = "popup"
+command = "yazi"
+description = "Open file manager in a popup window"
+width = "90%"
+height = "90%"
+
+[[keys.command]]
 key = "prefix+m"
 type = "popup"
 command = "btop"
