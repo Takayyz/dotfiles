@@ -58,7 +58,7 @@ File path: `$ONEONONE_DIR/{person}/YYYY-MM-DD.md`
 Use `$VAULT_DIR/_templates/1on1-session-template.md` as base:
 - Replace `{{date}}` with today's date
 - Set `person` in frontmatter
-- If topics were included from Step 3, add them under `## Topics`
+- If topics were included from Step 3, add them under `## Topics` as unchecked checkbox items (`- [ ] topic`), one per topic. During the session, check off (`[x]`) topics that were actually discussed and nest conversation notes as sub-bullets under the topic line.
 
 ### Step 5: Clear Used Topics
 
