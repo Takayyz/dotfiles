@@ -89,7 +89,8 @@
     "ask": [
       "Bash(gh pr create *)",
       "Bash(gh pr edit *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(git -C * commit *)"
     ],
     "deny": [
       "Read(*.env*)",
