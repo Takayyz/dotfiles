@@ -1,5 +1,9 @@
 {
   "agentPushNotifEnabled": true,
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
   "effortLevel": "high",
   "enabledPlugins": {
     "claude-mem@thedotmack": true,
@@ -50,7 +54,6 @@
       }
     ]
   },
-  "includeCoAuthoredBy": false,
   "inputNeededNotifEnabled": true,
   "language": "Japanese",
   "model": "sonnet",
