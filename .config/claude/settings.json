@@ -79,7 +79,16 @@
       "mcp__plugin_slack_slack__slack_search_public",
       "mcp__plugin_slack_slack__slack_search_public_and_private",
       "mcp__plugin_slack_slack__slack_search_channels",
-      "mcp__plugin_slack_slack__slack_search_users"
+      "mcp__plugin_slack_slack__slack_search_users",
+      "Bash(gh pr view *)",
+      "Bash(gh pr list *)",
+      "Bash(gh pr diff *)",
+      "Bash(gh pr status *)",
+      "Bash(gh pr checks *)"
+    ],
+    "ask": [
+      "Bash(gh pr create *)",
+      "Bash(gh pr edit *)"
     ],
     "deny": [
       "Read(*.env*)",
