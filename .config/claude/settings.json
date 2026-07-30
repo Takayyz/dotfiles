@@ -1,64 +1,14 @@
 {
-  "agentPushNotifEnabled": true,
-  "attribution": {
-    "commit": "",
-    "pr": ""
-  },
-  "effortLevel": "high",
-  "enabledPlugins": {
-    "claude-mem@thedotmack": true,
-    "document-skills@anthropic-agent-skills": true,
-    "example-skills@anthropic-agent-skills": true,
-    "figma@claude-plugins-official": true,
-    "slack@claude-plugins-official": true
-  },
   "env": {
     "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1",
     "CLAUDE_CODE_DISABLE_TERMINAL_TITLE": "1",
     "CLAUDE_CODE_MONITOR_GHOSTTY_ASKED": "1",
     "DISABLE_ERROR_REPORTING": "1"
   },
-  "hooks": {
-    "PreToolUse": [
-      {
-        "hooks": [
-          {
-            "command": "$HOME/.claude/hooks/hook_validate_bash/check.sh",
-            "type": "command"
-          }
-        ],
-        "matcher": "Bash"
-      }
-    ],
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "command": "bash '/Users/hino/.claude/hooks/herdr-agent-state.sh' session",
-            "timeout": 10,
-            "type": "command"
-          }
-        ],
-        "matcher": "*"
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "command": "$HOME/.claude/hooks/hook_stop_words/check.sh",
-            "type": "command"
-          }
-        ],
-        "matcher": ""
-      }
-    ]
+  "attribution": {
+    "commit": "",
+    "pr": ""
   },
-  "inputNeededNotifEnabled": true,
-  "language": "Japanese",
-  "model": "sonnet",
-  "notificationChannel": "auto",
-  "outputStyle": "Explanatory",
   "permissions": {
     "allow": [
       "Read",
@@ -100,17 +50,71 @@
       "Read(*.env.production)",
       "Read(*.env.staging)",
       "Read(*.env.test)"
+    ],
+    "defaultMode": "auto"
+  },
+  "model": "opus[1m]",
+  "skillOverrides": {
+    "find-skills": "off"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/hook_validate_bash/check.sh"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/Users/hino/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/hook_stop_words/check.sh"
+          }
+        ]
+      }
     ]
   },
-  "plansDirectory": "./.claude/plans",
-  "skipWorkflowUsageWarning": true,
   "statusLine": {
-    "command": "sh $HOME/.claude/statusline.sh",
-    "type": "command"
+    "type": "command",
+    "command": "sh $HOME/.claude/statusline.sh"
   },
-  "teammateMode": "in-process",
-  "terminalProgressBarEnabled": true,
-  "theme": "dark-ansi",
+  "enabledPlugins": {
+    "claude-mem@thedotmack": true,
+    "document-skills@anthropic-agent-skills": false,
+    "example-skills@anthropic-agent-skills": false,
+    "figma@claude-plugins-official": false,
+    "slack@claude-plugins-official": true
+  },
+  "outputStyle": "Explanatory",
+  "language": "Japanese",
+  "effortLevel": "high",
+  "plansDirectory": "./.claude/plans",
   "tui": "default",
-  "voiceEnabled": true
+  "skipWorkflowUsageWarning": true,
+  "theme": "dark-ansi",
+  "terminalProgressBarEnabled": true,
+  "teammateMode": "in-process",
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true,
+  "voiceEnabled": true,
+  "notificationChannel": "auto"
 }
