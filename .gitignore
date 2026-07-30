@@ -1,1 +1,7 @@
 .DS_Store
+
+# `gh skill` writes this on every install, regardless of --dir/--scope, because
+# it keeps a single user-scope lock (~/.agents -> here). It records install
+# history only -- `gh skill update` reads the metadata in each SKILL.md
+# frontmatter instead, so this file is machine-local and safe to drop.
+.config/.agents/.skill-lock.json
