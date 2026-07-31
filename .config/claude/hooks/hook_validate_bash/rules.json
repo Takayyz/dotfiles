@@ -13,15 +13,21 @@
   },
   {
     "name": "git_push",
-    "pattern": "\\bgit\\s+push\\b",
+    "pattern": "\\bgit\\s+(-C\\s+[^ ]+\\s+)?push\\b",
     "decision": "deny",
     "reason": "Do not execute 'git push'. Ask the user to execute it."
   },
   {
     "name": "git_add_all",
-    "pattern": "\\bgit\\s+add\\s+(-A|--all|\\.|\\*)",
+    "pattern": "\\bgit\\s+(-C\\s+[^ ]+\\s+)?add\\s+(--\\s+)?(-A|--all|\\*|\\.($|\\s))",
     "decision": "deny",
     "reason": "Do not git-add all files. Specify the file name(s) to add."
+  },
+  {
+    "name": "git_add_force",
+    "pattern": "\\bgit\\s+(-C\\s+[^ ]+\\s+)?add\\b.*\\s(-f|--force)\\b",
+    "decision": "ask",
+    "reason": "git add -f overrides .gitignore. Confirm this file is meant to be tracked."
   },
   {
     "name": "dangerous_chmod",
