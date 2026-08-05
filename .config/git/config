@@ -4,6 +4,13 @@
 
 [pull]
 	rebase = false
+[merge]
+	# Write the BASE (common ancestor) section into conflict markers.
+	# diffview.nvim parses `|||||||` straight from the buffer, so without this
+	# there is no base to look at — and its choose-BASE mappings do nothing.
+	# zdiff3 (git >= 2.35) also hoists lines common to both sides out of the
+	# conflict region, keeping the marker block smaller than plain diff3.
+	conflictStyle = zdiff3
 [core]
 	quotepath = false
 	editor = nvim

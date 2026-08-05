@@ -246,6 +246,62 @@ Leader は `Space`。プラグイン管理は lazy.nvim。
 | `<Leader>uc` | Toggle Conceal               |
 | `<Leader>ub` | Toggle Dark/Light Background |
 
+### Merge Conflict (diffview.nvim)
+
+コンフリクト解消**専用**。差分閲覧・履歴・その他の git 操作は lazygit を使うので、
+diffview 側は merge tool だけを配線している。
+
+| キー         | 説明                                     |
+| ------------ | ---------------------------------------- |
+| `<Leader>gv` | Diffview トグル (競合時にこれ一つで開く) |
+
+マージ / リベースが競合している状態で開くと、競合ファイルが専用セクションに並ぶ。
+レイアウトは `diff1_plain` — 差分ペインを一切出さず、**作業ツリーのファイル 1 枚を
+コンフリクトマーカー付きで開く**だけ。ours / base / theirs は全部マーカーの中にある。
+
+<details>
+<summary>コンフリクト解消のキー (プラグインのデフォルト + 追加分)</summary>
+
+| キー                                       | 説明                                |
+| ------------------------------------------ | ----------------------------------- |
+| `]x` / `[x`                                | 次 / 前のコンフリクトへ             |
+| `<Leader>mo` / `<Leader>mt` / `<Leader>mb` | ours / theirs / base を採用         |
+| `<Leader>ma` / `dx`                        | 全部採用 / 競合領域ごと削除         |
+| `<Leader>mO` `mT` `mB` `mA` / `dX`         | 同じ操作をファイル全体に適用        |
+| `<Tab>` / `<S-Tab>`                        | 次 / 前の競合ファイルへ             |
+| `<Leader>e` / `<Leader>b`                  | ファイルパネルへフォーカス / トグル |
+| `g?`                                       | ヘルプパネル                        |
+| `q` (パネル上のみ)                         | Diffview を閉じる (追加分)          |
+
+</details>
+
+競合領域の背景色は自前で当てている。`diff1_plain` は diff モードを使わないので、プラグイン側
+は領域に何も塗らないため。
+
+| 領域              | 本文の背景        | マーカー行の背景 + 文字色 |
+| ----------------- | ----------------- | ------------------------- |
+| OURS (HEAD 側)    | `#1c2724` 緑寄り  | `#27372b` + iceberg green |
+| BASE (共通祖先)   | `#1e202b` 中間色  | `#2a2d3a` + gray          |
+| THEIRS (取り込む) | `#1e2433` 青寄り  | `#28324a` + blue          |
+
+- **`merge.conflictStyle = zdiff3` が前提** (`.config/git/config`)。diffview はマーカーを
+  バッファのテキストから直接パースするので、これが無いと `|||||||` の base セクション自体が
+  存在せず、base が見えないうえ `<Leader>cb` も無反応になる
+- `q` は競合ファイル側には割り当てていない (マクロ記録を潰さないため)
+- sunglasses.nvim の減光でファイルパネルにフォーカスした瞬間に競合ファイルが暗くなるので、
+  Diffview のタブに滞在している間だけ hooks (`view_enter` / `view_leave`) で自動 OFF にする
+- コンフリクト採用キーは upstream のデフォルト (`<Leader>c` 系) から `<Leader>m` (merge) 系へ
+  移設済み。グローバルの `<Leader>c` (コメントトグル) が完全一致してしまい、競合バッファでは
+  `timeoutlen` 分の待ちが入り、**ファイルパネル上では小文字版が存在しないためコメントが走る**
+  という二重の事故になっていたため
+- 背景は `bg` のみ指定した extmark の `line_hl_group` なので、`CursorLine` と同じように
+  treesitter の文字色を潰さず背景だけが乗る
+- 再描画は `nvim_buf_attach` の `on_lines`。`conflict_choose` は API でバッファを書き換えるので
+  `TextChanged` では捕まえられない
+- デフォルト側は `rhs` に `false` を渡して無効化している。この上書きは
+  `mode .. " " .. lhs` の生文字列で照合されるので、`<leader>` の綴りを大文字にすると
+  無効化されず二重登録になる (`.config/nvim/lua/plugins/diffview.lua` のコメント参照)
+
 ### Treesitter (nvim-treesitter)
 
 コード編集全般の AST ベースシンタックスハイライト・インデントを提供。noice.nvim のコマンドラインハイライトにも利用される。
@@ -253,6 +309,9 @@ Leader は `Space`。プラグイン管理は lazy.nvim。
 - `ensure_installed`: noice.nvim 推奨パーサー + 作業言語 (TypeScript, PHP 等)
 - `auto_install`: 未インストールの言語を開くと自動でパーサーをインストール
 - 100KB 以上のファイルではハイライトを自動で無効化 (パフォーマンス保護)
+- パーサー未インストール警告は nvim-treesitter がサポートする言語のみに限定
+  (`get_lang()` は未知の filetype をそのまま返すため、プラグインのパネル
+  (`DiffviewFiles` 等) で存在しない言語名の警告が出るのを防ぐ)
 
 #### Textobjects (nvim-treesitter-textobjects)
 

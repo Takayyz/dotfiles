@@ -50,8 +50,14 @@ return {
           if pcall(vim.treesitter.start) then
             vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
           else
-            -- suggest :TSInstall when a known parser is missing
+            -- suggest :TSInstall when a known parser is missing.
+            -- get_lang() echoes back unknown filetypes, so plugin buffers
+            -- (DiffviewFiles etc.) would otherwise warn about a parser that
+            -- doesn't exist — filter against the supported parser list.
             local lang = vim.treesitter.language.get_lang(vim.bo.filetype)
+            if lang and not vim.tbl_contains(require("nvim-treesitter.config").get_available(), lang) then
+              return
+            end
             if lang and not notified_langs[lang] then
               local has_parser = pcall(vim.treesitter.language.inspect, lang)
               if not has_parser then
