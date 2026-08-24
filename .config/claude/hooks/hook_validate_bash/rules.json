@@ -18,6 +18,12 @@
     "reason": "Do not execute 'git push'. Ask the user to execute it."
   },
   {
+    "name": "git_commit",
+    "pattern": "\\bgit\\s+(-C\\s+[^ ]+\\s+)?commit\\b",
+    "decision": "ask",
+    "reason": "Confirm the commit message and staged files before committing."
+  },
+  {
     "name": "git_add_all",
     "pattern": "\\bgit\\s+(-C\\s+[^ ]+\\s+)?add\\s+(--\\s+)?(-A|--all|\\*|\\.($|\\s))",
     "decision": "deny",
