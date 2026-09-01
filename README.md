@@ -502,6 +502,114 @@ curl -s http://localhost:18000/api/v2/heartbeat
 
 > **注意:** launchd plist を配置せずに使うと、PC 再起動後に ChromaDB が停止し、claude-mem のメモリ検索が機能しなくなります（degraded mode）。
 
+## archify skill
+
+[tt-a1i/archify](https://github.com/tt-a1i/archify) — アーキテクチャ / ワークフロー / シーケンス /
+データフロー / ライフサイクル図を、単一ファイルの対話的 HTML として生成する agent skill。
+`.config/.agents/skills/archify/` に実体をコミットして管理している
+(`~/.claude/skills` はこのディレクトリへの symlink なので、置いた時点で git 管理下に入る)。
+
+### 導入 (`gh skill install`)
+
+gh-stack と同じく `gh skill install` (gh 2.95.0 時点で preview) を使う。upstream 推奨の
+`npx skills add` ではなく、こちらを使う理由:
+
+- `SKILL.md` の frontmatter に provenance (`github-repo` / `github-pinned` / `github-ref` /
+  `github-tree-sha` / `github-path`) が追記され、**どのリポジトリのどのタグ由来か**が
+  ファイル自体に残る
+- `gh skill list` の 4 列目に取得元が表示され、自作 skill と区別できる
+- `gh skill update` で更新できる
+
+```sh
+gh skill install tt-a1i/archify archify --agent claude-code --scope user --pin v2.16.0
+```
+
+`--pin` を付けないと最新を取りに行くので、バージョンを固定したい場合は必ず指定する。
+
+### 導入後に削るもの
+
+`gh skill install` は git tree をそのまま取得するため 7.3MB / 190 ファイルになる。upstream が
+**リリース資産の `archify.zip` から除外している開発用ファイル**と、描画済みサンプルを削って
+2.3MB / 71 ファイルにしている。
+
+```sh
+cd .config/.agents/skills/archify
+rm -rf test                       # 111 ファイル。公式 zip も除外している
+rm -f package-lock.json
+rm -f scripts/generate-brand-marks.mjs scripts/generate-validators.mjs  # 事前生成済みファイルの生成ツール
+rm -f examples/*.html             # 描画済みサンプル 3.5MB (下記)
+```
+
+`examples/*.html` (5 個 / 3.5MB) を削る根拠:
+
+- `SKILL.md` からも `bin/` `renderers/` `delta/` のコードからも**一切参照されない**
+  (唯一名前が出る `scripts/render-examples.mjs` は、これらを**生成する側**の出力先指定)
+- 隣の JSON から `deliver` で **sha256 まで一致するものを再生成できる**
+
+図の見た目を確認したいだけなら `node bin/archify.mjs demo <dir>` が `archify-demo.html` を
+その場で生成する。
+
+> **`assets/template.html` (664KB) と混同しないこと。** こちらは `renderers/shared/cli.mjs` が
+> 読み込むレンダリングの土台テンプレートで、削除すると全く動かなくなる。
+
+`examples/*.json` (14 個) は `SKILL.md` が「スキーマと JSON example を 1 つずつ読め」と
+明示的に指示しているので必須。
+
+> **更新時の注意:** `gh skill update` は削ったファイルを復活させるので、更新後に上記の
+> `rm` を再実行する。
+
+### 明示実行のみに限定 (`skillOverrides`)
+
+archify は生成コストが高い (JSON を書いて 700KB 前後の HTML を出力する) ので、会話中の軽い説明で
+勝手に起動しないよう `.config/claude/settings.json` で明示実行のみに制限している。
+
+```json
+"skillOverrides": {
+  "archify": "user-invocable-only"
+}
+```
+
+`skillOverrides` の値は 4 種類:
+
+| 値                    | 挙動                                                  |
+| --------------------- | ----------------------------------------------------- |
+| `on` (省略時)         | description 込みでモデルに提示され、自動起動する       |
+| `name-only`           | 名前だけ提示し description を隠す                     |
+| `user-invocable-only` | モデルからは隠すが `/archify` は使える                |
+| `off`                 | 両方から隠す (スラッシュコマンドも補完に出なくなる)    |
+
+> **`SKILL.md` の `description` を書き換えて抑制しないこと。** `SKILL.md` は provenance 付きの
+> upstream 追跡ファイルなので `gh skill update` で改変が消える。またこのフィールドは照合用で、
+> トリガー語が並んだまま「明示実行時のみ」と書いても打ち消せる保証がない。この種の制御は
+> 自分の管理物である `settings.json` に置く。
+
+軽い図解 (ASCII / Mermaid) の規約は `diagram-conventions` skill 側の担当なので、AGENTS.md には
+archify のことは書いていない。
+
+### 依存とオフライン動作
+
+`package.json` の `ajv` 等は devDependency で、実行時に必要なバリデータは
+`renderers/shared/generated-validators.mjs` に事前生成済み。**`npm install` 不要**で
+`node bin/archify.mjs` がそのまま動く (要 Node.js >= 18)。
+
+### 更新チェックの無効化
+
+archify は更新の**お知らせ表示のためだけ**に固定 URL へ GET する (ダウンロード・自動更新はしない。
+成功時は約 72 時間間隔)。これを止めるため `.config/claude/settings.json` の `env` に設定している。
+
+```json
+"env": {
+  "ARCHIFY_UPDATE_CHECK_DISABLED": "1"
+}
+```
+
+**shell の設定 (`.zshenv` 等) には置かない。** archify が動くのは Claude Code の Bash ツール経由
+(`node bin/archify.mjs`) だけで、settings.json の `env` はその子プロセスまで届く (既存の
+`CLAUDE_CODE_*` 等と同じ)。shell 側に置くと archify と無関係な全セッションに変数が撒かれ、
+スコープが実態より広くなる。
+
+これでお知らせが出なくなるので、更新は手動で `gh skill update` を叩く運用になる。
+
 ## 参考記事
 
 - [defaultsコマンド](http://neos21.hatenablog.com/entry/2019/01/10/080000)

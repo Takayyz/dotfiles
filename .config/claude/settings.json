@@ -1,5 +1,6 @@
 {
   "env": {
+    "ARCHIFY_UPDATE_CHECK_DISABLED": "1",
     "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1",
     "CLAUDE_CODE_DISABLE_TERMINAL_TITLE": "1",
     "CLAUDE_CODE_MONITOR_GHOSTTY_ASKED": "1",
@@ -55,7 +56,8 @@
   },
   "model": "opus[1m]",
   "skillOverrides": {
-    "find-skills": "off"
+    "find-skills": "off",
+    "archify": "user-invocable-only"
   },
   "hooks": {
     "PreToolUse": [
