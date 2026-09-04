@@ -23,6 +23,8 @@ return {
         "javascript",
         "php",
         "blade",
+        "rust",
+        "python",
         -- config / data formats
         "json",
         "toml",

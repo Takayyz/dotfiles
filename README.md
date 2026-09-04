@@ -306,8 +306,11 @@ diffview 側は merge tool だけを配線している。
 
 コード編集全般の AST ベースシンタックスハイライト・インデントを提供。noice.nvim のコマンドラインハイライトにも利用される。
 
-- `ensure_installed`: noice.nvim 推奨パーサー + 作業言語 (TypeScript, PHP 等)
-- `auto_install`: 未インストールの言語を開くと自動でパーサーをインストール
+- `require("nvim-treesitter").install()`: noice.nvim 推奨パーサー + 作業言語
+  (TypeScript / TSX / JavaScript, PHP / Blade, Rust, Python) + 設定ファイル系
+  (JSON, TOML, YAML, HTML, CSS) を起動時にインストール
+  - `main` ブランチには `auto_install` が無いため、新しい言語を扱うときは
+    このリストに追記する (即時反映は `:TSInstall <lang>`)
 - 100KB 以上のファイルではハイライトを自動で無効化 (パフォーマンス保護)
 - パーサー未インストール警告は nvim-treesitter がサポートする言語のみに限定
   (`get_lang()` は未知の filetype をそのまま返すため、プラグインのパネル
