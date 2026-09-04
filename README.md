@@ -278,11 +278,11 @@ diffview 側は merge tool だけを配線している。
 競合領域の背景色は自前で当てている。`diff1_plain` は diff モードを使わないので、プラグイン側
 は領域に何も塗らないため。
 
-| 領域              | 本文の背景        | マーカー行の背景 + 文字色 |
-| ----------------- | ----------------- | ------------------------- |
-| OURS (HEAD 側)    | `#1c2724` 緑寄り  | `#27372b` + iceberg green |
-| BASE (共通祖先)   | `#1e202b` 中間色  | `#2a2d3a` + gray          |
-| THEIRS (取り込む) | `#1e2433` 青寄り  | `#28324a` + blue          |
+| 領域              | 本文の背景       | マーカー行の背景 + 文字色 |
+| ----------------- | ---------------- | ------------------------- |
+| OURS (HEAD 側)    | `#1c2724` 緑寄り | `#27372b` + iceberg green |
+| BASE (共通祖先)   | `#1e202b` 中間色 | `#2a2d3a` + gray          |
+| THEIRS (取り込む) | `#1e2433` 青寄り | `#28324a` + blue          |
 
 - **`merge.conflictStyle = zdiff3` が前提** (`.config/git/config`)。diffview はマーカーを
   バッファのテキストから直接パースするので、これが無いと `|||||||` の base セクション自体が
@@ -574,12 +574,12 @@ archify は生成コストが高い (JSON を書いて 700KB 前後の HTML を�
 
 `skillOverrides` の値は 4 種類:
 
-| 値                    | 挙動                                                  |
-| --------------------- | ----------------------------------------------------- |
-| `on` (省略時)         | description 込みでモデルに提示され、自動起動する       |
-| `name-only`           | 名前だけ提示し description を隠す                     |
-| `user-invocable-only` | モデルからは隠すが `/archify` は使える                |
-| `off`                 | 両方から隠す (スラッシュコマンドも補完に出なくなる)    |
+| 値                    | 挙動                                                |
+| --------------------- | --------------------------------------------------- |
+| `on` (省略時)         | description 込みでモデルに提示され、自動起動する    |
+| `name-only`           | 名前だけ提示し description を隠す                   |
+| `user-invocable-only` | モデルからは隠すが `/archify` は使える              |
+| `off`                 | 両方から隠す (スラッシュコマンドも補完に出なくなる) |
 
 > **`SKILL.md` の `description` を書き換えて抑制しないこと。** `SKILL.md` は provenance 付きの
 > upstream 追跡ファイルなので `gh skill update` で改変が消える。またこのフィールドは照合用で、
@@ -612,6 +612,25 @@ archify は更新の**お知らせ表示のためだけ**に固定 URL へ GET �
 スコープが実態より広くなる。
 
 これでお知らせが出なくなるので、更新は手動で `gh skill update` を叩く運用になる。
+
+## leaf (Markdown ビューア)
+
+[leaf](https://leaf.rivolink.mg/) — ターミナル用の Markdown プレビューア。Homebrew の formula 名は
+**`leaf-markdown-viewer`**。`brew install leaf` は別物 (vrongmeal/leaf、upstream 停止済みで 2027-08-23 に
+disable 予定) なので間違えないこと。両者は同じ `leaf` バイナリを吐くので conflict する。
+
+`~/.config/leaf` はこのリポジトリの `.config/leaf` へのディレクトリ symlink なので、
+テーマを置いた時点で反映される。
+
+### Iceberg テーマ (`.config/leaf/themes/iceberg.toml`)
+
+[cocopon/iceberg.vim](https://cocopon.github.io/iceberg.vim/) 準拠のカスタムテーマ。配色は
+`.config/nvim/lua/config/palette.lua` (single source of truth) に揃えている。
+
+```toml
+# config.toml — 相対パスは config.toml のあるディレクトリ基準で解決される
+theme = "themes/iceberg.toml"
+```
 
 ## 参考記事
 

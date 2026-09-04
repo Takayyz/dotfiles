@@ -1,0 +1,133 @@
+# Iceberg theme for leaf
+# Based on cocopon/iceberg.vim (https://cocopon.github.io/iceberg.vim/)
+#
+# Palette
+#   bg        #161821   bg_dark   #0f1117   bg_alt    #1e2132   bg_sel  #272c42
+#   border    #3e445e   nontext   #3d425b   linenr    #444b71
+#   comment   #6b7089   gray      #818596   fg        #c6c8d1   fg_br   #d2d4de
+#   blue      #84a0c6   cyan      #89b8c2   green     #b4be82
+#   purple    #a093c7   orange    #e2a478   red       #e27878
+#   blue_br   #91acd1   cyan_br   #95c4ce   green_br  #c0ca8e
+#   purple_br #ada0d3   orange_br #e9b189   red_br    #e98989
+
+# Inherit from the closest built-in dark theme; every key below is overridden.
+base = "ocean"
+
+# Syntax highlighting inside fenced code blocks.
+# Available: base16-ocean.dark | base16-ocean.light | InspiredGitHub | Solarized (dark)
+syntax = "base16-ocean.dark"
+
+[ui]
+# --- Panels -------------------------------------------------------------
+toc_bg          = "#0f1117"   # sidebar, one step darker than content
+toc_border      = "#3e445e"
+content_bg      = "#161821"   # Normal bg
+scrollbar_hover = "#84a0c6"
+
+# --- Status bar ---------------------------------------------------------
+# Subdued chips (fg carries the meaning) except brand/reloaded, which invert.
+status_bg           = "#0f1117"
+status_separator    = "#6b7089"
+status_brand_fg     = "#161821"
+status_brand_bg     = "#84a0c6"
+status_filename_fg  = "#c6c8d1"
+status_filename_bg  = "#1e2132"
+status_watch_fg     = "#b4be82"
+status_watch_bg     = "#1e2132"
+status_reloaded_fg  = "#161821"
+status_reloaded_bg  = "#b4be82"
+status_search_fg    = "#e2a478"
+status_search_bg    = "#1e2132"
+status_success_fg   = "#b4be82"
+status_success_bg   = "#1e2132"
+status_warning_fg   = "#e2a478"
+status_error_fg     = "#e27878"
+status_error_bg     = "#3e2b32"   # red blended into bg, only chip with a tinted bg
+status_shortcut_fg  = "#6b7089"
+status_percent_fg   = "#84a0c6"
+
+# --- Table of contents --------------------------------------------------
+# 4-level hierarchy: fg_br > fg > gray > linenr
+toc_hover_fg                = "#d2d4de"
+toc_header_fg               = "#6b7089"
+toc_active_bg               = "#1e2132"
+toc_inactive_bg             = "#0f1117"
+toc_accent                  = "#89b8c2"
+toc_index_inactive          = "#444b71"
+toc_primary_active          = "#d2d4de"
+toc_primary_inactive        = "#818596"
+toc_secondary_inactive      = "#444b71"
+toc_secondary_text_active   = "#c6c8d1"
+toc_secondary_text_inactive = "#6b7089"
+
+[markdown]
+# --- Search -------------------------------------------------------------
+# leaf has no search_match_fg / search_highlight_fg key: searching only swaps
+# the background and the text keeps its own colour (syntax colour, heading
+# colour, ...). Both values must therefore stay dark enough to read any
+# foreground on top of them.
+search_highlight_bg = "#272c42"   # all matches (Visual)
+search_match_bg     = "#5d493f"   # current match, orange blended 35% into bg
+
+# --- Structure ----------------------------------------------------------
+blockquote_marker = "#6b7089"
+blockquote_text   = "#818596"
+list_level_1      = "#84a0c6"
+list_level_2      = "#89b8c2"
+list_level_3      = "#a093c7"
+ordered_list      = "#e2a478"
+rule              = "#3e445e"
+text              = "#c6c8d1"
+strong_text       = "#d2d4de"
+
+# --- Headings -----------------------------------------------------------
+heading_1         = "#91acd1"
+heading_2         = "#89b8c2"
+heading_3         = "#a093c7"
+heading_4         = "#b4be82"
+heading_other     = "#e2a478"
+heading_underline = "#3e445e"
+
+# --- Code ---------------------------------------------------------------
+code_gutter     = "#444b71"   # LineNr
+code_frame      = "#3e445e"
+code_label      = "#6b7089"
+inline_code_fg  = "#e2a478"
+inline_code_bg  = "#1e2132"
+
+# --- Tables -------------------------------------------------------------
+table_border    = "#3e445e"
+table_separator = "#3d425b"
+table_header    = "#84a0c6"
+table_cell      = "#c6c8d1"
+
+# --- Links & footnotes --------------------------------------------------
+link_icon     = "#89b8c2"
+link_text     = "#84a0c6"
+link_hover    = "#91acd1"
+footnote_ref  = "#89b8c2"
+footnote_text = "#818596"
+
+# --- LaTeX --------------------------------------------------------------
+latex_inline_fg = "#a093c7"
+latex_inline_bg = "#1e2132"
+latex_block_fg  = "#a093c7"
+
+# --- Mermaid ------------------------------------------------------------
+mermaid_keyword  = "#a093c7"
+mermaid_arrow    = "#89b8c2"
+mermaid_label    = "#b4be82"
+mermaid_block_fg = "#c6c8d1"
+
+# --- Marks & tasks ------------------------------------------------------
+mark_fg        = "#d2d4de"   # ==highlight==, iceberg's Pmenu/MatchParen bg
+mark_bg        = "#3e445e"
+task_checked   = "#b4be82"
+task_unchecked = "#6b7089"
+
+# --- Alerts (GitHub callouts) -------------------------------------------
+alert_note      = "#84a0c6"
+alert_tip       = "#b4be82"
+alert_important = "#a093c7"
+alert_warning   = "#e2a478"
+alert_caution   = "#e27878"
