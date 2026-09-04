@@ -5,3 +5,6 @@
 # history only -- `gh skill update` reads the metadata in each SKILL.md
 # frontmatter instead, so this file is machine-local and safe to drop.
 .config/.agents/.skill-lock.json
+
+# Personal, machine-local task list.
+/TODO.md
