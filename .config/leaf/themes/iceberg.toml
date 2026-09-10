@@ -21,7 +21,10 @@ syntax = "base16-ocean.dark"
 # --- Panels -------------------------------------------------------------
 toc_bg          = "#0f1117"   # sidebar, one step darker than content
 toc_border      = "#3e445e"
-content_bg      = "#161821"   # Normal bg
+# "reset" emits SGR 49 instead of painting a background, so the body inherits
+# the terminal's own background -- i.e. ghostty's background-opacity applies.
+# Iceberg's Normal bg is #161821, which is what ghostty is already set to.
+content_bg      = "reset"
 scrollbar_hover = "#84a0c6"
 
 # --- Status bar ---------------------------------------------------------
