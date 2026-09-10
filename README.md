@@ -613,6 +613,31 @@ archify は更新の**お知らせ表示のためだけ**に固定 URL へ GET �
 
 これでお知らせが出なくなるので、更新は手動で `gh skill update` を叩く運用になる。
 
+## schedule skill (gws / MCP フォールバック)
+
+`.config/.agents/skills/schedule/` の自作 skill。Google カレンダーの予定を取得して整形表示する。
+
+取得経路は 2 つあり、`fetch-schedule.sh` がどちらを使うか判定する:
+
+1. **`gws` CLI** — 優先。スクリプト自身が予定まで取得する
+2. **Google カレンダー MCP コネクタ** — フォールバック。`gws` が未導入 or 未認証のとき
+
+**現状 `gws` は未インストール**なので、実際に走るのは常に 2 の経路。
+
+シェルスクリプトから MCP ツールは呼べないため、フォールバック時にスクリプトができるのは
+**日付レンジの解決まで**で、実際の取得はモデル側が `list_events` を叩いて行う。分岐の指示は
+`SKILL.md` に書いてある。出力 JSON の `source` キー (`"gws"` / `"mcp"`) が判別子。
+
+```bash
+bash ~/.claude/skills/schedule/fetch-schedule.sh --week
+# => {"source":"mcp", "startTime":"2026-09-07T00:00:00+09:00", "endTime":"2026-09-14T00:00:00+09:00", ...}
+```
+
+レンジ計算をスクリプト側に寄せてあるのは、**両経路で必ず同じ期間になるようにする**ため。
+モデルに日付計算をさせると週の起点 (月曜固定) や `--days=N` の境界がブレる。
+
+フォールバックは異常系ではないので **exit 0** で返す。非 0 は引数不正か環境不備のときだけ。
+
 ## leaf (Markdown ビューア)
 
 [leaf](https://leaf.rivolink.mg/) — ターミナル用の Markdown プレビューア。Homebrew の formula 名は
