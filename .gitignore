@@ -6,5 +6,9 @@
 # frontmatter instead, so this file is machine-local and safe to drop.
 .config/.agents/.skill-lock.json
 
+# `terminal-browser setup` writes this symlink here (~/.agents -> .config/.agents).
+# It points at a versioned Caskroom path, so it is machine- and version-local.
+.config/.agents/skills/terminal-browser
+
 # Personal, machine-local task list.
 /TODO.md

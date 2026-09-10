@@ -28,6 +28,9 @@ brew link --overwrite awscli
 mkdir -p ~/.docker/cli-plugins
 ln -sfn /opt/homebrew/opt/docker-compose/bin/docker-compose ~/.docker/cli-plugins/docker-compose
 
+# Re-link terminal-browser agent skills; the link targets a versioned path and breaks on upgrade
+terminal-browser setup
+
 brew services start php@8.2
 
 sudo sh -c "echo '/opt/homebrew/bin/zsh' >> /etc/shells"
