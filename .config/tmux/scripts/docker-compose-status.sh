@@ -136,11 +136,11 @@ ${DIM}enter${RESET}:logs  ${DIM}ctrl-r${RESET}:restart  ${DIM}ctrl-s${RESET}:sto
   --ansi \
   --header-lines=1 \
   --header "$header" \
-  --preview "\"$SCRIPT\" --preview {1}" \
+  --preview "\"$SCRIPT\" --preview {2}" \
   --preview-window "down:40%:wrap" \
-  --bind "ctrl-space:reload(\"$SCRIPT\" --list | tail -n +2)" \
-  --bind "ctrl-r:execute-silent(\"$SCRIPT\" --action restart {1})+reload(\"$SCRIPT\" --list | tail -n +2)" \
-  --bind "ctrl-s:execute-silent(\"$SCRIPT\" --action stop {1})+reload(\"$SCRIPT\" --list | tail -n +2)" \
-  --bind "ctrl-u:execute-silent(\"$SCRIPT\" --action start {1})+reload(\"$SCRIPT\" --list | tail -n +2)" \
-  --bind "enter:execute(\"$SCRIPT\" --logs {1})" \
-  --bind "ctrl-e:execute(\"$SCRIPT\" --exec {1})"
+  --bind "ctrl-space:reload(\"$SCRIPT\" --list)" \
+  --bind "ctrl-r:execute-silent(\"$SCRIPT\" --action restart {2})+reload(\"$SCRIPT\" --list)" \
+  --bind "ctrl-s:execute-silent(\"$SCRIPT\" --action stop {2})+reload(\"$SCRIPT\" --list)" \
+  --bind "ctrl-u:execute-silent(\"$SCRIPT\" --action start {2})+reload(\"$SCRIPT\" --list)" \
+  --bind "enter:execute(\"$SCRIPT\" --logs {2})" \
+  --bind "ctrl-e:execute(\"$SCRIPT\" --exec {2})"
