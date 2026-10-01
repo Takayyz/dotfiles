@@ -25,7 +25,14 @@ return {
       html = { "prettier" },
       css = { "prettier" },
       markdown = { "prettier" },
-      php = { "php_cs_fixer" },
+      -- プロジェクトの .nvim.lua で vim.g.disable_php_cs_fixer = true にすると無効化
+      -- lsp_format = "never" で LSP へのフォールバック整形も止める
+      php = function()
+        if vim.g.disable_php_cs_fixer then
+          return { lsp_format = "never" }
+        end
+        return { "php_cs_fixer" }
+      end,
       lua = { "stylua" },
     },
     default_format_opts = {
