@@ -18,7 +18,7 @@ RESET=$'\033[0m'
 #   First line is the table header (used by fzf --header-lines).
 # ---------------------------------------------------------------------------
 if [ "$1" = "--list" ]; then
-  docker compose ps --format "table {{.Name}}\t{{.Service}}\t{{.Status}}\t{{.Ports}}" 2>/dev/null | awk '
+  docker compose ps -a --format "table {{.Name}}\t{{.Service}}\t{{.Status}}\t{{.Ports}}" 2>/dev/null | awk '
     BEGIN {
       ESC = sprintf("%c", 27)
       blue   = ESC "[1;38;5;146;48;5;235m"
@@ -63,6 +63,19 @@ if [ "$1" = "--action" ]; then
     stop)    docker compose stop "$container" 2>/dev/null ;;
     start)   docker compose start "$container" 2>/dev/null ;;
   esac
+  exit 0
+fi
+
+# ---------------------------------------------------------------------------
+# Sub-command: --bulk <up|stop>
+#   Start (creating if needed) or stop every service in the project.
+#   Output stays visible so slow pulls/builds show progress.
+# ---------------------------------------------------------------------------
+if [ "$1" = "--bulk" ]; then
+  case "$2" in
+    up)   docker compose up -d ;;
+    stop) docker compose stop ;;
+  esac || read -n 1 -s -r -p "${RED}Failed.${RESET} Press any key to continue..."
   exit 0
 fi
 
@@ -131,7 +144,8 @@ SCRIPT="$(cd "$(dirname "$0")" && pwd)/$(basename "$0")"
 project_name=$(basename "$compose_dir")
 
 header="${CYAN}Docker Compose${RESET}  ${DIM}(${project_name})${RESET}
-${DIM}enter${RESET}:logs  ${DIM}ctrl-r${RESET}:restart  ${DIM}ctrl-s${RESET}:stop  ${DIM}ctrl-u${RESET}:start  ${DIM}ctrl-e${RESET}:exec  ${DIM}ctrl-space${RESET}:reload"
+${DIM}enter${RESET}:logs  ${DIM}ctrl-r${RESET}:restart  ${DIM}ctrl-s${RESET}:stop  ${DIM}ctrl-u${RESET}:start  ${DIM}ctrl-e${RESET}:exec  ${DIM}ctrl-space${RESET}:reload
+${DIM}alt-u${RESET}:up all  ${DIM}alt-s${RESET}:stop all"
 
 "$SCRIPT" --list | fzf \
   --ansi \
@@ -143,5 +157,7 @@ ${DIM}enter${RESET}:logs  ${DIM}ctrl-r${RESET}:restart  ${DIM}ctrl-s${RESET}:sto
   --bind "ctrl-r:execute-silent(\"$SCRIPT\" --action restart {2})+reload(\"$SCRIPT\" --list)" \
   --bind "ctrl-s:execute-silent(\"$SCRIPT\" --action stop {2})+reload(\"$SCRIPT\" --list)" \
   --bind "ctrl-u:execute-silent(\"$SCRIPT\" --action start {2})+reload(\"$SCRIPT\" --list)" \
+  --bind "alt-u:execute(\"$SCRIPT\" --bulk up)+reload(\"$SCRIPT\" --list)" \
+  --bind "alt-s:execute(\"$SCRIPT\" --bulk stop)+reload(\"$SCRIPT\" --list)" \
   --bind "enter:execute(\"$SCRIPT\" --logs {2})" \
   --bind "ctrl-e:execute(\"$SCRIPT\" --exec {2})"
