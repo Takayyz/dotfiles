@@ -38,6 +38,27 @@ State which Skill/Subagent you're using and why in one line before proceeding.
 - When multiple approaches exist, lay them out side by side with trade-offs so the user can make an informed choice.
 - In code reviews, be constructively critical—flag real issues, skip nitpicks, and suggest concrete improvements.
 
+## Where to Write What
+Route each kind of information to the artifact that owns it, and don't duplicate it elsewhere.
+
+Default to no inline comments. Add one only when it meets the "Why not" or "must be known" criteria below; when unsure, leave it out.
+
+- **How → the code itself**: Express the implementation through naming and structure. Never add comments that restate what the code does.
+- **What → test code**: Tests are the specification. Name each test after the behavior it guarantees (condition and expected result), not after the function or its implementation.
+- **Why → commit log**: The diff already shows what changed. Use the message body for why the change was needed: the problem, the motivation, the context.
+- **Why not → code comment**: Comment where a future reader would otherwise "fix" the code incorrectly: the obvious alternative that was deliberately rejected, and the reason.
+
+These are primary homes, not exclusive ones. When a reason could go in either the commit log or a comment:
+- It explains *this change* → commit log.
+- It must be known by anyone editing this line for as long as the line exists (a workaround and what it works around, a constraint invisible in the code) → code comment.
+- Never write comments that narrate change history ("changed X to Y", "added for ...").
+
+### Docstrings
+Docstrings are the exception to the no-comment default: write one for each function, method, and class in the language's standard format (JSDoc, PHPDoc, ...), and keep it minimal:
+- A one-line summary. No multi-paragraph prose, no walkthrough of the implementation.
+- Parameters and the return value. Put types in the annotations only where the signature doesn't already declare them (e.g. omit them in TypeScript; use PHPDoc for array shapes and generics).
+- Exceptions the caller is expected to catch and handle (e.g. not found, validation failure, an external service error). Don't annotate exceptions that signal a bug or an unrecoverable failure and should simply propagate.
+
 ## Visual Communication
 Before visualizing structured information (branching/flow, dependencies, state transitions, ER, option comparisons) as ASCII or Mermaid, use the `diagram-conventions` skill.
 
