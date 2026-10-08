@@ -10,5 +10,9 @@
 # It points at a versioned Caskroom path, so it is machine- and version-local.
 .config/.agents/skills/terminal-browser
 
+# `ya pkg` deploys plugins here from the revisions pinned in
+# .config/yazi/package.toml; restore them with `ya pkg install`.
+.config/yazi/plugins/
+
 # Personal, machine-local task list.
 /TODO.md

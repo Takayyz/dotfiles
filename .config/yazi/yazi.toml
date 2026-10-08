@@ -4,3 +4,7 @@
 [mgr]
 # 隠しファイルを常に表示する
 show_hidden = true
+
+[[plugin.prepend_previewers]]
+url = "*.md"
+run = 'piper -- leaf --inline ansi:$w "$1"'
